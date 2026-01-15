@@ -28,6 +28,7 @@ public class Ui {
      * Display a farewell message before the program exits
      */
     public void farewellMessage() {
+        printLine();
         System.out.println("Oh, leaving already? Hope you have a productive day!");
         printLine();
     }
