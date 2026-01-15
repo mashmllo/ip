@@ -19,6 +19,7 @@ public class CommandHandler {
      */
     public void run() {
         ui.greetUser();
+        ui.echo("test");
         ui.farewellMessage();
     }
 }

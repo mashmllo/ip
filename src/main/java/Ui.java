@@ -25,6 +25,17 @@ public class Ui {
     }
 
     /**
+     * Echos the command back to the user.
+     *
+     * @param cmd command to echo.
+     */
+    public void echo(String cmd) {
+        printLine();
+        System.out.println(cmd);
+        printLine();
+    }
+
+    /**
      * Display a farewell message before the program exits
      */
     public void farewellMessage() {
