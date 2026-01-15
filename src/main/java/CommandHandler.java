@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Handles user interactions.
  * <p>
@@ -7,9 +9,13 @@
 public class CommandHandler {
 
     private final Ui ui;
+    private final Scanner scanner;
+    private boolean isRunning;
 
     public CommandHandler() {
         this.ui = new Ui();
+        this.scanner = new Scanner(System.in);
+        this.isRunning = true;
     }
 
     /**
@@ -19,7 +25,28 @@ public class CommandHandler {
      */
     public void run() {
         ui.greetUser();
-        ui.echo("test");
+
+
+        while (isRunning) {
+            String cmd = scanner.nextLine().strip();
+            handleCommand(cmd);
+        }
+
         ui.farewellMessage();
+        scanner.close();
+    }
+
+
+    /**
+     * Process the command entered by user
+     *
+     * @param cmd command entered by user
+     */
+    private void handleCommand(String cmd) {
+        if (cmd.equalsIgnoreCase("bye")) {
+            isRunning = false;
+        } else {
+            ui.echo(cmd);
+        }
     }
 }
