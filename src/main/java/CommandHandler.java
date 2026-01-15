@@ -48,7 +48,9 @@ public class CommandHandler {
             isRunning = false;
         } else if (cmd.equalsIgnoreCase("list")) {
             ui.showTasks(tasks, taskCount);
-        }else {
+        } else if (cmd.toLowerCase().startsWith("mark ")) {
+            markTask(cmd);
+        } else {
             addTask(cmd);
         }
     }
@@ -62,5 +64,32 @@ public class CommandHandler {
         tasks[taskCount] = new Task(task);
         taskCount++;
         ui.showAddTask(task);
+    }
+
+    /**
+     * Mark a task as done based on the task number provided in the command
+     * <p>
+     * The command should be in the format "mark <task number>".
+     * This method parses the task number from the command, validates it,
+     * and updates corresponding task's status. If the input is invalid or
+     * out of range, an error message will be displayed.
+     *
+     * @param cmd Full command entered by the user e.g. "mark 2"
+     */
+    private void markTask(String cmd) {
+        try {
+            int index = Integer.parseInt(cmd.split(" ")[1]) - 1;
+            if (index < 0 || index >= taskCount) {
+                ui.showError("Whoops! That task does not exist." +
+                        "\nDouble-check the number and try again");
+                return;
+            }
+            Task task = tasks[index];
+            task.markAsDone();
+            ui.showTaskMarked(task);
+        } catch (NumberFormatException n) {
+            ui.showError("Whoops! That number is not valid. " +
+                    "\nCheck your task list and enter the correct number");
+        }
     }
 }

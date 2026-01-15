@@ -65,6 +65,27 @@ public class Ui {
     }
 
     /**
+     * Display that the task has been marked as complete
+     * @param task Task that has been marked as complete
+     */
+    public void showTaskMarked(Task task) {
+        printLine();
+        System.out.println("Task Completed! You're making progress");
+        System.out.println(" " + task);
+        printLine();
+    }
+
+    /**
+     * Display error message
+     * @param message Error message to be displayed to the user
+     */
+    public void showError(String message) {
+        printLine();
+        System.out.println(message);
+        printLine();
+    }
+
+    /**
      * Display a farewell message before the program exits
      */
     public void farewellMessage() {
