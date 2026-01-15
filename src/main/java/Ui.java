@@ -25,6 +25,14 @@ public class Ui {
     }
 
     /**
+     * Display a farewell message before the program exits
+     */
+    public void farewellMessage() {
+        System.out.println("Oh, leaving already? Hope you have a productive day!");
+        printLine();
+    }
+
+    /**
      * Prints the horizontal divider on the console before and after each message
      */
     private void printLine() {
