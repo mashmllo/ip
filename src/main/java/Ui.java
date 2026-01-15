@@ -36,6 +36,17 @@ public class Ui {
     }
 
     /**
+     * Display new task that has been added
+     *
+     * @param task New tasks that has been added
+     */
+    public void showAddTask(String task) {
+        printLine();
+        System.out.println("added: " + task);
+        printLine();
+    }
+
+    /**
      * Display a farewell message before the program exits
      */
     public void farewellMessage() {

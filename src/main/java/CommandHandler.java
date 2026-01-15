@@ -12,6 +12,9 @@ public class CommandHandler {
     private final Scanner scanner;
     private boolean isRunning;
 
+    private final String[] tasks = new String[100];
+    private int taskCount = 0;
+
     public CommandHandler() {
         this.ui = new Ui();
         this.scanner = new Scanner(System.in);
@@ -26,7 +29,6 @@ public class CommandHandler {
     public void run() {
         ui.greetUser();
 
-
         while (isRunning) {
             String cmd = scanner.nextLine().strip();
             handleCommand(cmd);
@@ -35,7 +37,6 @@ public class CommandHandler {
         ui.farewellMessage();
         scanner.close();
     }
-
 
     /**
      * Process the command entered by user
@@ -46,7 +47,18 @@ public class CommandHandler {
         if (cmd.equalsIgnoreCase("bye")) {
             isRunning = false;
         } else {
-            ui.echo(cmd);
+            addTask(cmd);
         }
+    }
+
+    /**
+     * Adds a new task to array
+     *
+     * @param task New task to be added
+     */
+    private void addTask(String task) {
+        tasks[taskCount] = task;
+        taskCount++;
+        ui.showAddTask(task);
     }
 }
