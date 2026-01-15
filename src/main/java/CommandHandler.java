@@ -46,7 +46,9 @@ public class CommandHandler {
     private void handleCommand(String cmd) {
         if (cmd.equalsIgnoreCase("bye")) {
             isRunning = false;
-        } else {
+        } else if (cmd.equalsIgnoreCase("list")) {
+            ui.showTasks(tasks, taskCount);
+        }else {
             addTask(cmd);
         }
     }
