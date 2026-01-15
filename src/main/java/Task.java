@@ -40,6 +40,10 @@ public class Task {
         return (isDone ? "X" : " ");
     }
 
+    /**
+     * Return the task as a formatted string with its status
+     * @return formatted string e.g. "[X] read book"
+     */
     @Override
     public String toString() {
         String statusIcon = "[" + getStatusIcon() + "]";
