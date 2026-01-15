@@ -51,7 +51,7 @@ public class Ui {
      * @param tasks Array containing all the tasks
      * @param count Number of tasks stored
      */
-    public void showTasks(String[] tasks, int count) {
+    public void showTasks(Task[] tasks, int count) {
         printLine();
         if (count == 0) {
             System.out.println("Hmm... it looks like you haven't add any tasks yet");

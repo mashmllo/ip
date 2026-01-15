@@ -12,7 +12,7 @@ public class CommandHandler {
     private final Scanner scanner;
     private boolean isRunning;
 
-    private final String[] tasks = new String[100];
+    private final Task[] tasks = new Task[100];
     private int taskCount = 0;
 
     public CommandHandler() {
@@ -59,7 +59,7 @@ public class CommandHandler {
      * @param task New task to be added
      */
     private void addTask(String task) {
-        tasks[taskCount] = task;
+        tasks[taskCount] = new Task(task);
         taskCount++;
         ui.showAddTask(task);
     }
