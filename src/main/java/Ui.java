@@ -76,6 +76,17 @@ public class Ui {
     }
 
     /**
+     * Display that the task has been marked as complete
+     * @param task Task that has been marked as complete
+     */
+    public void showTaskUnmarked(Task task) {
+        printLine();
+        System.out.println("Okay! The task is still pending to be completed");
+        System.out.println(" " + task);
+        printLine();
+    }
+
+    /**
      * Display error message
      * @param message Error message to be displayed to the user
      */

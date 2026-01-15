@@ -48,8 +48,9 @@ public class CommandHandler {
             isRunning = false;
         } else if (cmd.equalsIgnoreCase("list")) {
             ui.showTasks(tasks, taskCount);
-        } else if (cmd.toLowerCase().startsWith("mark ")) {
-            markTask(cmd);
+        } else if (cmd.toLowerCase().startsWith("mark ")
+                || cmd.toLowerCase().startsWith("unmark")) {
+            updateTaskStatus(cmd);
         } else {
             addTask(cmd);
         }
@@ -67,26 +68,45 @@ public class CommandHandler {
     }
 
     /**
-     * Mark a task as done based on the task number provided in the command
+     * Update the status of a task based on the command
      * <p>
-     * The command should be in the format "mark <task number>".
+     * The command should be in the following format:
+     *  - "mark <task number>" to mark a task as done
+     *  - "unmark <task number>" to mark a task as not done
+     * <p>
      * This method parses the task number from the command, validates it,
-     * and updates corresponding task's status. If the input is invalid or
-     * out of range, an error message will be displayed.
+     * and updates the task's status. Errors are displayed if the input number is
+     * invalid or out of range.
      *
-     * @param cmd Full command entered by the user e.g. "mark 2"
+     * @param cmd Full command entered by the user e.g. "mark 2", "unmark 3"
      */
-    private void markTask(String cmd) {
+    private void updateTaskStatus(String cmd) {
+        String[] parts = cmd.split(" ");
+        if (parts.length != 2) {
+            ui.showError("Hmm... I need a task number to proceed" +
+                    "\n Try something like: mark 2, unmark 3");
+            return;
+        }
+
         try {
-            int index = Integer.parseInt(cmd.split(" ")[1]) - 1;
+            int index = Integer.parseInt(parts[1]) - 1;
             if (index < 0 || index >= taskCount) {
                 ui.showError("Whoops! That task does not exist." +
                         "\nDouble-check the number and try again");
                 return;
             }
             Task task = tasks[index];
-            task.markAsDone();
-            ui.showTaskMarked(task);
+            if (parts[0].equalsIgnoreCase("mark")) {
+                task.markAsDone();
+                ui.showTaskMarked(task);
+            } else if (parts[0].equalsIgnoreCase("unmark")) {
+                task.markAsNotDone();
+                ui.showTaskUnmarked(task);
+            } else {
+                ui.showError("Hmm... I don't recognize that command" +
+                        "\n Try using: mark <task number> or unmark <task number>");
+            }
+
         } catch (NumberFormatException n) {
             ui.showError("Whoops! That number is not valid. " +
                     "\nCheck your task list and enter the correct number");
