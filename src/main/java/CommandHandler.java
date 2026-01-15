@@ -1,3 +1,9 @@
+/**
+ * Handles user interactions.
+ * <p>
+ * This class is responsible for managing the main workflow of Sora,
+ * including greeting the user, processing commands, and displaying farewell message.
+ */
 public class CommandHandler {
 
     private final Ui ui;
