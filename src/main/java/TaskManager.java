@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Manages the storage and retrieval of tasks for Sora
  * <p>
@@ -6,38 +8,14 @@
  */
 public class TaskManager {
 
-    private final Task[] tasks = new Task[100];
-    private int taskCount = 0;
+    private final ArrayList<Task> tasks = new ArrayList<>();
 
-    /**
-     * Adds a new task to array
-     *
-     * @param task Task object to add
-     */
-    public void addTask(Task task) {
-        tasks[taskCount] = task;
-        taskCount++;
-    }
-
-    /**
-     * Retrieve task by index
-     *
-     * @param index Index of the task
-     * @return Task object if index is valid, otherwise null
-     */
-    public Task getTask(int index) {
-        if (index < 0 || index >= taskCount) {
-            return null;
-        }
-
-        return tasks[index];
-    }
     /**
      * Retrieve the array of all tasks
      *
-     * @return Array of Task objects
+     * @return Arraylist of Task objects
      */
-    public Task[] getTasks() {
+    public ArrayList<Task> getTasks() {
         return tasks;
     }
 
@@ -47,8 +25,30 @@ public class TaskManager {
      * @return  Number of tasks
      */
     public int getTaskCount() {
-        return taskCount;
+        return tasks.size();
     }
 
+    /**
+     * Adds a new task to array
+     *
+     * @param task Task object to add
+     */
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
+    /**
+     * Retrieve task by index
+     *
+     * @param index Index of the task
+     * @return Task object if index is valid, otherwise null
+     */
+    public Task getTask(int index) {
+        if (index < 0 || index >= this.getTaskCount()) {
+            return null;
+        }
+
+        return tasks.get(index);
+    }
 
 }

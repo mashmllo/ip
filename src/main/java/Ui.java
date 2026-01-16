@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Handles all user interactions for the chatbot
  * <p>
@@ -51,17 +53,17 @@ public class Ui {
 
     /**
      * Display the list of all tasks stored.
-     * @param tasks Array containing all the tasks
+     * @param tasks Arraylist containing all the tasks
      * @param count Number of tasks stored
      */
-    public void showTasks(Task[] tasks, int count) {
+    public void showTasks(ArrayList<Task> tasks, int count) {
         printLine();
         if (count == 0) {
             System.out.println("Hmm... it looks like you haven't add any tasks yet");
             System.out.println("Why not start adding a new task?");
         } else {
             for (int i = 0; i < count; i++) {
-                System.out.println((i+1) + ". " + tasks[i]);
+                System.out.println((i+1) + ". " + tasks.get(i));
             }
         }
         printLine();
