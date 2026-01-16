@@ -16,6 +16,8 @@ public class Parser {
     public static Task parseTask(String cmd) {
         if (cmd.toLowerCase().startsWith(("todo"))) {
             return parseTodo(cmd);
+        } else if (cmd.toLowerCase().startsWith("deadline")) {
+            return parseDeadline(cmd);
         } else {
             throw new IllegalArgumentException("Oops! Unknown task type" +
                     "\n Make sure you're using a valid task type");
@@ -35,7 +37,8 @@ public class Parser {
      * @return A ToDo task object
      * @throws IllegalArgumentException if task name is missing
      */
-    private static ToDo parseTodo(String cmd) throws IllegalArgumentException {
+    private static ToDo parseTodo(String cmd)
+            throws IllegalArgumentException {
         String taskName = cmd.substring(4).trim();
 
         if (taskName.isEmpty()) {
@@ -45,4 +48,28 @@ public class Parser {
         return new ToDo(taskName);
     }
 
+    /**
+     * Creates and adds a Deadline task to the task list
+     * <p>
+     * Command to follow the following format:
+     *      deadline <name of task> /by <deadline>
+     * <p>
+     * Both the name of the task and the deadline must be provided,
+     * otherwise an error message is shown and the task is not being added into the
+     * list.
+     *
+     * @param cmd Full command entered by the user
+     *            e.g. "deadline submit report /by 11/10/2025 5pm"
+     * @return A Deadline task object
+     * @throws IllegalArgumentException if task name or deadline is missing
+     */
+    private static Deadline parseDeadline(String cmd)
+    throws IllegalArgumentException {
+        String[] parts = cmd.substring(8).split(" /by ", 2);
+        if (parts.length < 2 || parts[0].trim().isEmpty()
+                || parts[1].trim().isEmpty()) {
+            throw new IllegalArgumentException("Oops! Deadline requires /by and name");
+        }
+        return new Deadline(parts[0].trim(), parts[1].trim());
+    }
 }
