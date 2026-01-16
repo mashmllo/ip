@@ -27,17 +27,6 @@ public class Ui {
     }
 
     /**
-     * Echos the command back to the user.
-     *
-     * @param cmd command to echo.
-     */
-    public void echo(String cmd) {
-        printLine();
-        System.out.println(cmd);
-        printLine();
-    }
-
-    /**
      * Display new task that has been added
      *
      * @param task  New tasks that has been added
