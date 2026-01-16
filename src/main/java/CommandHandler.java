@@ -48,7 +48,7 @@ public class CommandHandler {
             isRunning = false;
         } else if (cmd.equalsIgnoreCase("list")) {
             ui.showTasks(taskManager.getTasks(), taskManager.getTaskCount());
-        } else if (cmd.toLowerCase().startsWith("mark ")
+        } else if (cmd.toLowerCase().startsWith("mark")
                 || cmd.toLowerCase().startsWith("unmark")) {
             updateTaskStatus(cmd);
         } else {
