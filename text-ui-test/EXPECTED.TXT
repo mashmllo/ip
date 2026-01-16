@@ -1,7 +1,144 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
 
+'+.. + ..-. ..-.  *'.~~+'.  '  +* *''.~~+  .-. '  '''+ +   ++
+ * .-.   ) ). ) )      . . .-.  . .'  .-. (   )  .'.-. +.'   
+ .(   ) '-´  '-´ ' .-.  ' ( (    .-. ( ( . `-' .-.  ) ) .-. o
++  `-' 'o *+'.  . (   )    `-'.'(   ) `-'.o   . ) )'-´ (   )'
+    o..o       +.. `-'  .''.. +  `-'     . .oo '-´ .o'. `-' o
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Hey! I'm Sora
+What would you like to do today?
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Task added! Here's what I've recorded: 
+[T][ ] read book
+All set! You now have 1 in your list
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Task added! Here's what I've recorded: 
+[D][ ] submit report (by: Sunday)
+All set! You now have 2 in your list
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Task added! Here's what I've recorded: 
+[E][ ] project meeting (from: Mon 2pm to: 4pm)
+All set! You now have 3 in your list
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1. [T][ ] read book
+2. [D][ ] submit report (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Task Completed! You're making progress
+ [T][X] read book
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Okay! The task is still pending to be completed
+ [T][ ] read book
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Task added! Here's what I've recorded: 
+[T][ ] return book
+All set! You now have 4 in your list
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Task added! Here's what I've recorded: 
+[D][ ] submit report (by: Sunday)
+All set! You now have 5 in your list
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Task added! Here's what I've recorded: 
+[E][ ] project meeting (from: Mon 2pm to: 4pm)
+All set! You now have 6 in your list
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1. [T][ ] read book
+2. [D][ ] submit report (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+4. [T][ ] return book
+5. [D][ ] submit report (by: Sunday)
+6. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Task Completed! You're making progress
+ [D][X] submit report (by: Sunday)
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Task Completed! You're making progress
+ [E][X] project meeting (from: Mon 2pm to: 4pm)
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Okay! The task is still pending to be completed
+ [D][ ] submit report (by: Sunday)
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Task added! Here's what I've recorded: 
+[T][ ] borrow bread
+All set! You now have 7 in your list
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Oops! The task name is missing 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Oops! Deadline requires /by and name
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Oops! Deadline requires /by and name
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Oops! Event requires /from, /to and name
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Oops! Event requires /from, /to and name
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Oops! Event requires /from, /to and name
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Hmm... I need a task number to proceed
+ Try something like: mark 2, unmark 3
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Whoops! That task does not exist.
+Double-check the number and try again
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Whoops! That task does not exist.
+Double-check the number and try again
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Whoops! That number is not valid. 
+Check your task list and enter the correct number
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Whoops! That task does not exist.
+Double-check the number and try again
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Hmm... I need a task number to proceed
+ Try something like: mark 2, unmark 3
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Whoops! That task does not exist.
+Double-check the number and try again
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Whoops! That number is not valid. 
+Check your task list and enter the correct number
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Whoops! That task does not exist.
+Double-check the number and try again
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Whoops! That task does not exist.
+Double-check the number and try again
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Oops! Unknown task type
+ Make sure you're using a valid task type
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Oh, leaving already? Hope you have a productive day!
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
