@@ -18,6 +18,8 @@ public class Parser {
             return parseTodo(cmd);
         } else if (cmd.toLowerCase().startsWith("deadline")) {
             return parseDeadline(cmd);
+        } else if (cmd.toLowerCase().startsWith("event")) {
+            return parseEvent(cmd);
         } else {
             throw new IllegalArgumentException("Oops! Unknown task type" +
                     "\n Make sure you're using a valid task type");
@@ -68,8 +70,37 @@ public class Parser {
         String[] parts = cmd.substring(8).split(" /by ", 2);
         if (parts.length < 2 || parts[0].trim().isEmpty()
                 || parts[1].trim().isEmpty()) {
-            throw new IllegalArgumentException("Oops! Deadline requires /by and name");
+            throw new IllegalArgumentException("Oops! Deadline requires /by " +
+                    "and name");
         }
         return new Deadline(parts[0].trim(), parts[1].trim());
+    }
+
+    /**
+     * Creates and adds an Event task to the task list
+     * <p>
+     * Command to follow the following format:
+     *      event <name of task> /from <start time> /to <end time>
+     * <p>
+     * All 3 fields, name of task, start time and end time, must be provided,
+     * otherwise an error message is shown and the task is not being added into the
+     * list.
+     *
+     * @param cmd Full command entered by the user
+     *            e.g. "event project meeting /from Mon 2pm /to 4pm"
+     * @return An Event task object
+     * @throws IllegalArgumentException if task name, start time, or end time
+     *                                  is missing
+     */
+    private static Event parseEvent(String cmd)
+            throws IllegalArgumentException {
+        String[] parts = cmd.substring(5)
+                .split(" /from | /to ", 3);
+        if (parts.length < 3 || parts[0].trim().isEmpty()
+                || parts[1].trim().isEmpty() || parts[2].trim().isEmpty()) {
+            throw new IllegalArgumentException("Oops! Deadline requires /from," +
+                    " /to and name");
+        }
+        return new Event(parts[0].trim(), parts[1].trim(),  parts[2].trim());
     }
 }
