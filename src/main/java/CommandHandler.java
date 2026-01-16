@@ -10,14 +10,14 @@ public class CommandHandler {
 
     private final Ui ui;
     private final Scanner scanner;
+    private final TaskManager taskManager;
     private boolean isRunning;
 
-    private final Task[] tasks = new Task[100];
-    private int taskCount = 0;
 
     public CommandHandler() {
         this.ui = new Ui();
         this.scanner = new Scanner(System.in);
+        this.taskManager = new TaskManager();
         this.isRunning = true;
     }
 
@@ -47,7 +47,7 @@ public class CommandHandler {
         if (cmd.equalsIgnoreCase("bye")) {
             isRunning = false;
         } else if (cmd.equalsIgnoreCase("list")) {
-            ui.showTasks(tasks, taskCount);
+            ui.showTasks(taskManager.getTasks(), taskManager.getTaskCount());
         } else if (cmd.toLowerCase().startsWith("mark ")
                 || cmd.toLowerCase().startsWith("unmark")) {
             updateTaskStatus(cmd);
@@ -59,14 +59,18 @@ public class CommandHandler {
     /**
      * Adds a new task to array
      *
-     * @param task New task to be added
+     * @param cmd Full command entered by the user
      */
-    private void addTask(String task) {
-        Task newTask = new Task(task);
-        tasks[taskCount] = newTask;
-        taskCount++;
-        ui.showAddTask(newTask, taskCount);
+    private void addTask(String cmd) {
+        try {
+            Task task = Parser.parseTask(cmd);
+            taskManager.addTask(task);
+            ui.showAddTask(task, taskManager.getTaskCount());
+        } catch (IllegalArgumentException e) {
+            ui.showError(e.getMessage());
+        }
     }
+
 
     /**
      * Update the status of a task based on the command
@@ -91,12 +95,13 @@ public class CommandHandler {
 
         try {
             int index = Integer.parseInt(parts[1]) - 1;
-            if (index < 0 || index >= taskCount) {
+            Task task = taskManager.getTask(index);
+            if (task == null) {
                 ui.showError("Whoops! That task does not exist." +
                         "\nDouble-check the number and try again");
                 return;
             }
-            Task task = tasks[index];
+
             if (parts[0].equalsIgnoreCase("mark")) {
                 task.markAsDone();
                 ui.showTaskMarked(task);
