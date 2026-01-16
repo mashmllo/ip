@@ -11,18 +11,20 @@ public class Parser {
      *
      * @param cmd Full command entered by the user
      * @return A Task object corresponding to the command entered by the user
-     * @throws IllegalArgumentException if the command format is invalid
+     * @throws UnknownCommandException if an invalid or incomplete command is entered
      */
-    public static Task parseTask(String cmd) {
-        if (cmd.toLowerCase().startsWith(("todo"))) {
+    public static Task parseTask(String cmd) throws SoraException {
+
+        String cmdLowercase = cmd.toLowerCase();
+
+        if (cmdLowercase.startsWith(("todo"))) {
             return parseTodo(cmd);
-        } else if (cmd.toLowerCase().startsWith("deadline")) {
+        } else if (cmdLowercase.startsWith("deadline")) {
             return parseDeadline(cmd);
-        } else if (cmd.toLowerCase().startsWith("event")) {
+        } else if (cmdLowercase.startsWith("event")) {
             return parseEvent(cmd);
         } else {
-            throw new IllegalArgumentException("Oops! Unknown task type" +
-                    "\n Make sure you're using a valid task type");
+            throw new UnknownCommandException();
         }
     }
 
@@ -37,14 +39,14 @@ public class Parser {
      *
      * @param cmd Full command entered by the user e.g. "todo read book"
      * @return A ToDo task object
-     * @throws IllegalArgumentException if task name is missing
+     * @throws InvalidFormatException if task name is missing
      */
     private static ToDo parseTodo(String cmd)
-            throws IllegalArgumentException {
+            throws InvalidFormatException {
         String taskName = cmd.substring(4).trim();
 
         if (taskName.isEmpty()) {
-           throw new IllegalArgumentException("Oops! The task name is missing ");
+           throw new InvalidFormatException("Oops! The task name is missing ");
         }
 
         return new ToDo(taskName);
@@ -63,14 +65,14 @@ public class Parser {
      * @param cmd Full command entered by the user
      *            e.g. "deadline submit report /by 11/10/2025 5pm"
      * @return A Deadline task object
-     * @throws IllegalArgumentException if task name or deadline is missing
+     * @throws InvalidFormatException if task name or deadline is missing
      */
     private static Deadline parseDeadline(String cmd)
-    throws IllegalArgumentException {
+    throws InvalidFormatException {
         String[] parts = cmd.substring(8).split(" /by ", 2);
         if (parts.length < 2 || parts[0].trim().isEmpty()
                 || parts[1].trim().isEmpty()) {
-            throw new IllegalArgumentException("Oops! Deadline requires /by " +
+            throw new InvalidFormatException("Oops! Deadline requires /by " +
                     "and name");
         }
         return new Deadline(parts[0].trim(), parts[1].trim());
@@ -89,16 +91,16 @@ public class Parser {
      * @param cmd Full command entered by the user
      *            e.g. "event project meeting /from Mon 2pm /to 4pm"
      * @return An Event task object
-     * @throws IllegalArgumentException if task name, start time, or end time
+     * @throws InvalidFormatException if task name, start time, or end time
      *                                  is missing
      */
     private static Event parseEvent(String cmd)
-            throws IllegalArgumentException {
+            throws InvalidFormatException {
         String[] parts = cmd.substring(5)
                 .split(" /from | /to ", 3);
         if (parts.length < 3 || parts[0].trim().isEmpty()
                 || parts[1].trim().isEmpty() || parts[2].trim().isEmpty()) {
-            throw new IllegalArgumentException("Oops! Event requires /from," +
+            throw new InvalidFormatException("Oops! Event requires /from," +
                     " /to and name");
         }
         return new Event(parts[0].trim(), parts[1].trim(),  parts[2].trim());

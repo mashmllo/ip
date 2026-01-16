@@ -136,8 +136,8 @@ Whoops! That task does not exist.
 Double-check the number and try again
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Oops! Unknown task type
- Make sure you're using a valid task type
+Oops! I didn't recognize that command
+ Please enter a valid command
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Oh, leaving already? Hope you have a productive day!

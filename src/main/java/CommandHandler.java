@@ -31,7 +31,11 @@ public class CommandHandler {
 
         while (isRunning) {
             String cmd = scanner.nextLine().strip();
-            handleCommand(cmd);
+            try {
+                handleCommand(cmd);
+            } catch (SoraException soraException) {
+                ui.showError(soraException.getMessage());
+            }
         }
 
         ui.farewellMessage();
@@ -60,15 +64,12 @@ public class CommandHandler {
      * Adds a new task to array
      *
      * @param cmd Full command entered by the user
+     * @throws SoraException if the command is invalid
      */
-    private void addTask(String cmd) {
-        try {
-            Task task = Parser.parseTask(cmd);
-            taskManager.addTask(task);
-            ui.showAddTask(task, taskManager.getTaskCount());
-        } catch (IllegalArgumentException e) {
-            ui.showError(e.getMessage());
-        }
+    private void addTask(String cmd) throws SoraException {
+        Task task = Parser.parseTask(cmd); // Parser throw SoraException subclasses
+        taskManager.addTask(task);
+        ui.showAddTask(task, taskManager.getTaskCount());
     }
 
 
@@ -84,38 +85,41 @@ public class CommandHandler {
      * invalid or out of range.
      *
      * @param cmd Full command entered by the user e.g. "mark 2", "unmark 3"
+     * @throws SoraException if invalid command is entered
+     *                       or task number is out of range
      */
-    private void updateTaskStatus(String cmd) {
+    private void updateTaskStatus(String cmd)
+            throws SoraException{
         String[] parts = cmd.split(" ");
         if (parts.length != 2) {
-            ui.showError("Hmm... I need a task number to proceed" +
-                    "\n Try something like: mark 2, unmark 3");
-            return;
+            throw new InvalidFormatException("Hmm... I need a task number to proceed"
+                    +"\n Try something like: mark 2, unmark 3");
         }
 
+        int index;
         try {
-            int index = Integer.parseInt(parts[1]) - 1;
-            Task task = taskManager.getTask(index);
-            if (task == null) {
-                ui.showError("Whoops! That task does not exist." +
-                        "\nDouble-check the number and try again");
-                return;
-            }
-
-            if (parts[0].equalsIgnoreCase("mark")) {
-                task.markAsDone();
-                ui.showTaskMarked(task);
-            } else if (parts[0].equalsIgnoreCase("unmark")) {
-                task.markAsNotDone();
-                ui.showTaskUnmarked(task);
-            } else {
-                ui.showError("Hmm... I don't recognize that command" +
-                        "\n Try using: mark <task number> or unmark <task number>");
-            }
-
-        } catch (NumberFormatException n) {
-            ui.showError("Whoops! That number is not valid. " +
+            index = Integer.parseInt(parts[1]) - 1;
+        } catch (NumberFormatException numberFormatException) {
+            throw new InvalidFormatException("Whoops! That number is not valid. " +
                     "\nCheck your task list and enter the correct number");
         }
+
+        Task task = taskManager.getTask(index);
+        if (task == null) {
+            throw new InvalidFormatException("Whoops! That task does not exist." +
+                    "\nDouble-check the number and try again");
+        }
+
+        String keyword = parts[0].toLowerCase();
+        if (keyword.equals("mark")) {
+            task.markAsDone();
+            ui.showTaskMarked(task);
+        } else if (keyword.equals("unmark")) {
+            task.markAsNotDone();
+            ui.showTaskUnmarked(task);
+        } else {
+            throw new UnknownCommandException();
+        }
+
     }
 }
