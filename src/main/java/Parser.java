@@ -98,7 +98,7 @@ public class Parser {
                 .split(" /from | /to ", 3);
         if (parts.length < 3 || parts[0].trim().isEmpty()
                 || parts[1].trim().isEmpty() || parts[2].trim().isEmpty()) {
-            throw new IllegalArgumentException("Oops! Deadline requires /from," +
+            throw new IllegalArgumentException("Oops! Event requires /from," +
                     " /to and name");
         }
         return new Event(parts[0].trim(), parts[1].trim(),  parts[2].trim());
