@@ -38,11 +38,14 @@ public class Ui {
     /**
      * Display new task that has been added
      *
-     * @param task New tasks that has been added
+     * @param task  New tasks that has been added
+     * @param count Number of tasks stored
      */
-    public void showAddTask(String task) {
+    public void showAddTask(Task task, int count) {
         printLine();
-        System.out.println("added: " + task);
+        System.out.println("Task added! Here's what I've recorded: ");
+        System.out.println(task);
+        System.out.printf("All set! You now have %d in your list\n", count);
         printLine();
     }
 

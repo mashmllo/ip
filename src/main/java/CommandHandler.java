@@ -62,9 +62,10 @@ public class CommandHandler {
      * @param task New task to be added
      */
     private void addTask(String task) {
-        tasks[taskCount] = new Task(task);
+        Task newTask = new Task(task);
+        tasks[taskCount] = newTask;
         taskCount++;
-        ui.showAddTask(task);
+        ui.showAddTask(newTask, taskCount);
     }
 
     /**
