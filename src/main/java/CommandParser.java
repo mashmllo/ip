@@ -1,10 +1,69 @@
 /**
- * Parses user commands and create Task object based on command prefix.
+ * Parses user commands to its respective command based on user input
  * <p>
- *  This class is responsible for validating user input and throws exceptions
- *  if the command format is invalid or if required information is missing.
+ *  This class is responsible for validating and parsing user input
+ *  and instantiate the appropriate Command implementation
  */
-public class Parser {
+public class CommandParser {
+
+    /**
+     * Parses user input and returns the corresponding Command
+     * @param cmd Full command entered by the user
+     * @return Command to be executed
+     * @throws SoraException If incomplete or invalid command is entered
+     */
+    public static Command parse(String cmd) throws SoraException {
+        String lower = cmd.toLowerCase().trim();
+
+        if (lower.startsWith("bye")) {
+            return new ExitCommand();
+        } else if (lower.startsWith("list")) {
+            return new ListCommand();
+        } else if (lower.startsWith("mark")) {
+            return parseIndexCommand(cmd, "mark");
+        } else if (lower.startsWith("unmark")) {
+            return parseIndexCommand(cmd, "unmark");
+        } else {
+            return parseAddTaskCommand(cmd);
+        }
+    }
+
+    private static Command parseIndexCommand(String cmd, String keyword)
+            throws SoraException {
+
+        String[] parts = cmd.split(" ");
+        if (parts.length != 2) {
+            throw new InvalidFormatException("Hmm... I need a task number to proceed"
+                    +"\n Try something like: mark 2, unmark 3");
+        }
+
+        int index;
+        try {
+            index = Integer.parseInt(parts[1]) - 1;
+        } catch (NumberFormatException numberFormatException) {
+            throw new InvalidFormatException("Whoops! That number is not valid. " +
+                    "\nCheck your task list and enter the correct number");
+        }
+
+        if (keyword.equals("mark")) {
+            return new MarkCommand(index);
+        } else if (keyword.equals("unmark")) {
+            return new UnmarkedCommand(index);
+        } else {
+            throw new UnknownCommandException();
+        }
+    }
+
+    /**
+     * Parse task creation command
+     * @param cmd Full command entered by the user
+     * @return AddTaskCommand containing the parsed task
+     * @throws SoraException if invalid or incomplete command is entered
+     */
+    private static Command parseAddTaskCommand(String cmd) throws SoraException {
+        Task task = parseTask(cmd);
+        return new AddTaskCommand(task);
+    }
 
     /**
      * Parses a command string into a Task object
