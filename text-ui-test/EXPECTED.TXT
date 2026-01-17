@@ -43,22 +43,10 @@ Task added! Here's what I've recorded:
 All set! You now have 4 in your list
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Task added! Here's what I've recorded: 
-[D][ ] submit report (by: Sunday)
-All set! You now have 5 in your list
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Task added! Here's what I've recorded: 
-[E][ ] project meeting (from: Mon 2pm to: 4pm)
-All set! You now have 6 in your list
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 1. [T][ ] read book
 2. [D][ ] submit report (by: Sunday)
 3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
 4. [T][ ] return book
-5. [D][ ] submit report (by: Sunday)
-6. [E][ ] project meeting (from: Mon 2pm to: 4pm)
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Task Completed! You're making progress
@@ -73,9 +61,15 @@ Okay! The task is still pending to be completed
  [D][ ] submit report (by: Sunday)
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1. [T][ ] read book
+2. [D][ ] submit report (by: Sunday)
+3. [E][X] project meeting (from: Mon 2pm to: 4pm)
+4. [T][ ] return book
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Task added! Here's what I've recorded: 
 [T][ ] borrow bread
-All set! You now have 7 in your list
+All set! You now have 5 in your list
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Oops! The task name is missing 
@@ -97,7 +91,7 @@ Oops! Event requires /from, /to and name
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Hmm... I need a task number to proceed
- Try something like: mark 2, unmark 3
+ Try something like: mark 3
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Whoops! That task does not exist.
@@ -117,7 +111,7 @@ Double-check the number and try again
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Hmm... I need a task number to proceed
- Try something like: mark 2, unmark 3
+ Try something like: unmark 3
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Whoops! That task does not exist.
@@ -138,6 +132,69 @@ Double-check the number and try again
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Oops! I didn't recognize that command
  Please enter a valid command
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Got it! Task removed  
+ [T][ ] read book
+All set! You now have 4 in your list
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1. [D][ ] submit report (by: Sunday)
+2. [E][X] project meeting (from: Mon 2pm to: 4pm)
+3. [T][ ] return book
+4. [T][ ] borrow bread
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Got it! Task removed  
+ [E][X] project meeting (from: Mon 2pm to: 4pm)
+All set! You now have 3 in your list
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1. [D][ ] submit report (by: Sunday)
+2. [T][ ] return book
+3. [T][ ] borrow bread
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Whoops! That task does not exist.
+Double-check the number and try again
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Whoops! That task does not exist.
+Double-check the number and try again
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Whoops! That task does not exist.
+Double-check the number and try again
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Whoops! That number is not valid. 
+Check your task list and enter the correct number
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Hmm... I need a task number to proceed
+ Try something like: delete 3
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1. [D][ ] submit report (by: Sunday)
+2. [T][ ] return book
+3. [T][ ] borrow bread
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Got it! Task removed  
+ [T][ ] return book
+All set! You now have 2 in your list
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1. [D][ ] submit report (by: Sunday)
+2. [T][ ] borrow bread
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Whoops! That task does not exist.
+Double-check the number and try again
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1. [D][ ] submit report (by: Sunday)
+2. [T][ ] borrow bread
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Oh, leaving already? Hope you have a productive day!

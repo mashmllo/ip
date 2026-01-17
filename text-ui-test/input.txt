@@ -5,12 +5,11 @@ list
 mark 1
 unmark 1
 todo return book
-deadline submit report /by Sunday
-event project meeting /from Mon 2pm /to 4pm
 list
 mark 2
 mark 3
 unmark 2
+list
 todo borrow bread
 todo
 deadline submit
@@ -29,4 +28,18 @@ unmark xyz
 unmark -1
 unmark 1000
 foo
+delete 1
+list
+delete 2
+list
+delete 100
+delete 0
+delete -1
+delete abc
+delete
+list
+delete 2
+list
+delete 3
+list
 bye
