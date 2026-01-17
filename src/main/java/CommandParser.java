@@ -8,11 +8,13 @@ public class CommandParser {
 
     /**
      * Parses user input and returns the corresponding Command
+     *
      * @param cmd Full command entered by the user
+     * @param taskManager The TaskManager class
      * @return Command to be executed
      * @throws SoraException If incomplete or invalid command is entered
      */
-    public static Command parse(String cmd) throws SoraException {
+    public static Command parse(String cmd, TaskManager taskManager) throws SoraException {
         String lower = cmd.toLowerCase().trim();
 
         if (lower.startsWith("bye")) {
@@ -20,21 +22,23 @@ public class CommandParser {
         } else if (lower.startsWith("list")) {
             return new ListCommand();
         } else if (lower.startsWith("mark")) {
-            return parseIndexCommand(cmd, "mark");
+            return parseIndexCommand(cmd, "mark", taskManager);
         } else if (lower.startsWith("unmark")) {
-            return parseIndexCommand(cmd, "unmark");
+            return parseIndexCommand(cmd, "unmark", taskManager);
+        } else if (lower.startsWith("delete")) {
+            return parseIndexCommand(cmd, "delete", taskManager);
         } else {
             return parseAddTaskCommand(cmd);
         }
     }
 
-    private static Command parseIndexCommand(String cmd, String keyword)
+    private static Command parseIndexCommand(String cmd, String keyword, TaskManager taskManager)
             throws SoraException {
 
         String[] parts = cmd.split(" ");
         if (parts.length != 2) {
             throw new InvalidFormatException("Hmm... I need a task number to proceed"
-                    +"\n Try something like: mark 2, unmark 3");
+                    +"\n Try something like: " + keyword + " 3");
         }
 
         int index;
@@ -49,6 +53,8 @@ public class CommandParser {
             return new MarkCommand(index);
         } else if (keyword.equals("unmark")) {
             return new UnmarkedCommand(index);
+        } else if (keyword.equals("delete")) {
+            return new DeleteCommand(index, taskManager);
         } else {
             throw new UnknownCommandException();
         }

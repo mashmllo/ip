@@ -51,4 +51,17 @@ public class TaskManager {
         return tasks.get(index);
     }
 
+    /**
+     * Remove task by index
+     *
+     * @param index Index of the task
+     * @return Task object if index is valid, otherwise null
+     */
+    public Task removeTask(int index) {
+        if (index < 0 || index >= this.getTaskCount()) {
+            return null;
+        }
+
+        return tasks.remove(index);
+    }
 }

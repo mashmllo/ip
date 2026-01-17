@@ -41,6 +41,20 @@ public class Ui {
     }
 
     /**
+     * Display confirmation that the task has been deleted
+     *
+     * @param task  New tasks that has been added
+     * @param count Number of tasks stored
+     */
+    public void showDeletedTask(Task task, int count) {
+        printLine();
+        System.out.println("Got it! Task removed  ");
+        System.out.println(" " + task);
+        System.out.printf("All set! You now have %d in your list\n", count);
+        printLine();
+    }
+
+    /**
      * Display the list of all tasks stored.
      * @param tasks Arraylist containing all the tasks
      * @param count Number of tasks stored

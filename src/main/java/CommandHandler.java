@@ -49,7 +49,7 @@ public class CommandHandler {
      */
     private void handleCommand(String input) {
 
-        Command command = CommandParser.parse(input);
+        Command command = CommandParser.parse(input, taskManager);
         if (command instanceof ExitCommand) {
             isRunning = false;
         }else {
