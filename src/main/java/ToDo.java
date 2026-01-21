@@ -22,4 +22,13 @@ public class ToDo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    /**
+     * Return string representation used for file storage for ToDo task.
+     * @return formatted string e.g. "T | 1 | read book"
+     */
+    @Override
+    public String toStorageString() {
+        return "T " + super.toStorageString();
+    }
 }

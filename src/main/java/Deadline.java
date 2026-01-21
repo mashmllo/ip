@@ -27,4 +27,13 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
+
+    /**
+     * Return string representation used for file storage for Deadline task.
+     * @return formatted string e.g. "D | 1 | read book | June 6th"
+     */
+    @Override
+    public String toStorageString() {
+        return "D " + super.toStorageString() + " | " + by;
+    }
 }
