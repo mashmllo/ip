@@ -34,7 +34,7 @@ public class CommandHandler {
             try {
                 handleCommand(input);
             } catch (SoraException soraException) {
-                ui.showError(soraException.getMessage());
+                Ui.showError(soraException.getMessage());
             }
         }
 
