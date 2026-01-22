@@ -8,8 +8,8 @@
  */
 public class Event extends Task {
 
-    private String from;
-    private String to;
+    private final ParsedDateTime from;
+    private final ParsedDateTime to;
 
     /**
      * Constructor of a new Event class
@@ -17,15 +17,37 @@ public class Event extends Task {
      * @param from  Start date/time of the event
      * @param to    end date/time of the event
      */
-    public Event(String name, String from, String to) {
+    public Event(String name, ParsedDateTime from, ParsedDateTime to) {
         super(name);
         this.from = from;
         this.to = to;
     }
 
+
+    /**
+     * Retrieve the start date of the event
+     *
+     * @return the start date of the event
+     */
+    public ParsedDateTime startDate() {
+        return from;
+    }
+
+
+    /**
+     * Retrieve the end date of the event
+     *
+     * @return the end date of the event
+     */
+    public ParsedDateTime endDate() {
+        return to;
+    }
+
     /**
      * Return the string representation of the Event task.
-     * @return formatted string e.g. "[E][X] project meeting (from: Mon 2pm to: 4pm)"
+     * @return formatted string
+     *         e.g. "[E][X] project meeting (from: Jan 22 2026 14:00
+     *         to: Jan 22 2026 16:00)"
      */
     @Override
     public String toString() {
@@ -35,10 +57,12 @@ public class Event extends Task {
 
     /**
      * Return string representation used for file storage for Event task.
-     * @return formatted string e.g. "E | 1 | project meeting | June 6th 2pm | 4pm"
+     * @return formatted string
+     *         e.g. "E | 1 | project meeting | 2026-01-22 14:00 | 2026-01-22 16:00"
      */
     @Override
     public String toStorageString() {
-        return "E " + super.toStorageString() + " | " + from + " | " + to;
+        return "E " + super.toStorageString() + " | " + from.toStorageString()
+                + " | " + to.toStorageString();
     }
 }

@@ -19,19 +19,27 @@ Task added! Here's what I've recorded:
 All set! You now have 1 in your list
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Task added! Here's what I've recorded: 
-[D][ ] submit report (by: Sunday)
+Oops! Invalid date format.
+ Use `yyyy-MM-dd` or `yyyy-MM-dd HH:mm`
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Task added! Here's what I've recorded:
+[D][ ] submit assignment (by: Jan 23 2026 14:00)
 All set! You now have 2 in your list
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Task added! Here's what I've recorded: 
-[E][ ] project meeting (from: Mon 2pm to: 4pm)
+Oops! Invalid date format.
+ Use `yyyy-MM-dd` or `yyyy-MM-dd HH:mm`
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Task added! Here's what I've recorded:
+[E][ ] project meeting (from: Jan 22 2026 14:00 to: Jan 22 2026 16:00)
 All set! You now have 3 in your list
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 1. [T][ ] read book
-2. [D][ ] submit report (by: Sunday)
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+2. [D][ ] submit assignment (by: Jan 23 2026 14:00)
+3. [E][ ] project meeting (from: Jan 22 2026 14:00 to: Jan 22 2026 16:00)
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Task Completed! You're making progress
@@ -42,41 +50,41 @@ Okay! The task is still pending to be completed
  [T][ ] read book
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Task added! Here's what I've recorded: 
+Task added! Here's what I've recorded:
 [T][ ] return book
 All set! You now have 4 in your list
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 1. [T][ ] read book
-2. [D][ ] submit report (by: Sunday)
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+2. [D][ ] submit assignment (by: Jan 23 2026 14:00)
+3. [E][ ] project meeting (from: Jan 22 2026 14:00 to: Jan 22 2026 16:00)
 4. [T][ ] return book
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Task Completed! You're making progress
- [D][X] submit report (by: Sunday)
+ [D][X] submit assignment (by: Jan 23 2026 14:00)
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Task Completed! You're making progress
- [E][X] project meeting (from: Mon 2pm to: 4pm)
+ [E][X] project meeting (from: Jan 22 2026 14:00 to: Jan 22 2026 16:00)
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Okay! The task is still pending to be completed
- [D][ ] submit report (by: Sunday)
+ [D][ ] submit assignment (by: Jan 23 2026 14:00)
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 1. [T][ ] read book
-2. [D][ ] submit report (by: Sunday)
-3. [E][X] project meeting (from: Mon 2pm to: 4pm)
+2. [D][ ] submit assignment (by: Jan 23 2026 14:00)
+3. [E][X] project meeting (from: Jan 22 2026 14:00 to: Jan 22 2026 16:00)
 4. [T][ ] return book
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Task added! Here's what I've recorded: 
+Task added! Here's what I've recorded:
 [T][ ] borrow bread
 All set! You now have 5 in your list
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Oops! The task name is missing 
+Oops! The task name is missing
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Oops! Deadline requires /by and name
@@ -85,13 +93,22 @@ Oops! Deadline requires /by and name
 Oops! Deadline requires /by and name
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Oops! Event requires /from, /to and name
+Task added! Here's what I've recorded:
+[D][ ] submit report (by: Jan 22 2026)
+All set! You now have 6 in your list
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Oops! Event requires /from, /to and name
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Oops! Event requires /from, /to and name
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Oops! Event requires /from, /to and name
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Oops! Invalid date format.
+ Use `yyyy-MM-dd` or `yyyy-MM-dd HH:mm`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Hmm... I need a task number to proceed
@@ -106,7 +123,7 @@ Whoops! That task does not exist.
 Double-check the number and try again
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Whoops! That number is not valid. 
+Whoops! That number is not valid.
 Check your task list and enter the correct number
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
@@ -122,7 +139,7 @@ Whoops! That task does not exist.
 Double-check the number and try again
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Whoops! That number is not valid. 
+Whoops! That number is not valid.
 Check your task list and enter the correct number
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
@@ -138,25 +155,35 @@ Oops! I didn't recognize that command
  Please enter a valid command
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Got it! Task removed  
+1. [E][X] project meeting (from: Jan 22 2026 14:00 to: Jan 22 2026 16:00)
+2. [D][ ] submit report (by: Jan 22 2026)
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Oops! Invalid date format.
+ Use `yyyy-MM-dd` or `yyyy-MM-dd HH:mm`
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Got it! Task removed
  [T][ ] read book
+All set! You now have 5 in your list
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1. [D][ ] submit assignment (by: Jan 23 2026 14:00)
+2. [E][X] project meeting (from: Jan 22 2026 14:00 to: Jan 22 2026 16:00)
+3. [T][ ] return book
+4. [T][ ] borrow bread
+5. [D][ ] submit report (by: Jan 22 2026)
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Got it! Task removed
+ [E][X] project meeting (from: Jan 22 2026 14:00 to: Jan 22 2026 16:00)
 All set! You now have 4 in your list
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-1. [D][ ] submit report (by: Sunday)
-2. [E][X] project meeting (from: Mon 2pm to: 4pm)
-3. [T][ ] return book
-4. [T][ ] borrow bread
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Got it! Task removed  
- [E][X] project meeting (from: Mon 2pm to: 4pm)
-All set! You now have 3 in your list
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-1. [D][ ] submit report (by: Sunday)
+1. [D][ ] submit assignment (by: Jan 23 2026 14:00)
 2. [T][ ] return book
 3. [T][ ] borrow bread
+4. [D][ ] submit report (by: Jan 22 2026)
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Whoops! That task does not exist.
@@ -171,7 +198,7 @@ Whoops! That task does not exist.
 Double-check the number and try again
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Whoops! That number is not valid. 
+Whoops! That number is not valid.
 Check your task list and enter the correct number
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
@@ -179,25 +206,28 @@ Hmm... I need a task number to proceed
  Try something like: delete 3
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-1. [D][ ] submit report (by: Sunday)
+1. [D][ ] submit assignment (by: Jan 23 2026 14:00)
 2. [T][ ] return book
 3. [T][ ] borrow bread
+4. [D][ ] submit report (by: Jan 22 2026)
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Got it! Task removed  
+Got it! Task removed
  [T][ ] return book
+All set! You now have 3 in your list
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1. [D][ ] submit assignment (by: Jan 23 2026 14:00)
+2. [T][ ] borrow bread
+3. [D][ ] submit report (by: Jan 22 2026)
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Got it! Task removed
+ [D][ ] submit report (by: Jan 22 2026)
 All set! You now have 2 in your list
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-1. [D][ ] submit report (by: Sunday)
-2. [T][ ] borrow bread
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Whoops! That task does not exist.
-Double-check the number and try again
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-1. [D][ ] submit report (by: Sunday)
+1. [D][ ] submit assignment (by: Jan 23 2026 14:00)
 2. [T][ ] borrow bread
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .

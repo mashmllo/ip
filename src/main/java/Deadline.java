@@ -7,21 +7,31 @@
  */
 public class Deadline extends Task {
 
-    private String by;
+    private final ParsedDateTime by;
 
     /**
      * Constructor of a new Deadline task
      * @param name Name of the task
      * @param by   Due date of the task
      */
-    public Deadline(String name, String by) {
+    public Deadline(String name, ParsedDateTime by) {
         super(name);
         this.by = by;
     }
 
+
+    /**
+     * Retrieve the deadline of the task
+     *
+     * @return deadline of the task
+     */
+    public ParsedDateTime deadline() {
+        return by;
+    }
+
     /**
      * Return the string representation of the Deadline task.
-     * @return formatted string e.g. "[D][X] read book (by: Sunday)"
+     * @return formatted string e.g. "[D][X] read book (by: Jan 22 2026)"
      */
     @Override
     public String toString() {
@@ -30,10 +40,10 @@ public class Deadline extends Task {
 
     /**
      * Return string representation used for file storage for Deadline task.
-     * @return formatted string e.g. "D | 1 | read book | June 6th"
+     * @return formatted string e.g. "D | 1 | read book | 2026-01-22"
      */
     @Override
     public String toStorageString() {
-        return "D " + super.toStorageString() + " | " + by;
+        return "D " + super.toStorageString() + " | " + by.toStorageString();
     }
 }

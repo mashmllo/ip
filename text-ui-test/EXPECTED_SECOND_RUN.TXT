@@ -10,8 +10,15 @@ Hey! I'm Sora
 What would you like to do today?
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-1. [D][ ] submit report (by: Sunday)
+1. [D][ ] submit assignment (by: Jan 23 2026 14:00)
 2. [T][ ] borrow bread
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1. [D][ ] submit assignment (by: Jan 23 2026 14:00)
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Hmm... No tasks found on Jan 20 2026.
+ Looks like a free day!
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 Oh, leaving already? Hope you have a productive day!
