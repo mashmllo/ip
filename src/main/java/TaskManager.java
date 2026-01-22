@@ -9,7 +9,8 @@ import java.util.ArrayList;
 public class TaskManager {
 
     private final Storage storage = new Storage();
-    private final ArrayList<Task> tasks = new ArrayList<>();
+    private final ArrayList<Task> tasks = new ArrayList<>(storage.load());
+
 
     /**
      * Retrieve the array of all tasks
