@@ -32,4 +32,13 @@ public class Event extends Task {
         return "[E]" + super.toString() +
                 " (from: " + from + " to: " + to + ")";
     }
+
+    /**
+     * Return string representation used for file storage for Event task.
+     * @return formatted string e.g. "E | 1 | project meeting | June 6th 2pm | 4pm"
+     */
+    @Override
+    public String toStorageString() {
+        return "E " + super.toStorageString() + " | " + from + " | " + to;
+    }
 }

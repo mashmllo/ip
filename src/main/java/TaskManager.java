@@ -8,7 +8,9 @@ import java.util.ArrayList;
  */
 public class TaskManager {
 
-    private final ArrayList<Task> tasks = new ArrayList<>();
+    private final Storage storage = new Storage();
+    private final ArrayList<Task> tasks = new ArrayList<>(storage.load());
+
 
     /**
      * Retrieve the array of all tasks
@@ -35,6 +37,7 @@ public class TaskManager {
      */
     public void addTask(Task task) {
         tasks.add(task);
+        storage.save(tasks);
     }
 
     /**
@@ -62,6 +65,31 @@ public class TaskManager {
             return null;
         }
 
-        return tasks.remove(index);
+        Task task = tasks.remove(index);
+        storage.save(tasks);
+
+        return task;
+    }
+
+    public Task markTask(int index) {
+        if (index < 0 || index >= getTaskCount()) {
+            return null;
+        }
+
+        Task task = tasks.get(index);
+        task.markAsDone();
+        storage.save(tasks);
+        return task;
+    }
+
+    public Task unmarkTask(int index) {
+        if (index < 0 || index >= getTaskCount()) {
+            return null;
+        }
+
+        Task task = tasks.get(index);
+        task.markAsNotDone();
+        storage.save(tasks);
+        return task;
     }
 }

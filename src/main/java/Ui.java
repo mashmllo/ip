@@ -98,7 +98,7 @@ public class Ui {
      * Display error message
      * @param message Error message to be displayed to the user
      */
-    public void showError(String message) {
+    public static void showError(String message) {
         printLine();
         System.out.println(message);
         printLine();
@@ -116,7 +116,7 @@ public class Ui {
     /**
      * Prints the horizontal divider on the console before and after each message
      */
-    private void printLine() {
+    private static void printLine() {
         System.out.println(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .");
     }
 

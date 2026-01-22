@@ -14,11 +14,22 @@ public class CommandHandler {
     private boolean isRunning;
 
 
+    /**
+     * Constructs a CommandHandler instance
+     *
+     * Initialized Ui, Scanner, TaskManager and signal that
+     * the program is currently running. User are also
+     * being greeted immediately upon the creation of the instance
+     */
     public CommandHandler() {
         this.ui = new Ui();
         this.scanner = new Scanner(System.in);
+
+        ui.greetUser();
+
         this.taskManager = new TaskManager();
         this.isRunning = true;
+
     }
 
     /**
@@ -27,14 +38,13 @@ public class CommandHandler {
      * Serve as an entry point for handling user interactions or processing commands.
      */
     public void run() {
-        ui.greetUser();
 
         while (isRunning) {
             String input = scanner.nextLine().strip();
             try {
                 handleCommand(input);
             } catch (SoraException soraException) {
-                ui.showError(soraException.getMessage());
+                Ui.showError(soraException.getMessage());
             }
         }
 
@@ -49,7 +59,7 @@ public class CommandHandler {
      */
     private void handleCommand(String input) {
 
-        Command command = CommandParser.parse(input, taskManager);
+        Command command = CommandParser.parse(input);
         if (command instanceof ExitCommand) {
             isRunning = false;
         }else {
