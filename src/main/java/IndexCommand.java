@@ -32,13 +32,13 @@ public abstract class IndexCommand implements Command {
                     "\nDouble-check the number and try again");
         }
 
-        executeOnTask(task, ui);
+        executeOnTask(taskManager, ui);
     }
 
     /**
      * Executes command-specific logic on the task
-     * @param task Task to be operated on
-     * @param ui User interface for displaying output
+     * @param taskManager The task manager class
+     * @param ui          The user interface class
      */
-    protected abstract void executeOnTask(Task task, Ui ui);
+    protected abstract void executeOnTask(TaskManager taskManager, Ui ui);
 }

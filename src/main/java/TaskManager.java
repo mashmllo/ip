@@ -63,5 +63,27 @@ public class TaskManager {
         }
 
         return tasks.remove(index);
+        Task task = tasks.remove(index);
+
+        return task;
+    }
+    public Task markTask(int index) {
+        if (index < 0 || index >= getTaskCount()) {
+            return null;
+        }
+
+        Task task = tasks.get(index);
+        task.markAsDone();
+        return task;
+    }
+
+    public Task unmarkTask(int index) {
+        if (index < 0 || index >= getTaskCount()) {
+            return null;
+        }
+
+        Task task = tasks.get(index);
+        task.markAsNotDone();
+        return task;
     }
 }
