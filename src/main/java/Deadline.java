@@ -19,6 +19,16 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+
+    /**
+     * Retrieve the deadline of the task
+     *
+     * @return deadline of the task
+     */
+    public ParsedDateTime deadline() {
+        return by;
+    }
+
     /**
      * Return the string representation of the Deadline task.
      * @return formatted string e.g. "[D][X] read book (by: Jan 22 2026)"

@@ -26,7 +26,9 @@ public class CommandParser {
             return parseIndexCommand(cmd, "unmark");
         } else if (lower.startsWith("delete")) {
             return parseIndexCommand(cmd, "delete");
-        } else {
+        } else if (lower.startsWith("on")) {
+            return parseSearch(cmd);
+        }else {
             return parseAddTaskCommand(cmd);
         }
     }
@@ -64,6 +66,25 @@ public class CommandParser {
         } else {
             throw new UnknownCommandException();
         }
+    }
+
+    /**
+     * Parses the search command for tasks occurring on a specific date
+     *
+     * @param cmd Full command entered by the user
+     * @return the corresponding task
+     * @throws InvalidFormatException if date string is not valid
+     */
+    private static Command parseSearch(String cmd)
+            throws InvalidFormatException {
+        String target = cmd.substring(2).trim();
+        if (target.isEmpty()) {
+            throw new InvalidFormatException("Oops! Invalid date format. " +
+                    "\n Use `" + DateInputType.DATE_INPUT_PATTERN +"` " +
+                    "or `" + DateInputType.DATETIME_INPUT_PATTERN +"`");
+        }
+
+        return new OnCommand(target);
     }
 
     /**

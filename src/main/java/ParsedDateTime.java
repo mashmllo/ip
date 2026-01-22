@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 
 /**
  * Represents a parsed date or datetime input
- *
+ * <p>
  * This helps to distinguish between date-only and datetime inputs
  */
 public class ParsedDateTime {
@@ -20,6 +20,15 @@ public class ParsedDateTime {
     public ParsedDateTime(LocalDateTime dateTime, DateInputType type) {
         this.dateTime = dateTime;
         this.type = type;
+    }
+
+    /**
+     * Retrieve the date component of the input
+     *
+     * @return the date component
+     */
+    public LocalDate getDate() {
+        return dateTime.toLocalDate();
     }
 
     /**

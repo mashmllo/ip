@@ -16,10 +16,10 @@ public enum DateInputType {
     DATETIME;
 
     /** String patterns for date and time(24hr) */
-    private final static String DATE_OUTPUT_PATTERN = "MMM dd yyyy";
-    private final static String DATETIME_INPUT_PATTERN = "yyyy-MM-dd HH:mm";
-    private final static String DATE_INPUT_PATTERN = "yyyy-MM-dd";
-    private final static String DATETIME_OUTPUT_PATTERN = "MMM dd yyyy HH:mm";
+    public final static String DATE_OUTPUT_PATTERN = "MMM dd yyyy";
+    public final static String DATETIME_INPUT_PATTERN = "yyyy-MM-dd HH:mm";
+    public final static String DATE_INPUT_PATTERN = "yyyy-MM-dd";
+    public final static String DATETIME_OUTPUT_PATTERN = "MMM dd yyyy HH:mm";
 
     /** Format to display date and time (24hr) e.g. JAN 22 2026 13:00 */
     public static final DateTimeFormatter FORMAT_DATETIME_DISPLAY

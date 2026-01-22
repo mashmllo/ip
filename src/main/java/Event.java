@@ -23,6 +23,26 @@ public class Event extends Task {
         this.to = to;
     }
 
+
+    /**
+     * Retrieve the start date of the event
+     *
+     * @return the start date of the event
+     */
+    public ParsedDateTime startDate() {
+        return from;
+    }
+
+
+    /**
+     * Retrieve the end date of the event
+     *
+     * @return the end date of the event
+     */
+    public ParsedDateTime endDate() {
+        return to;
+    }
+
     /**
      * Return the string representation of the Event task.
      * @return formatted string
