@@ -1,6 +1,8 @@
 todo read book
 deadline submit report /by Sunday
+deadline submit assignment /by 2026-01-23 14:00
 event project meeting /from Mon 2pm /to 4pm
+event project meeting /from 2026-01-22 14:00 /to 2026-01-22 16:00
 list
 mark 1
 unmark 1
@@ -13,10 +15,12 @@ list
 todo borrow bread
 todo
 deadline submit
-deadline /by Sunday
+deadline /by 2026-01-22
+deadline submit report /by 2026-01-22
 event
-event /from Mon 2pm /to 4pm
-event team meeting /to 5pm
+event /from 2026-01-22 14:00 /to 2026-01-22 16:00
+event team meeting /to
+event team meeting /from 22/01/2026 14:00 /to 2026-01-22 16:00
 mark
 mark 100
 mark 0
@@ -28,6 +32,8 @@ unmark xyz
 unmark -1
 unmark 1000
 foo
+on 2026-01-22
+on 22/01/2026
 delete 1
 list
 delete 2
