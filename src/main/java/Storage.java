@@ -126,7 +126,7 @@ public class Storage {
                 throw new InvalidFormatException("Oops! Deadline requires /by " +
                         "and name");
             }
-            task = new Deadline(name, parts[3].trim());
+            task = new Deadline(name, ParsedDateTime.dateTimeParser(parts[3].trim()));
         } else if (type.equals("E")) {
             if (parts.length < 5
                     || parts[3].trim().isEmpty()
@@ -134,7 +134,9 @@ public class Storage {
                 throw new InvalidFormatException("Oops! Event requires /from," +
                         " /to and name");
             }
-            task = new Event(name, parts[3].trim(), parts[4].trim());
+            task = new Event(name,
+                    ParsedDateTime.dateTimeParser(parts[3].trim()),
+                    ParsedDateTime.dateTimeParser(parts[4].trim()));
         } else {
             throw new InvalidFormatException("Oops! Unknown task type");
         }

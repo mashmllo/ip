@@ -134,7 +134,7 @@ public class CommandParser {
      * list.
      *
      * @param cmd Full command entered by the user
-     *            e.g. "deadline submit report /by 11/10/2025 5pm"
+     *            e.g. "deadline submit report /by 2026-01-22 23:59"
      * @return A Deadline task object
      * @throws InvalidFormatException if task name or deadline is missing
      */
@@ -146,7 +146,7 @@ public class CommandParser {
             throw new InvalidFormatException("Oops! Deadline requires /by " +
                     "and name");
         }
-        return new Deadline(parts[0].trim(), parts[1].trim());
+        return new Deadline(parts[0].trim(), ParsedDateTime.dateTimeParser(parts[1].trim()));
     }
 
     /**
@@ -160,10 +160,11 @@ public class CommandParser {
      * list.
      *
      * @param cmd Full command entered by the user
-     *            e.g. "event project meeting /from Mon 2pm /to 4pm"
+     *            e.g. "event project meeting /from 2026-01-22 12:00
+     *            /to 2026-01-22 18:00"
      * @return An Event task object
      * @throws InvalidFormatException if task name, start time, or end time
-     *                                  is missing
+     *                                is missing
      */
     private static Event parseEvent(String cmd)
             throws InvalidFormatException {
@@ -174,6 +175,8 @@ public class CommandParser {
             throw new InvalidFormatException("Oops! Event requires /from," +
                     " /to and name");
         }
-        return new Event(parts[0].trim(), parts[1].trim(),  parts[2].trim());
+        return new Event(parts[0].trim(),
+                ParsedDateTime.dateTimeParser(parts[1].trim()),
+                ParsedDateTime.dateTimeParser(parts[2].trim()));
     }
 }
