@@ -14,7 +14,7 @@ Hmm... memory file not found
  Starting with an empty task list...
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Task added! Here's what I've recorded: 
+Task added! Here's what I've recorded:
 [T][ ] read book
 All set! You now have 1 in your list
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .

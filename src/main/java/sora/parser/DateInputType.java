@@ -1,8 +1,12 @@
+package sora.parser;
+
+import sora.exception.InvalidFormatException;
+
 import java.time.format.DateTimeFormatter;
 
 /**
  * Enums representing types of data inputs
- *
+ * <p>
  * There are 2 types of input:
  * <ul>
  *     <li>{@link #DATE_ONLY} - Input only contains the date </li>
@@ -15,17 +19,30 @@ public enum DateInputType {
     DATE_ONLY,
     DATETIME;
 
-    /** String patterns for date and time(24hr) */
+    /** Pattern for displaying date only (e.g. "Jan 22 2026") */
     public final static String DATE_OUTPUT_PATTERN = "MMM dd yyyy";
-    public final static String DATETIME_INPUT_PATTERN = "yyyy-MM-dd HH:mm";
-    public final static String DATE_INPUT_PATTERN = "yyyy-MM-dd";
+
+    /** Pattern for displaying date and time in 24-hour format
+     * (e.g. "Jan 22 2026 14:00")
+     */
     public final static String DATETIME_OUTPUT_PATTERN = "MMM dd yyyy HH:mm";
 
-    /** Format to display date and time (24hr) e.g. JAN 22 2026 13:00 */
+    /** Pattern for parsing date and time in 24-hour format
+     * (e.g. "Jan 22 2026 14:00")
+     */
+    public final static String DATETIME_INPUT_PATTERN = "yyyy-MM-dd HH:mm";
+
+    /** Pattern for parsing date only
+     * (e.g. "Jan 22 2026 14:00")
+     */
+    public final static String DATE_INPUT_PATTERN = "yyyy-MM-dd";
+
+
+    /** Format to display date and time (24hr) e.g. Jan 22 2026 13:00 */
     public static final DateTimeFormatter FORMAT_DATETIME_DISPLAY
             = DateTimeFormatter.ofPattern(DATETIME_OUTPUT_PATTERN);
 
-    /** Format to display date only e.g. JAN 22 2026 */
+    /** Format to display date only e.g. Jan 22 2026 */
     public static final DateTimeFormatter FORMAT_DATE_DISPLAY
             = DateTimeFormatter.ofPattern(DATE_OUTPUT_PATTERN);
 
@@ -57,7 +74,7 @@ public enum DateInputType {
         } else if (input.matches("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}")) {
             return DATETIME;
         } else {
-            throw new InvalidFormatException("Oops! Invalid date format. " +
+            throw new InvalidFormatException("Oops! Invalid date format." +
                     "\n Use `" + DATE_INPUT_PATTERN +"` " +
                     "or `" + DATETIME_INPUT_PATTERN +"`");
         }

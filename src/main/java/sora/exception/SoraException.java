@@ -1,3 +1,5 @@
+package sora.exception;
+
 /**
  * Base class for all exception specific to Sora
  * <p>

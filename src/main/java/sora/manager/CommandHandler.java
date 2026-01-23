@@ -1,3 +1,11 @@
+package sora.manager;
+
+import sora.command.Command;
+import sora.command.ExitCommand;
+import sora.exception.SoraException;
+import sora.parser.CommandParser;
+import sora.ui.Ui;
+
 import java.util.Scanner;
 
 /**

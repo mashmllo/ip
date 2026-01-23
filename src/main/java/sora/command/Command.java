@@ -1,3 +1,9 @@
+package sora.command;
+
+import sora.exception.SoraException;
+import sora.manager.TaskManager;
+import sora.ui.Ui;
+
 /**
  * Represents an executable user command used in Sora
  */

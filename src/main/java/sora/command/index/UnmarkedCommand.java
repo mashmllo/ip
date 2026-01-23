@@ -1,3 +1,9 @@
+package sora.command.index;
+
+import sora.manager.TaskManager;
+import sora.task.Task;
+import sora.ui.Ui;
+
 /**
  * Command that mark a done as not done
  */

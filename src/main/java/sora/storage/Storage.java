@@ -1,3 +1,14 @@
+package sora.storage;
+
+import sora.exception.InvalidFormatException;
+import sora.task.Deadline;
+import sora.exception.SoraException;
+import sora.parser.ParsedDateTime;
+import sora.task.Event;
+import sora.task.Task;
+import sora.task.ToDo;
+import sora.ui.Ui;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -186,7 +197,7 @@ public class Storage {
 
     /**
      *Sets completion status of a task based on the string in storage
-     *
+     * <p>
      * completedStat should be:
      * <ul>
      *     <li>"0" - denotes the task as not done </li>

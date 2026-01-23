@@ -1,3 +1,5 @@
+package sora.task;
+
 /**
  * A task object to encapsulate task data
  * <p>

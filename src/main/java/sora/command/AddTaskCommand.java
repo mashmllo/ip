@@ -1,3 +1,10 @@
+package sora.command;
+
+import sora.exception.SoraException;
+import sora.manager.TaskManager;
+import sora.task.Task;
+import sora.ui.Ui;
+
 /**
  * CCommand that allows user to add tasks to the task list
  */

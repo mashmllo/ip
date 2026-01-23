@@ -1,3 +1,8 @@
+package sora.manager;
+
+import sora.storage.Storage;
+import sora.task.Task;
+
 import java.util.ArrayList;
 
 /**
@@ -71,6 +76,16 @@ public class TaskManager {
         return task;
     }
 
+    /**
+     * Marks task of the specified index as completed
+     * <p>
+     * If the index is invalid or out-of-bounds, the method will return null and
+     * no changes are made
+     *
+     * @param index Index of the task to be marked
+     * @return The task that was being marked as complete or null if the index
+     *         specified is invalid
+     */
     public Task markTask(int index) {
         if (index < 0 || index >= getTaskCount()) {
             return null;
@@ -82,6 +97,16 @@ public class TaskManager {
         return task;
     }
 
+    /**
+     * Marks task of the specified index as not complete
+     * <p>
+     * If the index is invalid or out-of-bounds, the method will return null and
+     * no changes are made
+     *
+     * @param index Index of the task to be marked as not complete
+     * @return The task that was being marked as not complete or null if the index
+     *         specified is invalid
+     */
     public Task unmarkTask(int index) {
         if (index < 0 || index >= getTaskCount()) {
             return null;

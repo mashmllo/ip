@@ -1,3 +1,12 @@
+package sora.command.index;
+
+import sora.command.Command;
+import sora.exception.InvalidFormatException;
+import sora.exception.SoraException;
+import sora.manager.TaskManager;
+import sora.task.Task;
+import sora.ui.Ui;
+
 /**
  * Base abstract class for commands that requires a task index
  * <p>

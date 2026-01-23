@@ -1,3 +1,22 @@
+package sora.parser;
+
+
+import sora.command.Command;
+import sora.command.ExitCommand;
+import sora.command.ListCommand;
+import sora.command.AddTaskCommand;
+import sora.command.OnCommand;
+import sora.command.index.DeleteCommand;
+import sora.command.index.MarkCommand;
+import sora.command.index.UnmarkedCommand;
+import sora.exception.InvalidFormatException;
+import sora.exception.SoraException;
+import sora.exception.UnknownCommandException;
+import sora.task.Deadline;
+import sora.task.Event;
+import sora.task.Task;
+import sora.task.ToDo;
+
 /**
  * Parses user commands to its respective command based on user input
  * <p>
@@ -76,7 +95,7 @@ public class CommandParser {
         try {
             index = Integer.parseInt(parts[1]) - 1;
         } catch (NumberFormatException numberException) {
-            throw new InvalidFormatException("Whoops! That number is not valid. " +
+            throw new InvalidFormatException("Whoops! That number is not valid." +
                     "\nCheck your task list and enter the correct number");
         }
         return index;

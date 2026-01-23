@@ -1,3 +1,7 @@
+package sora.ui;
+
+import sora.task.Task;
+
 import java.util.ArrayList;
 
 /**
@@ -34,7 +38,7 @@ public class Ui {
      */
     public void showAddTask(Task task, int count) {
         printLine();
-        System.out.println("Task added! Here's what I've recorded: ");
+        System.out.println("Task added! Here's what I've recorded:");
         System.out.println(task);
         System.out.printf("All set! You now have %d in your list\n", count);
         printLine();
@@ -48,7 +52,7 @@ public class Ui {
      */
     public void showDeletedTask(Task task, int count) {
         printLine();
-        System.out.println("Got it! Task removed  ");
+        System.out.println("Got it! Task removed");
         System.out.println(" " + task);
         System.out.printf("All set! You now have %d in your list\n", count);
         printLine();

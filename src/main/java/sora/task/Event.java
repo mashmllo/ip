@@ -1,7 +1,12 @@
+package sora.task;
+
+import sora.exception.InvalidFormatException;
+import sora.parser.ParsedDateTime;
+
 /**
  * Event task for Sora
  * <p>
- *  A Event task are tasks that occurs during a specific time period.
+ *  An Event task are tasks that occurs during a specific time period.
  * This class extends the base Task class and adds a "from" and "to" field to
  * store the event duration.
  * The marks task type as [E].

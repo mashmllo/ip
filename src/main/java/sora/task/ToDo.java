@@ -1,3 +1,7 @@
+package sora.task;
+
+import sora.exception.InvalidFormatException;
+
 /**
  * ToDo task for Sora
  *  <p>
@@ -35,7 +39,7 @@ public class ToDo extends Task {
     /**
      * Creates and adds a Todo task to the task list
      * <p>
-     * Command to follow the following format:
+     * sora.command.Command to follow the following format:
      *      todo <name of task>
      * <p>
      * If name of task is missing or empty, an error message is shown and task is
@@ -50,7 +54,7 @@ public class ToDo extends Task {
         String taskName = cmd.substring(4).trim();
 
         if (taskName.isEmpty()) {
-            throw new InvalidFormatException("Oops! The task name is missing ");
+            throw new InvalidFormatException("Oops! The task name is missing");
         }
 
         return new ToDo(taskName);
