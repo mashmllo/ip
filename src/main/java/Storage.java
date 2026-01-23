@@ -16,6 +16,13 @@ public class Storage {
 
     private final Path path;
 
+    /**
+     * Constructs a new Storage instance with default storage file path set to
+     * {@code data/sora.txt}.
+     *
+     * File and directories will be created automatically if the file and/or directories
+     * does not exist when {@link #save(ArrayList)} is called
+     */
     public Storage() {
         this.path = Paths.get("data", "sora.txt");
     }
@@ -45,18 +52,7 @@ public class Storage {
         }
 
         try(BufferedReader reader = Files.newBufferedReader(path)) {
-            String line;
-            int lineNo = 0;
-
-            while ((line = reader.readLine()) != null) {
-                lineNo++;
-                try {
-                    tasks.add(loadTask(line));
-                } catch (SoraException soraException) {
-                    Ui.showError("Hmm... I skipped a corrupted task at " + lineNo +
-                            "\n It won't affect the rest of your list");
-                }
-            }
+            readTask(reader, tasks);
         } catch (IOException ioException) {
             Ui.showError("Oops! I couldn't read my memory file" +
                     "\n You can still use Sora, but past tasks won't be loaded");
@@ -75,14 +71,8 @@ public class Storage {
      * @param tasks List of tasks to be saved
      */
     public void save(ArrayList<Task> tasks) {
-        if (path.getParent() != null) {
-            try {
-                Files.createDirectories(path.getParent());
-            } catch (IOException ioException) {
-                Ui.showError("Oops! Failed to create directories" +
-                        "\n Please check your permissions and try again");
-            }
-        }
+        ensureDirectoryExist();
+
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             for (Task task : tasks) {
                 writer.write(saveTask(task));
@@ -91,6 +81,54 @@ public class Storage {
         } catch (IOException ioException) {
             Ui.showError("Oops! Failed to save tasks");
         }
+    }
+
+    /**
+     * Ensures that the parent directory of the storage file exist.
+     * If the directory does not exist, it will be created automatically.
+     *<p>
+     * An error will also be displayed to the user if the creation of the
+     * directory has failed.
+     *
+     */
+    private void ensureDirectoryExist() {
+        if (path.getParent() != null) {
+            try {
+                Files.createDirectories(path.getParent());
+            } catch (IOException ioException) {
+                Ui.showError("Oops! Failed to create directories" +
+                        "\n Please check your permissions and try again");
+            }
+        }
+    }
+
+    /**
+     * Read task from the given BufferedReader and adds them to the ArrayList.
+     * <p>
+     * Each line in the reader will be parsed individually. If the task cannot be
+     * parsed or is corrupted, it will be skipped and an error message will also be
+     * displayed to the user.
+     *
+     * @param reader    The BufferedReader from which to read task lines
+     * @param tasks     The ArrayList where successfully parsed tasks will be added to
+     * @throws IOException  if an I/O exception occur while reading from the reader
+     */
+    private void readTask(BufferedReader reader, ArrayList<Task> tasks)
+            throws IOException {
+
+        String line;
+        int lineNo = 0;
+
+        while ((line = reader.readLine()) != null) {
+            lineNo++;
+            try {
+                tasks.add(loadTask(line));
+            } catch (SoraException soraException) {
+                Ui.showError("Hmm... I skipped a corrupted task at " + lineNo +
+                        "\n It won't affect the rest of your list");
+            }
+        }
+
     }
 
     /**
@@ -160,6 +198,7 @@ public class Storage {
      */
     private void setTaskCompletionStatus(Task task, String completedStat)
             throws InvalidFormatException {
+
         if (completedStat.equals("0")) {
             task.markAsNotDone();
         } else if (completedStat.equals("1")) {
@@ -167,6 +206,7 @@ public class Storage {
         } else {
             throw new InvalidFormatException("Oops! Unknown completion status");
         }
+
     }
 
     /**
@@ -181,9 +221,13 @@ public class Storage {
 
         if (task instanceof ToDo toDo) {
             return toDo.toStorageString();
-        } else if (task instanceof Deadline deadline) {
+        }
+
+        if (task instanceof Deadline deadline) {
             return deadline.toStorageString();
-        } else if (task instanceof Event event) {
+        }
+
+        if (task instanceof Event event) {
             return event.toStorageString();
         }
 
