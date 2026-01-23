@@ -3,7 +3,7 @@
  * <p>
  * Each task has a name and a status to indicate whether it is done.
  */
-public class Task {
+public abstract class Task {
 
     private final String name;
     private boolean isDone;
