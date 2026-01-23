@@ -65,4 +65,37 @@ public class Event extends Task {
         return "E " + super.toStorageString() + " | " + from.toStorageString()
                 + " | " + to.toStorageString();
     }
+
+    /**
+     * Creates and adds an Event task to the task list
+     * <p>
+     * Command to follow the following format:
+     *      event <name of task> /from <start time> /to <end time>
+     * <p>
+     * All 3 fields, name of task, start time and end time, must be provided,
+     * otherwise an error message is shown and the task is not being added into the
+     * list.
+     *
+     * @param cmd Full command entered by the user
+     *            e.g. "event project meeting /from 2026-01-22 12:00
+     *            /to 2026-01-22 18:00"
+     * @return An Event task object
+     * @throws InvalidFormatException if task name, start time, or end time
+     *                                is missing
+     */
+    public static Event parse(String cmd)
+            throws InvalidFormatException {
+        String[] parts = cmd.substring(5)
+                .split(" /from | /to ", 3);
+        if (parts.length < 3
+                || parts[0].trim().isEmpty()
+                || parts[1].trim().isEmpty()
+                || parts[2].trim().isEmpty()) {
+            throw new InvalidFormatException("Oops! Event requires /from," +
+                    " /to and name");
+        }
+        return new Event(parts[0].trim(),
+                ParsedDateTime.dateTimeParser(parts[1].trim()),
+                ParsedDateTime.dateTimeParser(parts[2].trim()));
+    }
 }

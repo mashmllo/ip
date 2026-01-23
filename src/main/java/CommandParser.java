@@ -43,19 +43,7 @@ public class CommandParser {
     private static Command parseIndexCommand(String cmd, String keyword)
             throws SoraException {
 
-        String[] parts = cmd.split(" ");
-        if (parts.length != 2) {
-            throw new InvalidFormatException("Hmm... I need a task number to proceed"
-                    +"\n Try something like: " + keyword + " 3");
-        }
-
-        int index;
-        try {
-            index = Integer.parseInt(parts[1]) - 1;
-        } catch (NumberFormatException numberFormatException) {
-            throw new InvalidFormatException("Whoops! That number is not valid. " +
-                    "\nCheck your task list and enter the correct number");
-        }
+        int index = getIndex(cmd, keyword);
 
         if (keyword.equals("mark")) {
             return new MarkCommand(index);
@@ -66,6 +54,32 @@ public class CommandParser {
         } else {
             throw new UnknownCommandException();
         }
+    }
+
+    /**
+     * Extracts index from the command that requires task number
+     *
+     * @param cmd      Full command string entered by the user
+     * @param keyword  Command keyword
+     * @return  Zero-based index of the task
+     * @throws InvalidFormatException if command format or task number is invalid
+     */
+    private static int getIndex(String cmd, String keyword)
+            throws InvalidFormatException {
+        String[] parts = cmd.split(" ");
+        if (parts.length != 2) {
+            throw new InvalidFormatException("Hmm... I need a task number to proceed"
+                    +"\n Try something like: " + keyword + " 3");
+        }
+
+        int index;
+        try {
+            index = Integer.parseInt(parts[1]) - 1;
+        } catch (NumberFormatException numberException) {
+            throw new InvalidFormatException("Whoops! That number is not valid. " +
+                    "\nCheck your task list and enter the correct number");
+        }
+        return index;
     }
 
     /**
@@ -110,94 +124,15 @@ public class CommandParser {
         String cmdLowercase = cmd.toLowerCase();
 
         if (cmdLowercase.startsWith(("todo"))) {
-            return parseTodo(cmd);
+            return ToDo.parse(cmd);
         } else if (cmdLowercase.startsWith("deadline")) {
-            return parseDeadline(cmd);
+            return Deadline.parse(cmd);
         } else if (cmdLowercase.startsWith("event")) {
-            return parseEvent(cmd);
+            return Event.parse(cmd);
         } else {
             throw new UnknownCommandException();
         }
     }
 
-    /**
-     * Creates and adds a Todo task to the task list
-     * <p>
-     * Command to follow the following format:
-     *      todo <name of task>
-     * <p>
-     * If name of task is missing or empty, an error message is shown and task is
-     * not being added into the list
-     *
-     * @param cmd Full command entered by the user e.g. "todo read book"
-     * @return A ToDo task object
-     * @throws InvalidFormatException if task name is missing
-     */
-    private static ToDo parseTodo(String cmd)
-            throws InvalidFormatException {
-        String taskName = cmd.substring(4).trim();
 
-        if (taskName.isEmpty()) {
-           throw new InvalidFormatException("Oops! The task name is missing ");
-        }
-
-        return new ToDo(taskName);
-    }
-
-    /**
-     * Creates and adds a Deadline task to the task list
-     * <p>
-     * Command to follow the following format:
-     *      deadline <name of task> /by <deadline>
-     * <p>
-     * Both the name of the task and the deadline must be provided,
-     * otherwise an error message is shown and the task is not being added into the
-     * list.
-     *
-     * @param cmd Full command entered by the user
-     *            e.g. "deadline submit report /by 2026-01-22 23:59"
-     * @return A Deadline task object
-     * @throws InvalidFormatException if task name or deadline is missing
-     */
-    private static Deadline parseDeadline(String cmd)
-    throws InvalidFormatException {
-        String[] parts = cmd.substring(8).split(" /by ", 2);
-        if (parts.length < 2 || parts[0].trim().isEmpty()
-                || parts[1].trim().isEmpty()) {
-            throw new InvalidFormatException("Oops! Deadline requires /by " +
-                    "and name");
-        }
-        return new Deadline(parts[0].trim(), ParsedDateTime.dateTimeParser(parts[1].trim()));
-    }
-
-    /**
-     * Creates and adds an Event task to the task list
-     * <p>
-     * Command to follow the following format:
-     *      event <name of task> /from <start time> /to <end time>
-     * <p>
-     * All 3 fields, name of task, start time and end time, must be provided,
-     * otherwise an error message is shown and the task is not being added into the
-     * list.
-     *
-     * @param cmd Full command entered by the user
-     *            e.g. "event project meeting /from 2026-01-22 12:00
-     *            /to 2026-01-22 18:00"
-     * @return An Event task object
-     * @throws InvalidFormatException if task name, start time, or end time
-     *                                is missing
-     */
-    private static Event parseEvent(String cmd)
-            throws InvalidFormatException {
-        String[] parts = cmd.substring(5)
-                .split(" /from | /to ", 3);
-        if (parts.length < 3 || parts[0].trim().isEmpty()
-                || parts[1].trim().isEmpty() || parts[2].trim().isEmpty()) {
-            throw new InvalidFormatException("Oops! Event requires /from," +
-                    " /to and name");
-        }
-        return new Event(parts[0].trim(),
-                ParsedDateTime.dateTimeParser(parts[1].trim()),
-                ParsedDateTime.dateTimeParser(parts[2].trim()));
-    }
 }

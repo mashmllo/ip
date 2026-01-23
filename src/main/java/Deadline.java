@@ -46,4 +46,31 @@ public class Deadline extends Task {
     public String toStorageString() {
         return "D " + super.toStorageString() + " | " + by.toStorageString();
     }
+
+    /**
+     * Creates and adds a Deadline task to the task list
+     * <p>
+     * Command to follow the following format:
+     *      deadline <name of task> /by <deadline>
+     * <p>
+     * Both the name of the task and the deadline must be provided,
+     * otherwise an error message is shown and the task is not being added into the
+     * list.
+     *
+     * @param cmd Full command entered by the user
+     *            e.g. "deadline submit report /by 2026-01-22 23:59"
+     * @return A Deadline task object
+     * @throws InvalidFormatException if task name or deadline is missing
+     */
+    public static Deadline parse(String cmd)
+            throws InvalidFormatException {
+        String[] parts = cmd.substring(8).split(" /by ", 2);
+        if (parts.length < 2
+                || parts[0].trim().isEmpty()
+                || parts[1].trim().isEmpty()) {
+            throw new InvalidFormatException("Oops! Deadline requires /by " +
+                    "and name");
+        }
+        return new Deadline(parts[0].trim(), ParsedDateTime.dateTimeParser(parts[1].trim()));
+    }
 }
