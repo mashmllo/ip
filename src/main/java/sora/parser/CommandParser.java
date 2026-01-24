@@ -1,11 +1,7 @@
 package sora.parser;
 
 
-import sora.command.Command;
-import sora.command.ExitCommand;
-import sora.command.ListCommand;
-import sora.command.AddTaskCommand;
-import sora.command.OnCommand;
+import sora.command.*;
 import sora.command.index.DeleteCommand;
 import sora.command.index.MarkCommand;
 import sora.command.index.UnmarkedCommand;
@@ -46,8 +42,10 @@ public class CommandParser {
         } else if (lower.startsWith("delete")) {
             return parseIndexCommand(cmd, "delete");
         } else if (lower.startsWith("on")) {
-            return parseSearch(cmd);
-        }else {
+            return parseFilter(cmd);
+        } else if (lower.startsWith("find")) {
+          return parseSearch(cmd);
+        } else {
             return parseAddTaskCommand(cmd);
         }
     }
@@ -102,13 +100,13 @@ public class CommandParser {
     }
 
     /**
-     * Parses the search command for tasks occurring on a specific date
+     * Parses the onCommand for tasks occurring on a specific date
      *
      * @param cmd Full command entered by the user
      * @return the corresponding task
      * @throws InvalidFormatException if date string is not valid
      */
-    private static Command parseSearch(String cmd)
+    private static Command parseFilter(String cmd)
             throws InvalidFormatException {
         String target = cmd.substring(2).trim();
         if (target.isEmpty()) {
@@ -118,6 +116,24 @@ public class CommandParser {
         }
 
         return new OnCommand(target);
+    }
+
+    /**
+     * Parses the FindCommand to search for task by name.
+     *
+     * @param cmd The full command entered by the user.
+     * @return The corresponding FindCommand.
+     * @throws InvalidFormatException If string to search is empty.
+     */
+    private static Command parseSearch(String cmd)
+            throws InvalidFormatException {
+        String target = cmd.substring(4).trim();
+        if (target.isEmpty()) {
+            throw new InvalidFormatException("Oops! Keyword cannot be empty. " +
+                    "\n Use find <keyword>");
+        }
+
+        return new FindCommand(target);
     }
 
     /**

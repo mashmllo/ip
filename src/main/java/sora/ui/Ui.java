@@ -70,7 +70,7 @@ public class Ui {
             System.out.println("Why not start adding a new task?");
         } else {
             for (int i = 0; i < count; i++) {
-                System.out.println((i+1) + ". " + tasks.get(i));
+                System.out.println((i + 1) + ". " + tasks.get(i));
             }
         }
         printLine();
@@ -95,6 +95,30 @@ public class Ui {
         printLine();
         System.out.println("Okay! The task is still pending to be completed");
         System.out.println(" " + task);
+        printLine();
+    }
+
+    /**
+     * Display a list of matching tasks.
+     *
+     * @param matchingResult List of all matching tasks.
+     * @param keyword Keyword to search for.
+     */
+    public void showSearchResult(ArrayList<Task> matchingResult, String keyword) {
+        printLine();
+
+        if(matchingResult.isEmpty()) {
+            System.out.println("Hmm... No tasks found on " + keyword + " yet");
+            System.out.println("Try refining your search");
+        } else {
+            System.out.println("Here are the tasks I found matching " + keyword + ":");
+            int count = 0;
+            for (Task task: matchingResult) {
+                System.out.println((count + 1) + ". " + task);
+                count++;
+            }
+        }
+
         printLine();
     }
 
