@@ -5,14 +5,14 @@ import sora.task.Task;
 import java.util.ArrayList;
 
 /**
- * Handles all user interactions for the chatbot
+ * Handles all user interactions for Sora.
  * <p>
  * This class is responsible for displaying messages to the user.
  */
 public class Ui {
 
     /**
-     * Display a welcome message when the program start
+     * Displays a welcome message when the program start.
      */
     public void greetUser() {
         String logo = """
@@ -31,10 +31,10 @@ public class Ui {
     }
 
     /**
-     * Display new task that has been added
+     * Displays a newly added task.
      *
-     * @param task  New tasks that has been added
-     * @param count Number of tasks stored
+     * @param task  The task that has been added.
+     * @param count The current number of tasks in the list.
      */
     public void showAddTask(Task task, int count) {
         printLine();
@@ -45,10 +45,10 @@ public class Ui {
     }
 
     /**
-     * Display confirmation that the task has been deleted
+     * Displays a confirmation that the task has been deleted
      *
-     * @param task  New tasks that has been added
-     * @param count Number of tasks stored
+     * @param task  The task that has been removed.
+     * @param count Current number of tasks in the list.
      */
     public void showDeletedTask(Task task, int count) {
         printLine();
@@ -59,9 +59,10 @@ public class Ui {
     }
 
     /**
-     * Display the list of all tasks stored.
-     * @param tasks Arraylist containing all the tasks
-     * @param count Number of tasks stored
+     * Displays all tasks in the task list.
+     *
+     * @param tasks Arraylist containing all the tasks.
+     * @param count Current number of tasks in the list.
      */
     public void showTasks(ArrayList<Task> tasks, int count) {
         printLine();
@@ -77,8 +78,9 @@ public class Ui {
     }
 
     /**
-     * Display that the task has been marked as complete
-     * @param task Task that has been marked as complete
+     * Displays a task marked as complete.
+     *
+     * @param task Task that has been marked as complete.
      */
     public void showTaskMarked(Task task) {
         printLine();
@@ -88,8 +90,9 @@ public class Ui {
     }
 
     /**
-     * Display that the task has been marked as complete
-     * @param task Task that has been marked as complete
+     * Displays that the task has been marked as not complete.
+     *
+     * @param task Task that has been marked as not complete.
      */
     public void showTaskUnmarked(Task task) {
         printLine();
@@ -99,8 +102,9 @@ public class Ui {
     }
 
     /**
-     * Display error message
-     * @param message Error message to be displayed to the user
+     * Displays an error message.
+     *
+     * @param message The error message to be displayed to the user.
      */
     public static void showError(String message) {
         printLine();
@@ -109,7 +113,7 @@ public class Ui {
     }
 
     /**
-     * Display a farewell message before the program exits
+     * Displays a farewell message before the program exits.
      */
     public void farewellMessage() {
         printLine();
@@ -118,7 +122,7 @@ public class Ui {
     }
 
     /**
-     * Prints the horizontal divider on the console before and after each message
+     * Prints the horizontal divider for readability.
      */
     private static void printLine() {
         System.out.println(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .");

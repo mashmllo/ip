@@ -5,15 +5,15 @@ import sora.exception.InvalidFormatException;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Enums representing types of data inputs
+ * Enum representing types of date/time inputs
  * <p>
  * There are 2 types of input:
  * <ul>
  *     <li>{@link #DATE_ONLY} - Input only contains the date </li>
- *     <li>{@link #DATETIME} - Input contains the date and time </li>
+ *     <li>{@link #DATETIME} - Input contains both date and time </li>
  * </ul>
- * The enums also provides constants for parsing and displaying
- * date and datetime in a specified format
+ * This enum also provides constants for parsing and displaying
+ * date and datetime in a specified format.
  */
 public enum DateInputType {
     DATE_ONLY,
@@ -28,12 +28,12 @@ public enum DateInputType {
     public final static String DATETIME_OUTPUT_PATTERN = "MMM dd yyyy HH:mm";
 
     /** Pattern for parsing date and time in 24-hour format
-     * (e.g. "Jan 22 2026 14:00")
+     * (e.g. "yyyy-MM-dd HH:mm")
      */
     public final static String DATETIME_INPUT_PATTERN = "yyyy-MM-dd HH:mm";
 
     /** Pattern for parsing date only
-     * (e.g. "Jan 22 2026 14:00")
+     * (e.g. "yyyy-MM-dd")
      */
     public final static String DATE_INPUT_PATTERN = "yyyy-MM-dd";
 
@@ -53,18 +53,20 @@ public enum DateInputType {
             = DateTimeFormatter.ofPattern(DATETIME_INPUT_PATTERN);
 
     /** Input parser for parsing date only input
-     * e.g. 2026-01-22 13:00
+     * e.g. 2026-01-22
      */
     public static final DateTimeFormatter FORMAT_DATE_INPUT
             = DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN);
 
     /**
-     * Determine the {@link DateInputType} of the given input string.
-     * Input can either be date only (yyyy-MM-dd) or datetime(yyyy-MM-dd HH:mm)
-     * @param input Input string to check
-     * @return {@link #DATE_ONLY} if input matches date pattern
-     *         {@link #DATETIME} if input matches datetime pattern
-     * @throws InvalidFormatException if the input does not match any valid format
+     * Determines the {@link DateInputType} of the given input string.
+     * <p>
+     *The input can either be date only (yyyy-MM-dd) or datetime(yyyy-MM-dd HH:mm).
+     *
+     * @param input The input string to check.
+     * @return {@link #DATE_ONLY} if the input matches date-only pattern.
+     *         {@link #DATETIME} if the input matches datetime pattern.
+     * @throws InvalidFormatException If the input does not match any valid format.
      */
     public static DateInputType datetimeInput(String input)
             throws InvalidFormatException {

@@ -1,9 +1,13 @@
 package sora.task;
 
 /**
- * A task object to encapsulate task data
+ * Represents a general task in Sora.
  * <p>
- * Each task has a name and a status to indicate whether it is done.
+ * Each task has a {@code name} and a completion status
+ * indicating whether it is done.
+ * This class serves as the base class for all specific
+ * task types, such as {@link ToDo}, {@link Deadline} and
+ * {@link Event}.
  */
 public abstract class Task {
 
@@ -11,8 +15,9 @@ public abstract class Task {
     private boolean isDone;
 
     /**
-     * Constructor of the new task
-     * @param name name of the task
+     * Constructs a new task with the given name.
+     *
+     * @param name The name of the task.
      */
     public Task(String name) {
         this.name = name;
@@ -20,32 +25,32 @@ public abstract class Task {
     }
 
     /**
-     * Mark task as done
+     * Marks task as done.
      */
     public void markAsDone() {
         this.isDone = true;
     }
 
     /**
-     * Mark task as not done.
+     * Marks task as not done.
      */
     public void markAsNotDone() {
         this.isDone = false;
     }
 
     /**
-     * Check the status of the task and return the relevant symbol
+     * Checks the status of the task and return the relevant symbol.
      *
-     * @return "X" if done, otherwise " "
+     * @return "X" if done, otherwise " ".
      */
     private String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
     /**
-     * Return the task as a formatted string with its status
+     * Returns the task as a formatted string with its status.
      *
-     * @return formatted string e.g. "[X] read book"
+     * @return formatted string e.g. "[X] read book".
      */
     @Override
     public String toString() {
@@ -55,7 +60,7 @@ public abstract class Task {
 
     /**
      * Returns the task as a formatted string with its status
-     * to be stored in a file
+     * to be stored in a file.
      * <p>
      * The completion status is encoded as follows:
      * <ul>
@@ -63,7 +68,7 @@ public abstract class Task {
      *     <li> {@code 0 } - task is not completed </li>
      * </ul>
      *
-     * @return formatted string e.g. "| 1 | read book"
+     * @return The formatted string e.g. "| 1 | read book".
      */
     public String toStorageString() {
         String statusIcon = "| " + (isDone ? '1' : '0') + " | ";

@@ -5,16 +5,16 @@ import sora.manager.TaskManager;
 import sora.ui.Ui;
 
 /**
- * Represents an executable user command used in Sora
+ * Represents an executable user command used in the Sora application.
  */
 public interface Command {
 
     /**
-     * Executes the command
+     * Executes the command.
      *
-     * @param ui The user interface class
-     * @param taskManager  The task manager class
-     * @throws SoraException if execution fails due to user input
+     * @param taskManager Manager class used to manage the list of tasks.
+     * @param ui          User interface class used to display messages.
+     * @throws SoraException if execution fails due to invalid user input.
      */
     void execute(TaskManager taskManager, Ui ui) throws SoraException;
 }

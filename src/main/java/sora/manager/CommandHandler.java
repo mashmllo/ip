@@ -9,9 +9,9 @@ import sora.ui.Ui;
 import java.util.Scanner;
 
 /**
- * Handles user interactions.
+ * Represents a handler for user interactions in Sora.
  * <p>
- * This class is responsible for managing the main workflow of Sora,
+ * Responsible for managing the main workflow of Sora,
  * including greeting the user, processing commands, and displaying farewell message.
  */
 public class CommandHandler {
@@ -23,11 +23,11 @@ public class CommandHandler {
 
 
     /**
-     * Constructs a CommandHandler instance
-     *
-     * Initialized Ui, Scanner, TaskManager and signal that
-     * the program is currently running. User are also
-     * being greeted immediately upon the creation of the instance
+     * Constructs a {@code CommandHandler} instance.
+     * <p>
+     * Initializes the {@code Ui}, {@code Scanner}, and {@code TaskManager}
+     * and signal that the program is currently running.
+     * The user is greeted immediately upon the creation of the instance.
      */
     public CommandHandler() {
         this.ui = new Ui();
@@ -41,9 +41,10 @@ public class CommandHandler {
     }
 
     /**
-     * Executes the command handler's main workflow
+     * Executes the main workflow of the command handler.
      * <p>
-     * Serve as an entry point for handling user interactions or processing commands.
+     * Serve as an entry point for handling user interactions and processing commands.
+     * Continues running until an {@code ExitCommand} is entered by the user.
      */
     public void run() {
 
@@ -61,9 +62,9 @@ public class CommandHandler {
     }
 
     /**
-     * Process the command entered by user
+     * Processes the command entered by user.
      *
-     * @param input command entered by user
+     * @param input The command entered by the user.
      */
     private void handleCommand(String input) {
 

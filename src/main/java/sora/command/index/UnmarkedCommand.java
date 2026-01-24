@@ -1,18 +1,20 @@
 package sora.command.index;
 
+import sora.exception.SoraException;
 import sora.manager.TaskManager;
 import sora.task.Task;
 import sora.ui.Ui;
 
 /**
- * Command that mark a done as not done
+ * Represents a command that mark a completed task as not done.
  */
 public class UnmarkedCommand extends IndexCommand {
 
     private final int index;
     /**
-     * Constructs an UnmarkedCommand
-     * @param index index of the task
+     * Constructs an {@code UnmarkedCommand}
+     *
+     * @param index Index of the task to be unmarked.
      */
     public UnmarkedCommand(int index) {
         super(index);
@@ -21,9 +23,10 @@ public class UnmarkedCommand extends IndexCommand {
 
 
     /**
-     * Marks the task as not done and display confirmation
-     * @param taskManager The task manager class
-     * @param ui User interface for displaying output
+     * Marks the task as not done and display a confirmation message.
+     *
+     * @param taskManager Manager class used to manage the list of tasks.
+     * @param ui          User interface class used to display messages.
      */
     @Override
     protected void executeOnTask(TaskManager taskManager, Ui ui) {

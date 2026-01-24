@@ -18,38 +18,39 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
- * Handles storing and loading of tasks from hard disk
+ * Handles storing and loading of tasks to and from persistent storage.
  * <p>
- * Data file will be created automatically if data file or folder does not
- * exist.
+ * The data file and its parent directories will be
+ * created automatically if they do not exist.
  */
 public class Storage {
 
     private final Path path;
 
     /**
-     * Constructs a new Storage instance with default storage file path set to
+     * Constructs a new {@code Storage} instance with default storage file path set to
      * {@code data/sora.txt}.
-     *
-     * File and directories will be created automatically if the file and/or directories
-     * does not exist when {@link #save(ArrayList)} is called
+     * <p>
+     * The file and directories will be created
+     * automatically if they do not exist
+     * when {@link #save(ArrayList)} is called.
      */
     public Storage() {
         this.path = Paths.get("data", "sora.txt");
     }
 
     /**
-     * Loads tasks from disk
+     * Loads tasks from disk.
      * <p>
      * Behavior:
      * <ul>
-     *     <li>If the memory file does not exist, an empty list is returned</li>
-     *     <li>If a line in the file is corrupted, it is skipped and an error
+     *     <li>If the memory file does not exist, an empty list is returned.</li>
+     *     <li>If a line in the file is corrupted, it is skipped and an error.
      *         message is shown </li>
-     *     <li>If an I/O error occurs while reading the file, an error is shown</li>
+     *     <li>If an I/O error occurs while reading the file, an error is show.n</li>
      * </ul>
      *
-     * @return ArrayList containing all tasks successfully load tasks
+     * @return ArrayList containing all tasks successfully loaded tasks.
      */
     public ArrayList<Task> load() {
 
@@ -74,12 +75,13 @@ public class Storage {
     }
 
     /**
-     * Saves the given list of tasks to the storage file on the disk
+     * Saves the given list of tasks to the storage file on the disk.
      * <p>
      * The parent directory is created automatically if file does not exist.
-     * I/O errors encountered will be handled and users will be informed of the
-     * error
-     * @param tasks List of tasks to be saved
+     * I/O errors encountered will be handled and users will be informed of
+     * the error.
+     *
+     * @param tasks List of tasks to be saved.
      */
     public void save(ArrayList<Task> tasks) {
         ensureDirectoryExist();
@@ -95,11 +97,11 @@ public class Storage {
     }
 
     /**
-     * Ensures that the parent directory of the storage file exist.
+     * Ensures that the parent directory of the storage file exists.
      * If the directory does not exist, it will be created automatically.
-     *<p>
+     * <p>
      * An error will also be displayed to the user if the creation of the
-     * directory has failed.
+     * directory fails.
      *
      */
     private void ensureDirectoryExist() {
@@ -114,15 +116,15 @@ public class Storage {
     }
 
     /**
-     * Read task from the given BufferedReader and adds them to the ArrayList.
+     * Reads task from the given BufferedReader and adds them to the ArrayList.
      * <p>
      * Each line in the reader will be parsed individually. If the task cannot be
      * parsed or is corrupted, it will be skipped and an error message will also be
      * displayed to the user.
      *
-     * @param reader    The BufferedReader from which to read task lines
-     * @param tasks     The ArrayList where successfully parsed tasks will be added to
-     * @throws IOException  if an I/O exception occur while reading from the reader
+     * @param reader    The BufferedReader from which to read task lines.
+     * @param tasks     The ArrayList where successfully parsed tasks will be added to.
+     * @throws IOException  If an I/O exception occur while reading from the reader.
      */
     private void readTask(BufferedReader reader, ArrayList<Task> tasks)
             throws IOException {
@@ -147,13 +149,13 @@ public class Storage {
      * <p>
      * This method validates the type, name, and any additional fields used by
      * different task type.
-     * It also sets the completion status according to the second field
+     * It also sets the completion status according to the second field.
      *
-     * @param line Line from the storage file
-     * @return a Task object corresponding to the line
-     * @throws InvalidFormatException if the line is malformed or missing required fields,
+     * @param line Line from the storage file.
+     * @return A {@link Task} object corresponding to the line.
+     * @throws InvalidFormatException If the line is malformed or missing required fields,
      *                                contains unknown task types, or invalid completion
-     *                                status
+     *                                status.
      */
     private Task loadTask(String line) throws InvalidFormatException {
         String[] parts = line.split("\\|");
@@ -196,16 +198,16 @@ public class Storage {
     }
 
     /**
-     *Sets completion status of a task based on the string in storage
+     *Sets completion status of a task based on the string in storage.
      * <p>
-     * completedStat should be:
+     * The completedStat should be:
      * <ul>
      *     <li>"0" - denotes the task as not done </li>
      *     <li>"1" - denotes the task as done </li>
      * </ul>
-     * @param task          Task whose completion status should be set
-     * @param completedStat  String representation of the completion status
-     * @throws InvalidFormatException if completedStr is not "0" or "1"
+     * @param task          Task whose completion status should be set.
+     * @param completedStat  String representation of the completion status.
+     * @throws InvalidFormatException if completedStr is not "0" or "1".
      */
     private void setTaskCompletionStatus(Task task, String completedStat)
             throws InvalidFormatException {
@@ -221,11 +223,11 @@ public class Storage {
     }
 
     /**
-     * Converts a task into its storage string representation
+     * Converts a task into its storage string representation.
      *
-     * @param task Task to be converted
-     * @return String format of the task
-     * @throws IllegalStateException  if unsupported task type is entered
+     * @param task Task to be converted.
+     * @return String format of the task.
+     * @throws IllegalStateException  If unsupported task type is entered.
      */
     private String saveTask(Task task)
             throws IllegalStateException {

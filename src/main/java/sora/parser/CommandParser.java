@@ -18,19 +18,19 @@ import sora.task.Task;
 import sora.task.ToDo;
 
 /**
- * Parses user commands to its respective command based on user input
+ * Parses user commands to its respective {@link Command} implementations.
  * <p>
- *  This class is responsible for validating and parsing user input
- *  and instantiate the appropriate Command implementation
+ *  Responsible for validating and parsing user input
+ *  and instantiates the appropriate {@link Command} object.
  */
 public class CommandParser {
 
     /**
-     * Parses user input and returns the corresponding Command
+     * Parses user input and returns the corresponding {@link Command}.
      *
-     * @param cmd Full command entered by the user
-     * @return Command to be executed
-     * @throws SoraException If incomplete or invalid command is entered
+     * @param cmd The full command entered by the user.
+     * @return The {@link Command} to be executed.
+     * @throws SoraException If the command is incomplete or invalid.
      */
     public static Command parse(String cmd) throws SoraException {
         String lower = cmd.toLowerCase().trim();
@@ -53,11 +53,12 @@ public class CommandParser {
     }
 
     /**
-     * Parses command that operates on an existing task index
-     * @param cmd Full command entered by the user
-     * @param keyword  Command keyword
-     * @return the corresponding task
-     * @throws SoraException if the command format or index is invalid
+     * Parses a command that operates on an existing task index.
+     *
+     * @param cmd The full command entered by the user
+     * @param keyword  The command keyword (e.g. "mark", "delete").
+     * @return the corresponding {@link Command}.
+     * @throws SoraException If the command format or index is invalid.
      */
     private static Command parseIndexCommand(String cmd, String keyword)
             throws SoraException {
@@ -76,12 +77,12 @@ public class CommandParser {
     }
 
     /**
-     * Extracts index from the command that requires task number
+     * Extracts index from a command that requires a task number.
      *
-     * @param cmd      Full command string entered by the user
-     * @param keyword  Command keyword
-     * @return  Zero-based index of the task
-     * @throws InvalidFormatException if command format or task number is invalid
+     * @param cmd The full command entered by the user.
+     * @param keyword  The command keyword (e.g. "mark", "delete").
+     * @return  The zero-based index of the task.
+     * @throws InvalidFormatException If the command format or task number is invalid.
      */
     private static int getIndex(String cmd, String keyword)
             throws InvalidFormatException {
@@ -102,11 +103,11 @@ public class CommandParser {
     }
 
     /**
-     * Parses the search command for tasks occurring on a specific date
+     * Parses the search command for tasks occurring on a specific date.
      *
-     * @param cmd Full command entered by the user
-     * @return the corresponding task
-     * @throws InvalidFormatException if date string is not valid
+     * @param cmd The full command entered by the user.
+     * @return The corresponding {@link Command}.
+     * @throws InvalidFormatException If the date string is invalid.
      */
     private static Command parseSearch(String cmd)
             throws InvalidFormatException {
@@ -121,10 +122,11 @@ public class CommandParser {
     }
 
     /**
-     * Parse task creation command
-     * @param cmd Full command entered by the user
-     * @return AddTaskCommand containing the parsed task
-     * @throws SoraException if invalid or incomplete command is entered
+     * Parses a task creation command and returns an {@link AddTaskCommand}.
+     *
+     * @param cmd The full command entered by the user.
+     * @return An {@link AddTaskCommand} containing the parsed task.
+     * @throws SoraException If the command is invalid or incomplete.
      */
     private static Command parseAddTaskCommand(String cmd) throws SoraException {
         Task task = parseTask(cmd);
@@ -132,11 +134,11 @@ public class CommandParser {
     }
 
     /**
-     * Parses a command string into a Task object
+     * Parses a command string into a {@link Task} object.
      *
-     * @param cmd Full command entered by the user
-     * @return A Task object corresponding to the command entered by the user
-     * @throws UnknownCommandException if an invalid or incomplete command is entered
+     * @param cmd The full command entered by the user.
+     * @return The {@link Task} corresponding to the command.
+     * @throws UnknownCommandException If the command is invalid or incomplete.
      */
     public static Task parseTask(String cmd) throws SoraException {
 

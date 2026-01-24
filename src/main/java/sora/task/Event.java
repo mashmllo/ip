@@ -4,12 +4,13 @@ import sora.exception.InvalidFormatException;
 import sora.parser.ParsedDateTime;
 
 /**
- * Event task for Sora
+ * Represents an Event task in Sora.
  * <p>
  *  An Event task are tasks that occurs during a specific time period.
- * This class extends the base Task class and adds a "from" and "to" field to
+ * This class extends the base {@link Task} class
+ * and adds {@code from} and {@code to} fields to
  * store the event duration.
- * The marks task type as [E].
+ * Marks the task type as [E].
  */
 public class Event extends Task {
 
@@ -17,10 +18,10 @@ public class Event extends Task {
     private final ParsedDateTime to;
 
     /**
-     * Constructor of a new Event class
-     * @param name  Name of the event
-     * @param from  Start date/time of the event
-     * @param to    end date/time of the event
+     * Constructs a new Event class with a name, start and end time.
+     * @param name  The name of the event.
+     * @param from  The start date/time of the event as a {@link ParsedDateTime}.
+     * @param to    The end date/time of the event as a {@link ParsedDateTime}.
      */
     public Event(String name, ParsedDateTime from, ParsedDateTime to) {
         super(name);
@@ -30,9 +31,9 @@ public class Event extends Task {
 
 
     /**
-     * Retrieve the start date of the event
+     * Returns the start date of the event.
      *
-     * @return the start date of the event
+     * @return The start date of the event as a {@link ParsedDateTime}.
      */
     public ParsedDateTime startDate() {
         return from;
@@ -40,16 +41,16 @@ public class Event extends Task {
 
 
     /**
-     * Retrieve the end date of the event
+     * Returns the end date of the event.
      *
-     * @return the end date of the event
+     * @return The end date of the event as a {@link ParsedDateTime}.
      */
     public ParsedDateTime endDate() {
         return to;
     }
 
     /**
-     * Return the string representation of the Event task.
+     * Returns the string representation of the Event task for display.
      * @return formatted string
      *         e.g. "[E][X] project meeting (from: Jan 22 2026 14:00
      *         to: Jan 22 2026 16:00)"
@@ -61,7 +62,7 @@ public class Event extends Task {
     }
 
     /**
-     * Return string representation used for file storage for Event task.
+     * Returns the string representation used for file storage for Event task.
      * @return formatted string
      *         e.g. "E | 1 | project meeting | 2026-01-22 14:00 | 2026-01-22 16:00"
      */
@@ -72,21 +73,21 @@ public class Event extends Task {
     }
 
     /**
-     * Creates and adds an Event task to the task list
+     * Parses a command string to create a new {@link Event} task.
      * <p>
      * Command to follow the following format:
      *      event <name of task> /from <start time> /to <end time>
      * <p>
-     * All 3 fields, name of task, start time and end time, must be provided,
-     * otherwise an error message is shown and the task is not being added into the
+     * All 3 fields (name of task, start and end time), must be provided,
+     * otherwise {@link InvalidFormatException} is shown and the task is not being added into the
      * list.
      *
-     * @param cmd Full command entered by the user
+     * @param cmd The full command entered by the user
      *            e.g. "event project meeting /from 2026-01-22 12:00
-     *            /to 2026-01-22 18:00"
-     * @return An Event task object
-     * @throws InvalidFormatException if task name, start time, or end time
-     *                                is missing
+     *            /to 2026-01-22 18:00".
+     * @return A new {@link Event} task object.
+     * @throws InvalidFormatException If task name, start time, or end time
+     *                                is missing.
      */
     public static Event parse(String cmd)
             throws InvalidFormatException {

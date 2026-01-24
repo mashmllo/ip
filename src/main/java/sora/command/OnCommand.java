@@ -12,32 +12,31 @@ import sora.ui.Ui;
 import java.util.ArrayList;
 
 /**
- * Command to list all tasks occurring on the specified date
+ * Represents a command to list all tasks occurring on the specified date.
  */
 public class OnCommand implements Command {
 
     private final ParsedDateTime targetDate;
 
     /**
-     * Constructs an OnCommand for the given date
+     * Constructs an {@code OnCommand} for the given date.
      * <p>
      * Note: Time will be ignored when matching task
      *
      * @param targetDate The date string input by the user. Accepts either
-     *                   "yyyy-MM-dd" or "yyyy-MM-dd HH:mm".
-     * @throws InvalidFormatException if date string input is not valid
+     *                   {@code yyyy-MM-dd} or {@code yyyy-MM-dd HH:mm} format.
      */
     public OnCommand(String targetDate) {
         this.targetDate = ParsedDateTime.dateTimeParser(targetDate);
     }
 
     /**
-     * Executes the command by iterating through the tasks and find the
-     * tasks that occur on the target date.
+     * Executes the command by iterating through the tasks and
+     * identifying tasks that occur on the target date.
      *
-     * @param taskManager  The task manager class
-     * @param ui The user interface class
-     * @throws SoraException for any internal errors during the execution
+     * @param taskManager Manager class used to manage the list of tasks.
+     * @param ui          User interface class used to display messages.
+     * @throws SoraException If an error occurs during command execution.
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {

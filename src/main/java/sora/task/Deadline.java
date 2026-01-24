@@ -4,10 +4,11 @@ import sora.exception.InvalidFormatException;
 import sora.parser.ParsedDateTime;
 
 /**
- * Deadline task for Sora
+ * Represents a Deadline task for Sora.
  * <p>
  *  A Deadline task are tasks that needs to be completed by a given date/time.
- * This class extends the base Task class and adds a "by" field to store the deadline.
+ * This class extends the base {@link Task} class
+ * and adds a {@code by} field to store the deadline.
  * The marks task type as [D].
  */
 public class Deadline extends Task {
@@ -15,28 +16,29 @@ public class Deadline extends Task {
     private final ParsedDateTime by;
 
     /**
-     * Constructor of a new Deadline task
-     * @param name Name of the task
-     * @param by   Due date of the task
+     * Constructor of a new {@code Deadline} task.
+     * @param name Name of the task.
+     * @param by   Due date of the task as a
+     *             {@link ParsedDateTime}.
      */
     public Deadline(String name, ParsedDateTime by) {
         super(name);
         this.by = by;
     }
 
-
     /**
-     * Retrieve the deadline of the task
+     * Returns the deadline of this task.
      *
-     * @return deadline of the task
+     * @return The deadline of the task as a
+     *         {@link ParsedDateTime}.
      */
     public ParsedDateTime deadline() {
         return by;
     }
 
     /**
-     * Return the string representation of the Deadline task.
-     * @return formatted string e.g. "[D][X] read book (by: Jan 22 2026)"
+     * Returns the string representation of the Deadline task for display.
+     * @return The formatted string e.g. "[D][X] read book (by: Jan 22 2026)"
      */
     @Override
     public String toString() {
@@ -44,8 +46,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return string representation used for file storage for Deadline task.
-     * @return formatted string e.g. "D | 1 | read book | 2026-01-22"
+     * Returns the string representation of the Deadline task for storage in a file.
+     * @return The formatted string e.g. "D | 1 | read book | 2026-01-22"
      */
     @Override
     public String toStorageString() {
@@ -53,19 +55,19 @@ public class Deadline extends Task {
     }
 
     /**
-     * Creates and adds a Deadline task to the task list
+     * Parses a command string to create a new {@link Deadline} task.
      * <p>
      * Command to follow the following format:
-     *      deadline <name of task> /by <deadline>
+     *      <pre>deadline <name of task> /by <deadline></pre>
      * <p>
      * Both the name of the task and the deadline must be provided,
-     * otherwise an error message is shown and the task is not being added into the
-     * list.
+     * otherwise {@link InvalidFormatException} is thrown
+     * and the task is not being added into the list.
      *
-     * @param cmd Full command entered by the user
+     * @param cmd The full command entered by the user
      *            e.g. "deadline submit report /by 2026-01-22 23:59"
-     * @return A Deadline task object
-     * @throws InvalidFormatException if task name or deadline is missing
+     * @return A new {@link Deadline} task object.
+     * @throws InvalidFormatException If the task name or deadline is missing or invalid.
      */
     public static Deadline parse(String cmd)
             throws InvalidFormatException {

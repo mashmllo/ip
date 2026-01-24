@@ -8,29 +8,30 @@ import sora.task.Task;
 import sora.ui.Ui;
 
 /**
- * Base abstract class for commands that requires a task index
+ * Base abstract class for commands that requires a task index.
  * <p>
- * This class handles common validation logics such as retrieving
- * a task and checking index bounds
+ * This class handles common validation logic, such as retrieving
+ * a task and checking index bounds.
  */
 public abstract class IndexCommand implements Command {
 
     private final int index;
 
     /**
-     * Constructs an IndexCommand
-     * @param index index of the task
+     * Constructs an {@code IndexCommand}
+     *
+     * @param index Index of the task.
      */
     public IndexCommand(int index) {
         this.index = index;
     }
 
     /**
-     * Executes the command by retrieving the task at the given index
+     * Executes the command by retrieving the task at the given index.
      *
-     * @param taskManager  The task manager class
-     * @param ui The user interface class
-     * @throws SoraException if task does not exist
+     * @param taskManager Manager class used to manage the list of tasks.
+     * @param ui          User interface class used to display messages.
+     * @throws SoraException if task does not exist at the given index.
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
@@ -45,9 +46,10 @@ public abstract class IndexCommand implements Command {
     }
 
     /**
-     * Executes command-specific logic on the task
-     * @param taskManager The task manager class
-     * @param ui          The user interface class
+     * Executes command-specific logic on the task.
+     *
+     * @param taskManager Manager class used to manage the list of tasks.
+     * @param ui          User interface class used to display messages.
      */
     protected abstract void executeOnTask(TaskManager taskManager, Ui ui);
 }

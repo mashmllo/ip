@@ -3,24 +3,24 @@ package sora.task;
 import sora.exception.InvalidFormatException;
 
 /**
- * ToDo task for Sora
+ * Represents a ToDo task in Sora.
  *  <p>
- *  A ToDo task are tasks without any date/time attached to it.
- *  This class extends the base Task class and marks task type as [T]
+ *  A ToDo task is a tasks without any date or time attached.
+ *  This class extends {@link Task} class and marks task type as [T].
  */
 public class ToDo extends Task {
 
     /**
-     * Constructor of the new ToDo task
-     * @param name Name of the ToDo task
+     * Constructs of the new ToDo task with the given name.
+     * @param name The name of the ToDo task.
      */
     public ToDo(String name) {
         super(name);
     }
 
     /**
-     * Return the string representation of the ToDo task.
-     * @return formatted string e.g. "[T][X] read book"
+     * Returns the string representation of the ToDo task for display.
+     * @return The formatted string e.g. "[T][X] read book".
      */
     @Override
     public String toString() {
@@ -28,8 +28,8 @@ public class ToDo extends Task {
     }
 
     /**
-     * Return string representation used for file storage for ToDo task.
-     * @return formatted string e.g. "T | 1 | read book"
+     * Returns string representation used for file storage for ToDo task.
+     * @return The formatted string e.g. "T | 1 | read book".
      */
     @Override
     public String toStorageString() {
@@ -37,17 +37,17 @@ public class ToDo extends Task {
     }
 
     /**
-     * Creates and adds a Todo task to the task list
+     * Parses a command string into a Todo task.
      * <p>
-     * sora.command.Command to follow the following format:
+     * Command to follow the following format:
      *      todo <name of task>
      * <p>
-     * If name of task is missing or empty, an error message is shown and task is
+     * If name of task is missing or empty, {@link InvalidFormatException} is shown and task is
      * not being added into the list
      *
-     * @param cmd Full command entered by the user e.g. "todo read book"
-     * @return A ToDo task object
-     * @throws InvalidFormatException if task name is missing
+     * @param cmd The full command entered by the user e.g. "todo read book".
+     * @return A {@link ToDo} task object.
+     * @throws InvalidFormatException If task name is missing.
      */
     public static ToDo parse(String cmd)
             throws InvalidFormatException {

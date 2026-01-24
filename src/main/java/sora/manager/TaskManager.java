@@ -6,10 +6,10 @@ import sora.task.Task;
 import java.util.ArrayList;
 
 /**
- * Manages the storage and retrieval of tasks for Sora
+ * Manages the storage and retrieval of tasks for Sora.
  * <p>
- * This class is responsible for adding new tasks, retrieving tasks,
- * and providing the current task list and count.
+ * Responsible for adding and retrieving tasks,
+ * and providing the current task list and task count.
  */
 public class TaskManager {
 
@@ -18,27 +18,28 @@ public class TaskManager {
 
 
     /**
-     * Retrieve the array of all tasks
+     * Retrieve the array of all tasks.
      *
-     * @return Arraylist of Task objects
+     * @return An {@link ArrayList} of {@link Task} objects.
      */
     public ArrayList<Task> getTasks() {
         return tasks;
     }
 
     /**
-     * Retrieve the current number of tasks
+     * Retrieve the current number of tasks in the task list.
      *
-     * @return  Number of tasks
+     * @return The number of tasks.
      */
     public int getTaskCount() {
         return tasks.size();
     }
 
     /**
-     * Adds a new task to array
+     * Adds a new task to the task list
+     * and persists the updated list.
      *
-     * @param task Task object to add
+     * @param task The {@link Task} object to add.
      */
     public void addTask(Task task) {
         tasks.add(task);
@@ -46,10 +47,11 @@ public class TaskManager {
     }
 
     /**
-     * Retrieve task by index
+     * Retrieves a task by its index.
      *
-     * @param index Index of the task
-     * @return Task object if index is valid, otherwise null
+     * @param index The index of the task.
+     * @return The {@link Task} object if index is valid;
+     *         {@code null} otherwise.
      */
     public Task getTask(int index) {
         if (index < 0 || index >= this.getTaskCount()) {
@@ -60,10 +62,12 @@ public class TaskManager {
     }
 
     /**
-     * Remove task by index
+     * Removes a task by its index
+     * and persists the updated list.
      *
-     * @param index Index of the task
-     * @return Task object if index is valid, otherwise null
+     * @param index The index of the task.
+     * @return The {@link Task} object if index is valid;
+     *         {@code null} otherwise.
      */
     public Task removeTask(int index) {
         if (index < 0 || index >= this.getTaskCount()) {
@@ -77,14 +81,14 @@ public class TaskManager {
     }
 
     /**
-     * Marks task of the specified index as completed
+     * Marks task of the specified index as completed.
      * <p>
-     * If the index is invalid or out-of-bounds, the method will return null and
-     * no changes are made
+     * If the index is invalid or out-of-bounds, the method will return {@code null}
+     * and no changes are made.
      *
-     * @param index Index of the task to be marked
-     * @return The task that was being marked as complete or null if the index
-     *         specified is invalid
+     * @param index The index of the task to mark as completed.
+     * @return The {@link Task} object if index is valid;
+     *         {@code null} otherwise.
      */
     public Task markTask(int index) {
         if (index < 0 || index >= getTaskCount()) {
@@ -98,14 +102,14 @@ public class TaskManager {
     }
 
     /**
-     * Marks task of the specified index as not complete
+     * Marks task of the specified index as not completed.
      * <p>
-     * If the index is invalid or out-of-bounds, the method will return null and
-     * no changes are made
+     * If the index is invalid or out-of-bounds, the method will return {@code null}
+     * and no changes are made.
      *
-     * @param index Index of the task to be marked as not complete
-     * @return The task that was being marked as not complete or null if the index
-     *         specified is invalid
+     * @param index The index of the task to mark as completed.
+     * @return The {@link Task} object if index is valid;
+     *         {@code null} otherwise.
      */
     public Task unmarkTask(int index) {
         if (index < 0 || index >= getTaskCount()) {

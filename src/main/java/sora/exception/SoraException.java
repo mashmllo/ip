@@ -1,18 +1,19 @@
 package sora.exception;
 
 /**
- * Base class for all exception specific to Sora
+ * Base class for all exception specific to Sora.
  * <p>
- * This class serves as the parent for all custom exceptions used in Sora.
- * It is an abstract class to ensure that the error thrown is explicit and meaningful
+ * Serves as the parent for all custom exceptions used in Sora.
+ * Being abstract ensures that errors thrown are explicit and meaningful
  * to the user.
- * <p>
  */
 public abstract class SoraException extends RuntimeException {
 
     /**
-     * Construct SoraException with an error message
-     * @param message User-friendly error message
+     * Construct {@code SoraException} with a user-friendly error
+     * message.
+     *
+     * @param message The error message to be displayed to the user.
      */
     public SoraException(String message) {
         super(message);

@@ -1,12 +1,13 @@
 package sora.exception;
 
 /**
- * Thrown when user enters an unsupported command
+ * Thrown when user enters an unsupported command.
  */
 public class UnknownCommandException extends SoraException {
 
     /**
-     * Constructs a UnknownCommandException with a specific error message
+     * Constructs a {@code UnknownCommandException} with a user-friendly error
+     * message.
      */
     public UnknownCommandException() {
         super("Oops! I didn't recognize that command" +

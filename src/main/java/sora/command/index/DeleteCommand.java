@@ -1,20 +1,21 @@
 package sora.command.index;
 
+import sora.exception.SoraException;
 import sora.manager.TaskManager;
 import sora.task.Task;
 import sora.ui.Ui;
 
 /**
- * Command to delete a task from task list
+ * Represents a command that delete a task from task list.
  */
 public class DeleteCommand extends IndexCommand {
 
     private final int index;
 
     /**
-     * Constructs a DeleteCommand
+     * Constructs a {@code DeleteCommand}.
      *
-     * @param index index of the task to be removed
+     * @param index Index of the task to be removed.
      */
     public DeleteCommand(int index) {
         super(index);
@@ -22,9 +23,11 @@ public class DeleteCommand extends IndexCommand {
     }
 
     /**
-     * Removes the task from the task list
-     * @param taskManager The task manager class
-     * @param ui          The Ui class
+     * Removes the task from the task list based on the given index.
+     * Displays an error message if the task cannot be found.
+     *
+     * @param taskManager Manager class used to manage the list of tasks.
+     * @param ui          User interface class used to display messages.
      */
     @Override
     protected void executeOnTask(TaskManager taskManager, Ui ui) {
