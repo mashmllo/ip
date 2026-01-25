@@ -31,8 +31,8 @@ public class DeleteCommand extends IndexCommand {
         Task deletedTask = taskManager.removeTask(this.index);
 
         if (deletedTask == null) {
-            Ui.showError("Hmm.. something went wrong while removing the task" +
-                    "\nPlease check the task number and try again");
+            Ui.showError("Hmm.. something went wrong while removing the task"
+                    + "\nPlease check the task number and try again");
         }
         ui.showDeletedTask(deletedTask, taskManager.getTaskCount());
     }
