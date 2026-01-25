@@ -16,11 +16,10 @@ public class ExitCommand implements Command {
      *
      * @param taskManager  The task manager class
      * @param ui The user interface class
-     * @throws SoraException No exceptions are thrown in this implementation
+     * @throws SoraException If command execution fails.
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
-
     }
 
 }
