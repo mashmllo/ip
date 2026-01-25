@@ -1,12 +1,12 @@
 package sora.manager;
 
+import java.util.Scanner;
+
 import sora.command.Command;
 import sora.command.ExitCommand;
 import sora.exception.SoraException;
 import sora.parser.CommandParser;
 import sora.ui.Ui;
-
-import java.util.Scanner;
 
 /**
  * Represents a handler for user interactions in Sora.
@@ -32,12 +32,10 @@ public class CommandHandler {
     public CommandHandler() {
         this.ui = new Ui();
         this.scanner = new Scanner(System.in);
-
-        ui.greetUser();
-
         this.taskManager = new TaskManager();
         this.isRunning = true;
 
+        ui.greetUser();
     }
 
     /**
@@ -67,11 +65,10 @@ public class CommandHandler {
      * @param input The command entered by the user.
      */
     private void handleCommand(String input) {
-
         Command command = CommandParser.parse(input);
         if (command instanceof ExitCommand) {
             isRunning = false;
-        }else {
+        } else {
             command.execute(taskManager, ui);
         }
     }

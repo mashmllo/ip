@@ -29,6 +29,15 @@ public abstract class IndexCommand implements Command {
     /**
      * Executes the command by retrieving the task at the given index.
      *
+     * @return The task index.
+     */
+    public int getIndex() {
+        return this.index;
+    }
+
+    /**
+     * Executes the command by retrieving the task at the given index
+     *
      * @param taskManager Manager class used to manage the list of tasks.
      * @param ui          User interface class used to display messages.
      * @throws SoraException if task does not exist at the given index.
@@ -38,8 +47,8 @@ public abstract class IndexCommand implements Command {
 
         Task task = taskManager.getTask(index);
         if (task == null) {
-            throw new InvalidFormatException("Whoops! That task does not exist." +
-                    "\nDouble-check the number and try again");
+            throw new InvalidFormatException("Whoops! That task does not exist."
+                    + "\nDouble-check the number and try again");
         }
 
         executeOnTask(taskManager, ui);

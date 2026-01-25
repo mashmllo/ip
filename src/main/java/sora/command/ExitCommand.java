@@ -21,7 +21,6 @@ public class ExitCommand implements Command {
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
-
     }
 
 }

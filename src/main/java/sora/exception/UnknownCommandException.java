@@ -10,7 +10,7 @@ public class UnknownCommandException extends SoraException {
      * message.
      */
     public UnknownCommandException() {
-        super("Oops! I didn't recognize that command" +
-                "\n Please enter a valid command");
+        super("Oops! I didn't recognize that command"
+                + "\n Please enter a valid command");
     }
 }

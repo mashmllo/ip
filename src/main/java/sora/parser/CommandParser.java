@@ -1,6 +1,5 @@
 package sora.parser;
 
-
 import sora.command.Command;
 import sora.command.ExitCommand;
 import sora.command.ListCommand;

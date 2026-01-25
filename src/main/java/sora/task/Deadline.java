@@ -32,7 +32,7 @@ public class Deadline extends Task {
      * @return The deadline of the task as a
      *         {@link ParsedDateTime}.
      */
-    public ParsedDateTime deadline() {
+    public ParsedDateTime getDeadline() {
         return by;
     }
 

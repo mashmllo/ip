@@ -44,11 +44,9 @@ public class ParsedDateTime {
      */
     @Override
     public String toString() {
-        if (type == DateInputType.DATE_ONLY) {
-            return dateTime.format(DateInputType.FORMAT_DATE_DISPLAY);
-        } else  {
-            return dateTime.format(DateInputType.FORMAT_DATETIME_DISPLAY);
-        }
+        return (type == DateInputType.DATE_ONLY)
+                ? dateTime.format(DateInputType.FORMAT_DATE_DISPLAY)
+                : dateTime.format(DateInputType.FORMAT_DATETIME_DISPLAY);
     }
 
     /**
@@ -58,11 +56,9 @@ public class ParsedDateTime {
      * @return A formatted string suitable for storage.
      */
     public String toStorageString() {
-        if (type == DateInputType.DATE_ONLY) {
-            return dateTime.format(DateInputType.FORMAT_DATE_INPUT);
-        } else  {
-            return dateTime.format(DateInputType.FORMAT_DATETIME_INPUT);
-        }
+        return  (type == DateInputType.DATE_ONLY)
+                ? dateTime.format(DateInputType.FORMAT_DATE_INPUT)
+                : dateTime.format(DateInputType.FORMAT_DATETIME_INPUT);
     }
 
     /**

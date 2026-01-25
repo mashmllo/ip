@@ -1,8 +1,8 @@
 package sora.parser;
 
-import sora.exception.InvalidFormatException;
-
 import java.time.format.DateTimeFormatter;
+
+import sora.exception.InvalidFormatException;
 
 /**
  * Enum representing types of date/time inputs
@@ -76,9 +76,9 @@ public enum DateInputType {
         } else if (input.matches("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}")) {
             return DATETIME;
         } else {
-            throw new InvalidFormatException("Oops! Invalid date format." +
-                    "\n Use `" + DATE_INPUT_PATTERN +"` " +
-                    "or `" + DATETIME_INPUT_PATTERN +"`");
+            throw new InvalidFormatException("Oops! Invalid date format."
+                    + "\n Use `" + DATE_INPUT_PATTERN +"` "
+                    + "or `" + DATETIME_INPUT_PATTERN +"`");
         }
     }
 }

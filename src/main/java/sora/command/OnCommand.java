@@ -1,5 +1,7 @@
 package sora.command;
 
+import java.util.ArrayList;
+
 import sora.exception.InvalidFormatException;
 import sora.manager.TaskManager;
 import sora.task.Deadline;
@@ -8,8 +10,6 @@ import sora.parser.ParsedDateTime;
 import sora.task.Event;
 import sora.task.Task;
 import sora.ui.Ui;
-
-import java.util.ArrayList;
 
 /**
  * Represents a command to list all tasks occurring on the specified date.
@@ -26,7 +26,7 @@ public class OnCommand implements Command {
      * @param targetDate The date string input by the user. Accepts either
      *                   {@code yyyy-MM-dd} or {@code yyyy-MM-dd HH:mm} format.
      */
-    public OnCommand(String targetDate) {
+    public OnCommand(String targetDate) throws InvalidFormatException {
         this.targetDate = ParsedDateTime.dateTimeParser(targetDate);
     }
 
@@ -41,26 +41,27 @@ public class OnCommand implements Command {
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
         ArrayList<Task> tasks = taskManager.getTasks();
-        ArrayList<Task> matched = new ArrayList<>();
+        ArrayList<Task> matchedTasks = new ArrayList<>();
 
-        for (Task task: tasks) {
+        for (Task task : tasks) {
             if (task instanceof Deadline deadline) {
-                if (deadline.deadline().getDate().equals(targetDate.getDate())) {
-                    matched.add(task);
+                if (deadline.getDeadline().getDate().equals(targetDate.getDate())) {
+                    matchedTasks.add(task);
                 }
             } else if (task instanceof Event event) {
-                if (event.startDate().getDate().equals(targetDate.getDate())
-                        || event.endDate().getDate().equals(targetDate.getDate())) {
-                    matched.add(task);
+                if (event.getStartDate().getDate().equals(targetDate.getDate())
+                        || event.getEndDate().getDate().equals(targetDate.getDate())) {
+                    matchedTasks.add(task);
                 }
             }
         }
 
-        if (matched.isEmpty()) {
-            Ui.showError("Hmm... No tasks found on " + targetDate.toString() + "." +
-                    "\n Looks like a free day! ");
+        if (matchedTasks.isEmpty()) {
+            Ui.showError("Hmm... No tasks found on " + targetDate.toString()
+                    + "."
+                    + "\n Looks like a free day! ");
         } else {
-            ui.showTasks(matched, matched.size());
+            ui.showTasks(matchedTasks, matchedTasks.size());
         }
     }
 }

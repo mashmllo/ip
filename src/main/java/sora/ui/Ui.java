@@ -1,8 +1,8 @@
 package sora.ui;
 
-import sora.task.Task;
-
 import java.util.ArrayList;
+
+import sora.task.Task;
 
 /**
  * Handles all user interactions for Sora.
