@@ -2,9 +2,11 @@ package sora.parser;
 
 import sora.command.Command;
 import sora.command.ExitCommand;
+import sora.command.FindCommand;
 import sora.command.ListCommand;
 import sora.command.AddTaskCommand;
 import sora.command.OnCommand;
+
 import sora.command.index.DeleteCommand;
 import sora.command.index.MarkCommand;
 import sora.command.index.UnmarkedCommand;
@@ -45,8 +47,10 @@ public class CommandParser {
         } else if (lower.startsWith("delete")) {
             return parseIndexCommand(cmd, "delete");
         } else if (lower.startsWith("on")) {
-            return parseSearch(cmd);
-        }else {
+            return parseFilter(cmd);
+        } else if (lower.startsWith("find")) {
+          return parseSearch(cmd);
+        } else {
             return parseAddTaskCommand(cmd);
         }
     }
@@ -102,13 +106,13 @@ public class CommandParser {
     }
 
     /**
-     * Parses the search command for tasks occurring on a specific date.
+     * Parses the filter command for tasks occurring on a specific date.
      *
      * @param cmd The full command entered by the user.
      * @return The corresponding {@link Command}.
      * @throws InvalidFormatException If the date string is invalid.
      */
-    private static Command parseSearch(String cmd)
+    private static Command parseFilter(String cmd)
             throws InvalidFormatException {
         String target = cmd.substring(2).trim();
         if (target.isEmpty()) {
@@ -121,11 +125,29 @@ public class CommandParser {
     }
 
     /**
-     * Parses a task creation command and returns an {@link AddTaskCommand}.
+     * Parses the FindCommand to search for task by name.
      *
      * @param cmd The full command entered by the user.
-     * @return An {@link AddTaskCommand} containing the parsed task.
-     * @throws SoraException If the command is invalid or incomplete.
+     * @return The corresponding FindCommand.
+     * @throws InvalidFormatException If string to search is empty.
+     */
+    private static Command parseSearch(String cmd)
+            throws InvalidFormatException {
+        String target = cmd.substring(4).trim();
+        if (target.isEmpty()) {
+            throw new InvalidFormatException("Oops! Keyword cannot be empty. " +
+                    "\n Use find <keyword>");
+        }
+
+        return new FindCommand(target);
+    }
+
+    /**
+     * Parse task creation command.
+     *
+     * @param cmd Full command entered by the user
+     * @return AddTaskCommand containing the parsed task
+     * @throws SoraException if invalid or incomplete command is entered
      */
     private static Command parseAddTaskCommand(String cmd) throws SoraException {
         Task task = parseTask(cmd);
