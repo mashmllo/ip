@@ -9,14 +9,12 @@ import sora.ui.Ui;
  */
 public class UnmarkedCommand extends IndexCommand {
 
-    private final int index;
     /**
      * Constructs an UnmarkedCommand
      * @param index index of the task
      */
     public UnmarkedCommand(int index) {
         super(index);
-        this.index = index;
     }
 
 
@@ -27,7 +25,7 @@ public class UnmarkedCommand extends IndexCommand {
      */
     @Override
     protected void executeOnTask(TaskManager taskManager, Ui ui) {
-        Task task = taskManager.unmarkTask(this.index);
+        Task task = taskManager.unmarkTask(this.getIndex());
         ui.showTaskUnmarked(task);
     }
 }
