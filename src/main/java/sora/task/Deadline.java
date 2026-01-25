@@ -24,13 +24,12 @@ public class Deadline extends Task {
         this.by = by;
     }
 
-
     /**
      * Retrieve the deadline of the task
      *
      * @return deadline of the task
      */
-    public ParsedDateTime deadline() {
+    public ParsedDateTime getDeadline() {
         return by;
     }
 
