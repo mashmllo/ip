@@ -34,7 +34,7 @@ public class Event extends Task {
      *
      * @return the start date of the event
      */
-    public ParsedDateTime startDate() {
+    public ParsedDateTime getStartDate() {
         return from;
     }
 
@@ -44,7 +44,7 @@ public class Event extends Task {
      *
      * @return the end date of the event
      */
-    public ParsedDateTime endDate() {
+    public ParsedDateTime getEndDate() {
         return to;
     }
 
@@ -56,8 +56,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() +
-                " (from: " + from + " to: " + to + ")";
+        return "[E]" + super.toString()
+                + " (from: " + from + " to: " + to + ")";
     }
 
     /**
@@ -67,7 +67,8 @@ public class Event extends Task {
      */
     @Override
     public String toStorageString() {
-        return "E " + super.toStorageString() + " | " + from.toStorageString()
+        return "E " + super.toStorageString()
+                + " | " + from.toStorageString()
                 + " | " + to.toStorageString();
     }
 
@@ -96,8 +97,8 @@ public class Event extends Task {
                 || parts[0].trim().isEmpty()
                 || parts[1].trim().isEmpty()
                 || parts[2].trim().isEmpty()) {
-            throw new InvalidFormatException("Oops! Event requires /from," +
-                    " /to and name");
+            throw new InvalidFormatException("Oops! Event requires /from,"
+                    + " /to and name");
         }
         return new Event(parts[0].trim(),
                 ParsedDateTime.dateTimeParser(parts[1].trim()),
