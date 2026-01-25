@@ -26,6 +26,15 @@ public abstract class IndexCommand implements Command {
     }
 
     /**
+     * Returns the index of the task.
+     *
+     * @return The task index.
+     */
+    public int getIndex() {
+        return this.index;
+    }
+
+    /**
      * Executes the command by retrieving the task at the given index
      *
      * @param taskManager  The task manager class
@@ -37,8 +46,8 @@ public abstract class IndexCommand implements Command {
 
         Task task = taskManager.getTask(index);
         if (task == null) {
-            throw new InvalidFormatException("Whoops! That task does not exist." +
-                    "\nDouble-check the number and try again");
+            throw new InvalidFormatException("Whoops! That task does not exist."
+                    + "\nDouble-check the number and try again");
         }
 
         executeOnTask(taskManager, ui);
