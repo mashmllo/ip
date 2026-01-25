@@ -16,6 +16,7 @@ public class ListCommand implements Command {
      *
      * @param taskManager  The task manager class
      * @param ui The user interface class
+     * @throws SoraException If command execution fails.
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
