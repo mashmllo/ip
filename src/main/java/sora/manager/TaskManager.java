@@ -1,9 +1,9 @@
 package sora.manager;
 
+import java.util.ArrayList;
+
 import sora.storage.Storage;
 import sora.task.Task;
-
-import java.util.ArrayList;
 
 /**
  * Manages the storage and retrieval of tasks for Sora
