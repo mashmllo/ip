@@ -18,5 +18,4 @@ public abstract class SoraException extends RuntimeException {
         super(message);
     }
 
-
 }
