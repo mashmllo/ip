@@ -36,7 +36,7 @@ public class Event extends Task {
      * @return The start date of the event as a {@link ParsedDateTime}.
      */
     public ParsedDateTime getStartDate() {
-        return from;
+        return this.from;
     }
 
 
@@ -46,7 +46,7 @@ public class Event extends Task {
      * @return The end date of the event as a {@link ParsedDateTime}.
      */
     public ParsedDateTime getEndDate() {
-        return to;
+        return this.to;
     }
 
     /**
@@ -58,7 +58,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString()
-                + " (from: " + from + " to: " + to + ")";
+                + " (from: " + this.from + " to: " + this.to + ")";
     }
 
     /**
@@ -69,8 +69,8 @@ public class Event extends Task {
     @Override
     public String toStorageString() {
         return "E " + super.toStorageString()
-                + " | " + from.toStorageString()
-                + " | " + to.toStorageString();
+                + " | " + this.from.toStorageString()
+                + " | " + this.to.toStorageString();
     }
 
     /**
