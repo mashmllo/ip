@@ -14,7 +14,7 @@ import sora.task.Task;
 public class TaskManager {
 
     private final Storage storage = new Storage();
-    private final ArrayList<Task> tasks = new ArrayList<>(storage.load());
+    private final ArrayList<Task> tasks = new ArrayList<>(this.storage.load());
 
 
     /**
@@ -23,7 +23,7 @@ public class TaskManager {
      * @return An {@link ArrayList} of {@link Task} objects.
      */
     public ArrayList<Task> getTasks() {
-        return tasks;
+        return this.tasks;
     }
 
     /**
@@ -32,7 +32,7 @@ public class TaskManager {
      * @return The number of tasks.
      */
     public int getTaskCount() {
-        return tasks.size();
+        return this.tasks.size();
     }
 
     /**
@@ -42,8 +42,8 @@ public class TaskManager {
      * @param task The {@link Task} object to add.
      */
     public void addTask(Task task) {
-        tasks.add(task);
-        storage.save(tasks);
+        this.tasks.add(task);
+        this.storage.save(this.tasks);
     }
 
     /**
@@ -58,7 +58,7 @@ public class TaskManager {
             return null;
         }
 
-        return tasks.get(index);
+        return this.tasks.get(index);
     }
 
     /**
@@ -74,8 +74,8 @@ public class TaskManager {
             return null;
         }
 
-        Task task = tasks.remove(index);
-        storage.save(tasks);
+        Task task = this.tasks.remove(index);
+        this.storage.save(this.tasks);
 
         return task;
     }
@@ -95,9 +95,9 @@ public class TaskManager {
             return null;
         }
 
-        Task task = tasks.get(index);
+        Task task = this.tasks.get(index);
         task.markAsDone();
-        storage.save(tasks);
+        this.storage.save(this.tasks);
         return task;
     }
 
@@ -116,9 +116,9 @@ public class TaskManager {
             return null;
         }
 
-        Task task = tasks.get(index);
+        Task task = this.tasks.get(index);
         task.markAsNotDone();
-        storage.save(tasks);
+        this.storage.save(this.tasks);
         return task;
     }
 }
