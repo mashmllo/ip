@@ -30,7 +30,7 @@ public class AddTaskCommand implements Command {
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
-        taskManager.addTask(task);
-        ui.showAddTask(task, taskManager.getTaskCount());
+        taskManager.addTask(this.task);
+        ui.showAddTask(this.task, taskManager.getTaskCount());
     }
 }
