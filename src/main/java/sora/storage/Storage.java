@@ -40,16 +40,6 @@ public class Storage {
     }
 
     /**
-     * Constructs a new Storage instance using a custom path.
-     *<p>
-     * File and directories will be created automatically if the file and/or directories
-     * does not exist when {@link #save(ArrayList)} is called
-     */
-    public Storage(Path path) {
-        this.path = path;
-    }
-
-    /**
      * Loads tasks from disk
      * <p>
      * Behavior:
@@ -67,13 +57,13 @@ public class Storage {
         ArrayList<Task> tasks = new ArrayList<>();
 
         //Check if path is initialized and file exist
-        if(!Files.exists(path)) {
+        if(!Files.exists(this.path)) {
             Ui.showError("Hmm... memory file not found"
                     + "\n Starting with an empty task list...");
             return tasks;
         }
 
-        try(BufferedReader reader = Files.newBufferedReader(path)) {
+        try(BufferedReader reader = Files.newBufferedReader(this.path)) {
             readTask(reader, tasks);
         } catch (IOException ioException) {
             Ui.showError("Oops! I couldn't read my memory file"
@@ -97,7 +87,7 @@ public class Storage {
     public void save(ArrayList<Task> tasks) {
         ensureDirectoryExist();
 
-        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(this.path)) {
             for (Task task : tasks) {
                 writer.write(saveTask(task));
                 writer.newLine();
@@ -116,9 +106,9 @@ public class Storage {
      *
      */
     private void ensureDirectoryExist() {
-        if (path.getParent() != null) {
+        if (this.path.getParent() != null) {
             try {
-                Files.createDirectories(path.getParent());
+                Files.createDirectories(this.path.getParent());
             } catch (IOException ioException) {
                 Ui.showError("Oops! Failed to create directories"
                         + "\n Please check your permissions and try again");
