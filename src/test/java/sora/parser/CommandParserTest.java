@@ -1,6 +1,7 @@
 package sora.parser;
 
 import org.junit.jupiter.api.Test;
+
 import sora.command.Command;
 import sora.command.ExitCommand;
 import sora.command.ListCommand;
