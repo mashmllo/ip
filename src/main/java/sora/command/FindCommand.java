@@ -36,7 +36,7 @@ public class FindCommand implements Command {
         ArrayList<Task> matching = new ArrayList<>();
 
         for (Task task : tasks) {
-            if (task.toString().toLowerCase().contains(keyword.toLowerCase())) {
+            if (task.toString().toLowerCase().contains(this.keyword.toLowerCase())) {
                 matching.add(task);
             }
         }
