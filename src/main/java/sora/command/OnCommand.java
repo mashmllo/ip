@@ -45,19 +45,19 @@ public class OnCommand implements Command {
 
         for (Task task : tasks) {
             if (task instanceof Deadline deadline) {
-                if (deadline.getDeadline().getDate().equals(targetDate.getDate())) {
+                if (deadline.getDeadline().getDate().equals(this.targetDate.getDate())) {
                     matchedTasks.add(task);
                 }
             } else if (task instanceof Event event) {
-                if (event.getStartDate().getDate().equals(targetDate.getDate())
-                        || event.getEndDate().getDate().equals(targetDate.getDate())) {
+                if (event.getStartDate().getDate().equals(this.targetDate.getDate())
+                        || event.getEndDate().getDate().equals(this.targetDate.getDate())) {
                     matchedTasks.add(task);
                 }
             }
         }
 
         if (matchedTasks.isEmpty()) {
-            Ui.showError("Hmm... No tasks found on " + targetDate.toString()
+            Ui.showError("Hmm... No tasks found on " + this.targetDate.toString()
                     + "."
                     + "\n Looks like a free day! ");
         } else {
