@@ -33,7 +33,7 @@ public class Deadline extends Task {
      *         {@link ParsedDateTime}.
      */
     public ParsedDateTime getDeadline() {
-        return by;
+        return this.by;
     }
 
     /**
@@ -42,7 +42,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + this.by + ")";
     }
 
     /**
@@ -51,7 +51,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toStorageString() {
-        return "D " + super.toStorageString() + " | " + by.toStorageString();
+        return "D " + super.toStorageString() + " | " + this.by.toStorageString();
     }
 
     /**
