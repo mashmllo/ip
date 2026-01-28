@@ -45,7 +45,7 @@ public abstract class IndexCommand implements Command {
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
 
-        Task task = taskManager.getTask(index);
+        Task task = taskManager.getTask(this.index);
         if (task == null) {
             throw new InvalidFormatException("Whoops! That task does not exist."
                     + "\nDouble-check the number and try again");
