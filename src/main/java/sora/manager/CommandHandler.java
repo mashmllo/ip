@@ -35,7 +35,7 @@ public class CommandHandler {
         this.taskManager = new TaskManager();
         this.isRunning = true;
 
-        ui.greetUser();
+        this.ui.greetUser();
     }
 
     /**
@@ -46,8 +46,8 @@ public class CommandHandler {
      */
     public void run() {
 
-        while (isRunning) {
-            String input = scanner.nextLine().strip();
+        while (this.isRunning) {
+            String input = this.scanner.nextLine().strip();
             try {
                 handleCommand(input);
             } catch (SoraException soraException) {
@@ -55,8 +55,8 @@ public class CommandHandler {
             }
         }
 
-        ui.farewellMessage();
-        scanner.close();
+        this.ui.farewellMessage();
+        this.scanner.close();
     }
 
     /**
@@ -67,9 +67,9 @@ public class CommandHandler {
     private void handleCommand(String input) {
         Command command = CommandParser.parse(input);
         if (command instanceof ExitCommand) {
-            isRunning = false;
+            this.isRunning = false;
         } else {
-            command.execute(taskManager, ui);
+            command.execute(this.taskManager, this.ui);
         }
     }
 }
