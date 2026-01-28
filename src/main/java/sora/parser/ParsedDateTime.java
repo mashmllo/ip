@@ -34,7 +34,7 @@ public class ParsedDateTime {
      * @return The {@link LocalDate} representing the date component.
      */
     public LocalDate getDate() {
-        return dateTime.toLocalDate();
+        return this.dateTime.toLocalDate();
     }
 
     /**
@@ -45,8 +45,8 @@ public class ParsedDateTime {
     @Override
     public String toString() {
         return (type == DateInputType.DATE_ONLY)
-                ? dateTime.format(DateInputType.FORMAT_DATE_DISPLAY)
-                : dateTime.format(DateInputType.FORMAT_DATETIME_DISPLAY);
+                ? this.dateTime.format(DateInputType.FORMAT_DATE_DISPLAY)
+                : this.dateTime.format(DateInputType.FORMAT_DATETIME_DISPLAY);
     }
 
     /**
@@ -57,8 +57,8 @@ public class ParsedDateTime {
      */
     public String toStorageString() {
         return  (type == DateInputType.DATE_ONLY)
-                ? dateTime.format(DateInputType.FORMAT_DATE_INPUT)
-                : dateTime.format(DateInputType.FORMAT_DATETIME_INPUT);
+                ? this.dateTime.format(DateInputType.FORMAT_DATE_INPUT)
+                : this.dateTime.format(DateInputType.FORMAT_DATETIME_INPUT);
     }
 
     /**
