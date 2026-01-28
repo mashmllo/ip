@@ -44,7 +44,7 @@ public abstract class Task {
      * @return "X" if done, otherwise " ".
      */
     private String getStatusIcon() {
-        return (isDone ? "X" : " ");
+        return (this.isDone ? "X" : " ");
     }
 
     /**
@@ -55,7 +55,7 @@ public abstract class Task {
     @Override
     public String toString() {
         String statusIcon = "[" + getStatusIcon() + "]";
-        return String.format("%s %s", statusIcon, name);
+        return String.format("%s %s", statusIcon, this.name);
     }
 
     /**
@@ -71,7 +71,7 @@ public abstract class Task {
      * @return The formatted string e.g. "| 1 | read book".
      */
     public String toStorageString() {
-        String statusIcon = "| " + (isDone ? '1' : '0') + " | ";
-        return String.format("%s %s", statusIcon, name);
+        String statusIcon = "| " + (this.isDone ? '1' : '0') + " | ";
+        return String.format("%s %s", statusIcon, this.name);
     }
 }
