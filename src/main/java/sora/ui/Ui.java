@@ -11,8 +11,28 @@ import sora.task.Task;
  */
 public class Ui {
 
+    private final OutputHandler output;
+
     /**
-     * Displays a welcome message when the program start.
+     * Default constructor for CLI usage.
+     * <p>
+     * Sends all messages to the console.
+     */
+    public Ui() {
+        this.output = new ConsoleOutput();
+    }
+
+    /**
+     * Constructor for GUI or custom output destinations.
+     *
+     * @param output The {@link OutputHandler} implementation to use for rendering messages.
+     */
+    public Ui(OutputHandler output) {
+        this.output = output;
+    }
+
+    /**
+     * Displays a welcome message when the program start for CLI interface.
      */
     public void greetUser() {
         String logo = """
@@ -22,11 +42,17 @@ public class Ui {
                 +  `-' 'o *+'.  . (   )    `-'.'(   ) `-'.o   . ) )'-´ (   )'
                     o..o       +.. `-'  .''.. +  `-'     . .oo '-´ .o'. `-' o
                 """;
-        System.out.print("\n" + logo);
-        printLine();
-        System.out.println("Hey! I'm Sora");
-        System.out.println("What would you like to do today?");
-        printLine();
+        this.output.show(logo);
+        this.output.show("Hey! I'm Sora");
+        this.output.show("What would you like to do today?");
+    }
+
+    /**
+     * Displays a welcome message when the program start for GUI interface.
+     */
+    public void guiGreetUser() {
+        this.output.show("Hey! I'm Sora");
+        this.output.show("What would you like to do today?");
     }
 
     /**
@@ -36,11 +62,9 @@ public class Ui {
      * @param count The current number of tasks in the list.
      */
     public void showAddTask(Task task, int count) {
-        printLine();
-        System.out.println("Task added! Here's what I've recorded:");
-        System.out.println(task);
+        this.output.show("Task added! Here's what I've recorded:");
+        this.output.show(task.toString());
         System.out.printf("All set! You now have %d in your list\n", count);
-        printLine();
     }
 
     /**
@@ -50,11 +74,9 @@ public class Ui {
      * @param count Current number of tasks in the list.
      */
     public void showDeletedTask(Task task, int count) {
-        printLine();
-        System.out.println("Got it! Task removed");
-        System.out.println(" " + task);
+        this.output.show("Got it! Task removed");
+        this.output.show(" " + task);
         System.out.printf("All set! You now have %d in your list\n", count);
-        printLine();
     }
 
     /**
@@ -64,16 +86,14 @@ public class Ui {
      * @param count Current number of tasks in the list.
      */
     public void showTasks(ArrayList<Task> tasks, int count) {
-        printLine();
         if (count == 0) {
-            System.out.println("Hmm... it looks like you haven't add any tasks yet");
-            System.out.println("Why not start adding a new task?");
+            this.output.show("Hmm... it looks like you haven't add any tasks yet");
+            this.output.show("Why not start adding a new task?");
         } else {
             for (int i = 0; i < count; i++) {
-                System.out.println((i + 1) + ". " + tasks.get(i));
+                this.output.show((i + 1) + ". " + tasks.get(i));
             }
         }
-        printLine();
     }
 
     /**
@@ -82,10 +102,8 @@ public class Ui {
      * @param task Task that has been marked as complete.
      */
     public void showTaskMarked(Task task) {
-        printLine();
-        System.out.println("Task Completed! You're making progress");
-        System.out.println(" " + task);
-        printLine();
+        this.output.show("Task Completed! You're making progress");
+        this.output.show(" " + task);
     }
 
     /**
@@ -94,10 +112,8 @@ public class Ui {
      * @param task Task that has been marked as not complete.
      */
     public void showTaskUnmarked(Task task) {
-        printLine();
-        System.out.println("Okay! The task is still pending to be completed");
-        System.out.println(" " + task);
-        printLine();
+        this.output.show("Okay! The task is still pending to be completed");
+        this.output.show(" " + task);
     }
 
     /**
@@ -107,21 +123,18 @@ public class Ui {
      * @param keyword Keyword to search for.
      */
     public void showSearchResult(ArrayList<Task> matchingResult, String keyword) {
-        printLine();
-
         if (matchingResult.isEmpty()) {
-            System.out.println("Hmm... No tasks found on " + keyword + " yet");
-            System.out.println("Try refining your search");
+            this.output.show("Hmm... No tasks found on " + keyword + " yet");
+            this.output.show("Try refining your search");
         } else {
-            System.out.println("Here are the tasks I found matching " + keyword + ":");
+            this.output.show("Here are the tasks I found matching " + keyword + ":");
             int count = 0;
             for (Task task: matchingResult) {
-                System.out.println((count + 1) + ". " + task);
+                this.output.show((count + 1) + ". " + task);
                 count++;
             }
         }
 
-        printLine();
     }
 
     /**
@@ -129,26 +142,14 @@ public class Ui {
      * <p>
      * @param message Error message to be displayed to the user
      */
-    public static void showError(String message) {
-        printLine();
-        System.out.println(message);
-        printLine();
+    public void showError(String message) {
+        this.output.show(message);
     }
 
     /**
      * Displays a farewell message before the program exits.
      */
     public void farewellMessage() {
-        printLine();
-        System.out.println("Oh, leaving already? Hope you have a productive day!");
-        printLine();
+        this.output.show("Oh, leaving already? Hope you have a productive day!");
     }
-
-    /**
-     * Prints the horizontal divider for readability.
-     */
-    private static void printLine() {
-        System.out.println(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .");
-    }
-
 }

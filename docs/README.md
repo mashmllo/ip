@@ -28,3 +28,7 @@ expected output
 ## Feature XYZ
 
 // Feature details
+
+## References 
+sora.png: https://uxwing.com/cloudy-color-icon/ — free to use, no attribution required.
+user.png: https://uxwing.com/users-icon/ — free to use, no attribution required.

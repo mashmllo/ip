@@ -15,7 +15,8 @@ import sora.task.Deadline;
 import sora.task.Event;
 import sora.task.Task;
 import sora.task.ToDo;
-import sora.ui.Ui;
+import sora.ui.ConsoleOutput;
+import sora.ui.OutputHandler;
 
 /**
  * Handles storing and loading of tasks to and from persistent storage.
@@ -25,18 +26,23 @@ import sora.ui.Ui;
  */
 public class Storage {
 
-    private final Path path;
+    private final Path path = Paths.get("data", "sora.txt");
+
+    private final OutputHandler outputHandler;
 
     /**
      * Constructs a new {@code Storage} instance with default storage file path set to
      * {@code data/sora.txt}.
      * <p>
-     * The file and directories will be created
-     * automatically if they do not exist
+     * The file and directories will be created automatically if they do not exist
      * when {@link #save(ArrayList)} is called.
      */
+    public Storage(OutputHandler outputHandler) {
+        this.outputHandler = outputHandler;
+    }
+
     public Storage() {
-        this.path = Paths.get("data", "sora.txt");
+        this(new ConsoleOutput());
     }
 
     /**
@@ -58,7 +64,7 @@ public class Storage {
 
         //Check if path is initialized and file exist
         if (!Files.exists(this.path)) {
-            Ui.showError("Hmm... memory file not found"
+            outputHandler.show("Hmm... memory file not found"
                     + "\n Starting with an empty task list...");
             return tasks;
         }
@@ -66,7 +72,7 @@ public class Storage {
         try (BufferedReader reader = Files.newBufferedReader(this.path)) {
             readTask(reader, tasks);
         } catch (IOException ioException) {
-            Ui.showError("Oops! I couldn't read my memory file"
+            outputHandler.show("Oops! I couldn't read my memory file"
                     + "\n You can still use Sora, but past tasks won't be"
                     + " loaded");
             return tasks;
@@ -93,7 +99,7 @@ public class Storage {
                 writer.newLine();
             }
         } catch (IOException ioException) {
-            Ui.showError("Oops! Failed to save tasks");
+            outputHandler.show("Oops! Failed to save tasks");
         }
     }
 
@@ -110,7 +116,7 @@ public class Storage {
             try {
                 Files.createDirectories(this.path.getParent());
             } catch (IOException ioException) {
-                Ui.showError("Oops! Failed to create directories"
+                outputHandler.show("Oops! Failed to create directories"
                         + "\n Please check your permissions and try again");
             }
         }
@@ -138,7 +144,7 @@ public class Storage {
             try {
                 tasks.add(loadTask(line));
             } catch (SoraException soraException) {
-                Ui.showError("Hmm... I skipped a corrupted task at "
+                outputHandler.show("Hmm... I skipped a corrupted task at "
                         + lineNo
                         + "\n It won't affect the rest of your list");
             }

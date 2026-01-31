@@ -57,7 +57,7 @@ public class OnCommand implements Command {
         }
 
         if (matchedTasks.isEmpty()) {
-            Ui.showError("Hmm... No tasks found on " + this.targetDate.toString()
+            ui.showError("Hmm... No tasks found on " + this.targetDate.toString()
                     + "."
                     + "\n Looks like a free day! ");
         } else {
