@@ -1,6 +1,6 @@
 package sora.ui;
 
-import static sora.gui.Main.SORA_IMG;
+import static sora.gui.MainWindow.SORA_IMG;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
