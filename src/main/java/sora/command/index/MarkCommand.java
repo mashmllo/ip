@@ -1,6 +1,5 @@
 package sora.command.index;
 
-import sora.exception.SoraException;
 import sora.manager.TaskManager;
 import sora.task.Task;
 import sora.ui.Ui;
@@ -33,3 +32,4 @@ public class MarkCommand extends IndexCommand {
         ui.showTaskMarked(task);
     }
 }
+
