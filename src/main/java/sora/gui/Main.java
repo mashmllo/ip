@@ -1,6 +1,8 @@
 package sora.gui;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -10,7 +12,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import sora.Sora;
+import sora.ui.GuiOutput;
 
 
 /**
@@ -85,6 +89,8 @@ public class Main extends Application {
         this.scrollPane = new ScrollPane();
         this.dialogContainer = new VBox();
         this.scrollPane.setContent(dialogContainer);
+        this.sora = new Sora(new GuiOutput(dialogContainer));
+
         this.userInput = new TextField();
         this.sendButton = new Button("Send");
 
@@ -130,18 +136,27 @@ public class Main extends Application {
         this.userInput.setOnAction((event) -> {
             handleUserInput();
         });
-
         dialogContainer.heightProperty().addListener((observable)
                 -> scrollPane.setVvalue(1.0));
     }
 
+    /**
+     * Creates a dialog box containing user input, and appends it to
+     * the dialog container. Clears the user input after processing.
+     */
     private void handleUserInput() {
-        String userText = userInput.getText();
-        String dukeText = sora.processInput(userInput.getText());
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(userText, USER_IMG),
-                DialogBox.getSoraDialog(dukeText, SORA_IMG)
+        String userText = this.userInput.getText();
+        this.sora.processInput(this.userInput.getText());
+        this.dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(userText, USER_IMG)
         );
-        userInput.clear();
+        this.userInput.clear();
+
+        if (userText.toLowerCase().trim().equals("bye")) {
+            PauseTransition delay = new PauseTransition(Duration.seconds(1));
+            delay.setOnFinished(event -> Platform.exit());
+            delay.play();
+        }
     }
+
 }
