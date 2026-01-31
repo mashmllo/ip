@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import sora.storage.Storage;
 import sora.task.Task;
+import sora.ui.OutputHandler;
 
 /**
  * Manages the storage and retrieval of tasks for Sora.
@@ -13,9 +14,31 @@ import sora.task.Task;
  */
 public class TaskManager {
 
-    private final Storage storage = new Storage();
-    private final ArrayList<Task> tasks = new ArrayList<>(this.storage.load());
+    private final Storage storage;
+    private final ArrayList<Task> tasks;
 
+    /**
+     * Constructs a {@code TaskManager} with GUI or custom output support.
+     * <p>
+     * This constructor should be used when running Sora with a GUI. All
+     * storage-related messages will be routed through the provided {@link OutputHandler}.
+     *
+     * @param outputHandler The output handler used for rendering messages.
+     */
+    public TaskManager(OutputHandler outputHandler) {
+        this.storage = new Storage(outputHandler);
+        this.tasks = new ArrayList<>(this.storage.load());
+    }
+
+    /**
+     * Constructs a {@code TaskManager} for CLI usage.
+     * <p>
+     * Storage messages will be printed directly to the console.
+     */
+    public TaskManager() {
+        this.storage = new Storage();
+        this.tasks = new ArrayList<>(this.storage.load());
+    }
 
     /**
      * Retrieve the array of all tasks.
