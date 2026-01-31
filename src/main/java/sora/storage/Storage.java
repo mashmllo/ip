@@ -172,15 +172,16 @@ public class Storage {
 
         Task task;
 
-        if (type.equals("T")) {
-            task = new ToDo(name);
-        } else if (type.equals("D")) {
+        switch (type) {
+        case "T" -> task = new ToDo(name);
+        case "D" -> {
             if (parts.length < 4 || parts[3].trim().isEmpty()) {
                 throw new InvalidFormatException("Oops! Deadline requires /by "
                         + "and name");
             }
             task = new Deadline(name, ParsedDateTime.dateTimeParser(parts[3].trim()));
-        } else if (type.equals("E")) {
+        }
+        case "E" -> {
             if (parts.length < 5
                     || parts[3].trim().isEmpty()
                     || parts[4].trim().isEmpty()) {
@@ -190,8 +191,8 @@ public class Storage {
             task = new Event(name,
                     ParsedDateTime.dateTimeParser(parts[3].trim()),
                     ParsedDateTime.dateTimeParser(parts[4].trim()));
-        } else {
-            throw new InvalidFormatException("Oops! Unknown task type");
+        }
+        default -> throw new InvalidFormatException("Oops! Unknown task type");
         }
 
         setTaskCompletionStatus(task, completedStr);
