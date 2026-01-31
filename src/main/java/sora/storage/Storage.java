@@ -9,9 +9,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import sora.exception.InvalidFormatException;
-import sora.task.Deadline;
 import sora.exception.SoraException;
 import sora.parser.ParsedDateTime;
+import sora.task.Deadline;
 import sora.task.Event;
 import sora.task.Task;
 import sora.task.ToDo;
@@ -57,13 +57,13 @@ public class Storage {
         ArrayList<Task> tasks = new ArrayList<>();
 
         //Check if path is initialized and file exist
-        if(!Files.exists(this.path)) {
+        if (!Files.exists(this.path)) {
             Ui.showError("Hmm... memory file not found"
                     + "\n Starting with an empty task list...");
             return tasks;
         }
 
-        try(BufferedReader reader = Files.newBufferedReader(this.path)) {
+        try (BufferedReader reader = Files.newBufferedReader(this.path)) {
             readTask(reader, tasks);
         } catch (IOException ioException) {
             Ui.showError("Oops! I couldn't read my memory file"
@@ -200,7 +200,7 @@ public class Storage {
     }
 
     /**
-     *Sets completion status of a task based on the string in storage.
+     * Sets completion status of a task based on the string in storage.
      * <p>
      * The completedStat should be:
      * <ul>
