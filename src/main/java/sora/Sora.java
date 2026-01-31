@@ -9,10 +9,16 @@ import sora.manager.CommandHandler;
  * starts the main interaction loop with the user.
  */
 public class Sora {
-    public static void main(String[] args) {
-        //Initialize the command handler and start Sora
-        CommandHandler cmdHandler = new CommandHandler();
-        cmdHandler.run();
+    /**
+     * Generates response for user chat message
+     * @param input User input
+     * @return the user input for echoing
+     */
+    public String processInput(String input) {
+        return input;
     }
-
+    public static void main(String[] args) {
+        Sora sora = new Sora();
+        sora.cmdHandler.run();
+    }
 }

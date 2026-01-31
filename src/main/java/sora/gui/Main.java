@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import sora.Sora;
 
 
 /**
@@ -20,6 +21,30 @@ import javafx.stage.Stage;
  * is handled and Sora responses are displayed in a dialog format.
  */
 public class Main extends Application {
+
+    /**
+     * Image representing the user avatar in the GUI.
+     * <p>
+     * Loaded from resource path {@code /images/user.png}.
+     * <p>
+     * Image source: <a href="https://uxwing.com/users-icon/">User icon</a>
+     * License: All icons on this site can be used for personal, commercial,
+     *          and client projects without attribution.
+     */
+    public static final Image USER_IMG = new Image(Main.class
+            .getResourceAsStream("/images/user.png"));
+
+    /**
+     * Image representing the Sora chatbot avatar in the GUI.
+     * <p>
+     * Loaded from resource path {@code /images/sora.png}.
+     * <p>
+     * Image source: <a href="https://uxwing.com/cloudy-color-icon/">Sora icon</a>
+     * License: All icons on this site can be used for personal, commercial,
+     *          and client projects without attribution.
+     */
+    public static final Image SORA_IMG = new Image(Main.class
+            .getResourceAsStream("/images/sora.png"));
 
     /**
      * Scrollable container for chat messages
@@ -46,12 +71,10 @@ public class Main extends Application {
      */
     private Scene scene;
 
-    private Image userImage = new Image(this.getClass()
-            .getResourceAsStream("/images/user.png"));
-
-
-    private Image soraImage = new Image(this.getClass()
-            .getResourceAsStream("/images/sora.png"));
+    /**
+     * Main Sora logic
+     */
+    private Sora sora = new Sora();
 
     /**
      * Main entry point for the JavaFx application.
@@ -59,22 +82,18 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) {
-        scrollPane = new ScrollPane();
-        dialogContainer = new VBox();
-        scrollPane.setContent(dialogContainer);
-
-        userInput = new TextField();
-        sendButton = new Button("Send");
-
-        DialogBox dialogBox = new DialogBox("Hello!", userImage);
-        dialogContainer.getChildren().addAll(dialogBox);
+        this.scrollPane = new ScrollPane();
+        this.dialogContainer = new VBox();
+        this.scrollPane.setContent(dialogContainer);
+        this.userInput = new TextField();
+        this.sendButton = new Button("Send");
 
         AnchorPane mainLayout = new AnchorPane();
-        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
+        mainLayout.getChildren().addAll(this.scrollPane, this.userInput, this.sendButton);
 
-        scene = new Scene(mainLayout);
+        this.scene = new Scene(mainLayout);
 
-        stage.setScene(scene);
+        stage.setScene(this.scene);
         stage.show();
 
         stage.setTitle("Sora");
@@ -84,26 +103,45 @@ public class Main extends Application {
 
         mainLayout.setPrefSize(400.0, 600.0);
 
-        scrollPane.setPrefSize(385, 535);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        this.scrollPane.setPrefSize(385, 535);
+        this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        this.scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
-        scrollPane.setVvalue(1.0);
-        scrollPane.setFitToWidth(true);
+        this.scrollPane.setVvalue(1.0);
+        this.scrollPane.setFitToWidth(true);
 
-        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        this.dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        this.dialogContainer.heightProperty().addListener((observable) ->
+                this.scrollPane.setVvalue(1.0));
+        this.userInput.setPrefWidth(325.0);
+        this.sendButton.setPrefWidth(55.0);
 
-        userInput.setPrefWidth(325.0);
+        AnchorPane.setTopAnchor(this.scrollPane, 1.0);
 
-        sendButton.setPrefWidth(55.0);
+        AnchorPane.setBottomAnchor(this.sendButton, 1.0);
+        AnchorPane.setRightAnchor(this.sendButton, 1.0);
 
-        AnchorPane.setTopAnchor(scrollPane, 1.0);
+        AnchorPane.setLeftAnchor(this.userInput, 1.0);
+        AnchorPane.setBottomAnchor(this.userInput, 1.0);
 
-        AnchorPane.setBottomAnchor(sendButton, 1.0);
-        AnchorPane.setRightAnchor(sendButton, 1.0);
+        this.sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+        this.userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
 
-        AnchorPane.setLeftAnchor(userInput, 1.0);
-        AnchorPane.setBottomAnchor(userInput, 1.0);
+        dialogContainer.heightProperty().addListener((observable)
+                -> scrollPane.setVvalue(1.0));
+    }
 
+    private void handleUserInput() {
+        String userText = userInput.getText();
+        String dukeText = sora.processInput(userInput.getText());
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(userText, USER_IMG),
+                DialogBox.getSoraDialog(dukeText, SORA_IMG)
+        );
+        userInput.clear();
     }
 }
