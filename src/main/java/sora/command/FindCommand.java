@@ -1,11 +1,11 @@
 package sora.command;
 
+import java.util.ArrayList;
+
 import sora.exception.SoraException;
 import sora.manager.TaskManager;
 import sora.task.Task;
 import sora.ui.Ui;
-
-import java.util.ArrayList;
 
 /**
  * Represents a command that finds a task based on keyword in the description.
