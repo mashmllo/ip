@@ -67,15 +67,16 @@ public class CommandParser {
 
         int index = getIndex(cmd, keyword);
 
-        if (keyword.equals("mark")) {
-            return new MarkCommand(index);
-        } else if (keyword.equals("unmark")) {
-            return new UnmarkedCommand(index);
-        } else if (keyword.equals("delete")) {
-            return new DeleteCommand(index);
-        } else {
+        return switch (keyword) {
+        case "mark":
+            yield new MarkCommand(index);
+        case "unmark":
+            yield new UnmarkedCommand(index);
+        case "delete":
+            yield new DeleteCommand(index);
+        default:
             throw new UnknownCommandException();
-        }
+        };
     }
 
     /**
