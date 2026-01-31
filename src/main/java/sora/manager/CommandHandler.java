@@ -6,6 +6,7 @@ import sora.command.Command;
 import sora.command.ExitCommand;
 import sora.exception.SoraException;
 import sora.parser.CommandParser;
+import sora.ui.OutputHandler;
 import sora.ui.Ui;
 
 /**
@@ -39,7 +40,24 @@ public class CommandHandler {
     }
 
     /**
-     * Executes the main workflow of the command handler.
+     * Constructs a {@code CommandHandler} instance for GUI or custom output.
+     * <p>
+     * Initializes the {@code Ui} and {@code TaskManager}
+     * and signal that the program is currently running.
+     *
+     * @param outputHandler The {@link OutputHandler} to use for rendering messages.
+     */
+    public CommandHandler(OutputHandler outputHandler) {
+        this.ui = new Ui(outputHandler);
+        this.scanner = null; // GUI does not use scanner
+        this.taskManager = new TaskManager(outputHandler);
+        this.isRunning = true;
+
+        this.ui.guiGreetUser();
+    }
+
+    /**
+     * Executes the main workflow of the command handler for CLI usage.
      * <p>
      * Serve as an entry point for handling user interactions and processing commands.
      * Continues running until an {@code ExitCommand} is entered by the user.
@@ -51,12 +69,32 @@ public class CommandHandler {
             try {
                 handleCommand(input);
             } catch (SoraException soraException) {
-                Ui.showError(soraException.getMessage());
+                this.ui.showError(soraException.getMessage());
             }
         }
-
-        this.ui.farewellMessage();
         this.scanner.close();
+    }
+
+    /**
+     * Processes a single input command for GUI usage.
+     *
+     * @param input The command input string from the user
+     */
+    public void process(String input) {
+        try {
+            handleCommand(input);
+        } catch (SoraException soraException) {
+            this.ui.showError(soraException.getMessage());
+        }
+    }
+
+    /**
+     * Checks whether the program is still running
+     * @return {@code True} if the program is running;
+     *         {@code False} if the program is not running
+     */
+    public boolean endProgram() {
+        return isRunning;
     }
 
     /**
@@ -68,6 +106,7 @@ public class CommandHandler {
         Command command = CommandParser.parse(input);
         if (command instanceof ExitCommand) {
             this.isRunning = false;
+            this.ui.farewellMessage();
         } else {
             command.execute(this.taskManager, this.ui);
         }
