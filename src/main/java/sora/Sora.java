@@ -1,6 +1,7 @@
 package sora;
 
 import sora.manager.CommandHandler;
+import sora.ui.OutputHandler;
 
 /**
  * Entry point for the Sora task management chatbot.
@@ -9,14 +10,39 @@ import sora.manager.CommandHandler;
  * starts the main interaction loop with the user.
  */
 public class Sora {
+
+    private final CommandHandler cmdHandler;
+
     /**
-     * Generates response for user chat message
-     * @param input User input
-     * @return the user input for echoing
+     * Constructs a Sora instance using a custom {@link OutputHandler}.
+     *
+     * @param outputHandler The output handler used to display messages
      */
-    public String processInput(String input) {
-        return input;
+    public Sora(OutputHandler outputHandler) {
+        this.cmdHandler = new CommandHandler(outputHandler);
     }
+
+    /**
+     * Constructs a Sora instance for CLI usage.
+     */
+    public Sora() {
+        this.cmdHandler = new CommandHandler();
+    }
+
+    /**
+     * Processes user input and returns the response by Sora.
+     *
+     * @param input User input
+     */
+    public void processInput(String input) {
+        cmdHandler.process(input);
+    }
+
+
+    /**
+     * Main entry point for CLI usage.
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
         Sora sora = new Sora();
         sora.cmdHandler.run();
