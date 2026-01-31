@@ -58,7 +58,7 @@ public class Deadline extends Task {
      * Parses a command string to create a new {@link Deadline} task.
      * <p>
      * Command to follow the following format:
-     *      <pre>deadline <name of task> /by <deadline></pre>
+     * <pre>deadline &lt; name of task&gt; /by &lt;deadline&gt;</pre>
      * <p>
      * Both the name of the task and the deadline must be provided,
      * otherwise {@link InvalidFormatException} is thrown
@@ -75,8 +75,8 @@ public class Deadline extends Task {
         if (parts.length < 2
                 || parts[0].trim().isEmpty()
                 || parts[1].trim().isEmpty()) {
-            throw new InvalidFormatException("Oops! Deadline requires /by " +
-                    "and name");
+            throw new InvalidFormatException("Oops! Deadline requires /by "
+                    + "and name");
         }
         return new Deadline(parts[0].trim(), ParsedDateTime.dateTimeParser(parts[1].trim()));
     }
