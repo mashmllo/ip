@@ -40,7 +40,7 @@ public class ToDo extends Task {
      * Parses a command string into a Todo task.
      * <p>
      * Command to follow the following format:
-     *      todo <name of task>
+     *      todo &lt;name of task&gt;
      * <p>
      * If name of task is missing or empty, {@link InvalidFormatException} is shown and task is
      * not being added into the list
