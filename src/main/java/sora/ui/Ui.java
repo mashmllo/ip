@@ -21,7 +21,6 @@ public class Ui {
                  .(   ) '-´  '-´ ' .-.  ' ( (    .-. ( ( . `-' .-.  ) ) .-. o
                 +  `-' 'o *+'.  . (   )    `-'.'(   ) `-'.o   . ) )'-´ (   )'
                     o..o       +.. `-'  .''.. +  `-'     . .oo '-´ .o'. `-' o
-                
                 """;
         System.out.print("\n" + logo);
         printLine();
@@ -110,7 +109,7 @@ public class Ui {
     public void showSearchResult(ArrayList<Task> matchingResult, String keyword) {
         printLine();
 
-        if(matchingResult.isEmpty()) {
+        if (matchingResult.isEmpty()) {
             System.out.println("Hmm... No tasks found on " + keyword + " yet");
             System.out.println("Try refining your search");
         } else {
@@ -127,7 +126,7 @@ public class Ui {
 
     /**
      * Display error message
-     * 
+     * <p>
      * @param message Error message to be displayed to the user
      */
     public static void showError(String message) {
