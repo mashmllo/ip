@@ -1,10 +1,11 @@
 package sora.task;
 
-import org.junit.jupiter.api.Test;
-import sora.exception.InvalidFormatException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import sora.exception.InvalidFormatException;
 
 public class TaskTest {
 
@@ -30,15 +31,15 @@ public class TaskTest {
 
     @Test
     public void parse_deadlineMissingBy_throwsInvalidFormatException() {
-        assertThrows(InvalidFormatException.class,
-                () -> Deadline.parse("deadline homework"));
+        assertThrows(InvalidFormatException.class, ()
+                -> Deadline.parse("deadline homework"));
     }
 
 
     @Test
     public void parse_eventDateOnly_success() {
-        Task task = Event.parse("event career fair " +
-                "/from 2026-01-25 /to 2026-01-27");
+        Task task = Event.parse("event career fair "
+                + "/from 2026-01-25 /to 2026-01-27");
         assertEquals("[E][ ] career fair (from: Jan 25 2026 to: Jan 27 2026)",
                 task.toString());
     }
@@ -46,24 +47,24 @@ public class TaskTest {
 
     @Test
     public void parse_eventDateTime_success() {
-        Task task = Event.parse("event career fair " +
-                "/from 2026-01-25 12:00 /to 2026-01-25 18:00");
-        assertEquals("[E][ ] career fair " +
-                        "(from: Jan 25 2026 12:00 to: Jan 25 2026 18:00)",
+        Task task = Event.parse("event career fair "
+                + "/from 2026-01-25 12:00 /to 2026-01-25 18:00");
+        assertEquals("[E][ ] career fair "
+                        + "(from: Jan 25 2026 12:00 to: Jan 25 2026 18:00)",
                 task.toString());
     }
 
     @Test
     public void parse_eventMissingDuration_throwsInvalidFormatException() {
-        assertThrows(InvalidFormatException.class,
-                () -> Event.parse("event career fair"));
+        assertThrows(InvalidFormatException.class, ()
+                -> Event.parse("event career fair"));
     }
 
     @Test
     public void parse_eventInvalidDateFormat_throwsInvalidFormatException() {
-        assertThrows(InvalidFormatException.class,
-                () -> Event.parse("event career fair " +
-                        "/from 26/01/2026 /to 27/01/2026"));
+        assertThrows(InvalidFormatException.class, ()
+                -> Event.parse("event career fair "
+                        + "/from 26/01/2026 /to 27/01/2026"));
     }
 
     @Test
