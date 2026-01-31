@@ -89,15 +89,6 @@ public class CommandHandler {
     }
 
     /**
-     * Checks whether the program is still running
-     * @return {@code True} if the program is running;
-     *         {@code False} if the program is not running
-     */
-    public boolean endProgram() {
-        return isRunning;
-    }
-
-    /**
      * Processes the command entered by user.
      *
      * @param input The command entered by the user.
