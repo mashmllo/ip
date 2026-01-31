@@ -1,12 +1,11 @@
 package sora.parser;
 
+import sora.command.AddTaskCommand;
 import sora.command.Command;
 import sora.command.ExitCommand;
 import sora.command.FindCommand;
 import sora.command.ListCommand;
-import sora.command.AddTaskCommand;
 import sora.command.OnCommand;
-
 import sora.command.index.DeleteCommand;
 import sora.command.index.MarkCommand;
 import sora.command.index.UnmarkedCommand;
@@ -49,7 +48,7 @@ public class CommandParser {
         } else if (lower.startsWith("on")) {
             return parseFilter(cmd);
         } else if (lower.startsWith("find")) {
-          return parseSearch(cmd);
+            return parseSearch(cmd);
         } else {
             return parseAddTaskCommand(cmd);
         }
@@ -68,15 +67,16 @@ public class CommandParser {
 
         int index = getIndex(cmd, keyword);
 
-        if (keyword.equals("mark")) {
-            return new MarkCommand(index);
-        } else if (keyword.equals("unmark")) {
-            return new UnmarkedCommand(index);
-        } else if (keyword.equals("delete")) {
-            return new DeleteCommand(index);
-        } else {
+        return switch (keyword) {
+        case "mark":
+            yield new MarkCommand(index);
+        case "unmark":
+            yield new UnmarkedCommand(index);
+        case "delete":
+            yield new DeleteCommand(index);
+        default:
             throw new UnknownCommandException();
-        }
+        };
     }
 
     /**
@@ -92,15 +92,15 @@ public class CommandParser {
         String[] parts = cmd.split(" ");
         if (parts.length != 2) {
             throw new InvalidFormatException("Hmm... I need a task number to proceed"
-                    +"\n Try something like: " + keyword + " 3");
+                    + "\n Try something like: " + keyword + " 3");
         }
 
         int index;
         try {
             index = Integer.parseInt(parts[1]) - 1;
         } catch (NumberFormatException numberException) {
-            throw new InvalidFormatException("Whoops! That number is not valid." +
-                    "\nCheck your task list and enter the correct number");
+            throw new InvalidFormatException("Whoops! That number is not valid."
+                    + "\nCheck your task list and enter the correct number");
         }
         return index;
     }
@@ -116,9 +116,9 @@ public class CommandParser {
             throws InvalidFormatException {
         String target = cmd.substring(2).trim();
         if (target.isEmpty()) {
-            throw new InvalidFormatException("Oops! Invalid date format. " +
-                    "\n Use `" + DateInputType.DATE_INPUT_PATTERN +"` " +
-                    "or `" + DateInputType.DATETIME_INPUT_PATTERN +"`");
+            throw new InvalidFormatException("Oops! Invalid date format. "
+                    + "\n Use `" + DateInputType.DATE_INPUT_PATTERN + "` "
+                    + "or `" + DateInputType.DATETIME_INPUT_PATTERN + "`");
         }
 
         return new OnCommand(target);
@@ -135,8 +135,8 @@ public class CommandParser {
             throws InvalidFormatException {
         String target = cmd.substring(4).trim();
         if (target.isEmpty()) {
-            throw new InvalidFormatException("Oops! Keyword cannot be empty. " +
-                    "\n Use find <keyword>");
+            throw new InvalidFormatException("Oops! Keyword cannot be empty. "
+                    + "\n Use find <keyword>");
         }
 
         return new FindCommand(target);

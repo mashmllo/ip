@@ -77,7 +77,7 @@ public class Event extends Task {
      * Parses a command string to create a new {@link Event} task.
      * <p>
      * Command to follow the following format:
-     *      event <name of task> /from <start time> /to <end time>
+     *      event &lt; name of task&gt; /from &lt;start time&gt; /to &lt;end time&gt;
      * <p>
      * All 3 fields (name of task, start and end time), must be provided,
      * otherwise {@link InvalidFormatException} is shown and the task is not being added into the

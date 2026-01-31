@@ -1,9 +1,9 @@
 package sora.parser;
 
-import sora.exception.InvalidFormatException;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import sora.exception.InvalidFormatException;
 
 /**
  * Represents a parsed date or datetime input
@@ -56,7 +56,7 @@ public class ParsedDateTime {
      * @return A formatted string suitable for storage.
      */
     public String toStorageString() {
-        return  (type == DateInputType.DATE_ONLY)
+        return (type == DateInputType.DATE_ONLY)
                 ? this.dateTime.format(DateInputType.FORMAT_DATE_INPUT)
                 : this.dateTime.format(DateInputType.FORMAT_DATETIME_INPUT);
     }

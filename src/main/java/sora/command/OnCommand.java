@@ -3,10 +3,10 @@ package sora.command;
 import java.util.ArrayList;
 
 import sora.exception.InvalidFormatException;
-import sora.manager.TaskManager;
-import sora.task.Deadline;
 import sora.exception.SoraException;
+import sora.manager.TaskManager;
 import sora.parser.ParsedDateTime;
+import sora.task.Deadline;
 import sora.task.Event;
 import sora.task.Task;
 import sora.ui.Ui;
