@@ -35,23 +35,28 @@ public class CommandParser {
     public static Command parse(String cmd) throws SoraException {
         String lower = cmd.toLowerCase().trim();
 
-        if (lower.startsWith("bye")) {
-            return new ExitCommand();
-        } else if (lower.startsWith("list")) {
-            return new ListCommand();
-        } else if (lower.startsWith("mark")) {
-            return parseIndexCommand(cmd, "mark");
-        } else if (lower.startsWith("unmark")) {
-            return parseIndexCommand(cmd, "unmark");
-        } else if (lower.startsWith("delete")) {
-            return parseIndexCommand(cmd, "delete");
-        } else if (lower.startsWith("on")) {
-            return parseFilter(cmd);
-        } else if (lower.startsWith("find")) {
-            return parseSearch(cmd);
-        } else {
-            return parseAddTaskCommand(cmd);
-        }
+        String[] parts = lower.split("\\s+");
+        String keyword = parts[0];
+
+        return switch (keyword) {
+        case "bye"
+                -> new ExitCommand();
+
+        case "list"
+                -> new ListCommand();
+
+        case "mark", "unmark", "delete"
+                -> parseIndexCommand(cmd, keyword);
+
+        case "on"
+                -> parseFilter(cmd);
+
+        case "find"
+                -> parseSearch(cmd);
+
+        default
+                -> parseAddTaskCommand(cmd);
+        };
     }
 
     /**
