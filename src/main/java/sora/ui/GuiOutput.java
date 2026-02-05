@@ -17,7 +17,7 @@ import sora.gui.DialogBox;
 public class GuiOutput implements OutputHandler {
 
     private final VBox container;
-    private boolean iconAdded = false;
+    private boolean isIconAdded = false;
 
     /**
      * Constructs a {@link GuiOutput} instance.
@@ -31,17 +31,17 @@ public class GuiOutput implements OutputHandler {
     @Override
     public void show(String message) {
         Platform.runLater(() -> {
-            if (!iconAdded) {
+            if (!isIconAdded) {
                 container.getChildren().add(
                         DialogBox.getSoraDialog("", SORA_IMG)
                 );
-                iconAdded = true;
+                isIconAdded = true;
             }
             Label msg = new Label(message);
             msg.setWrapText(true);
             msg.setStyle("-fx-background-color: #e0e0e0; -fx-padding: 5px; -fx-background-radius: 5px");
             container.getChildren().add(msg);
         });
-        iconAdded = false;
+        isIconAdded = false;
     }
 }
