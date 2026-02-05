@@ -8,7 +8,7 @@ import sora.command.ListCommand;
 import sora.command.OnCommand;
 import sora.command.index.DeleteCommand;
 import sora.command.index.MarkCommand;
-import sora.command.index.UnmarkedCommand;
+import sora.command.index.UnmarkCommand;
 import sora.exception.InvalidFormatException;
 import sora.exception.SoraException;
 import sora.exception.UnknownCommandException;
@@ -76,7 +76,7 @@ public class CommandParser {
         case "mark":
             yield new MarkCommand(index);
         case "unmark":
-            yield new UnmarkedCommand(index);
+            yield new UnmarkCommand(index);
         case "delete":
             yield new DeleteCommand(index);
         default:

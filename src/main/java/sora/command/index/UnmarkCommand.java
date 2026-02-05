@@ -7,14 +7,14 @@ import sora.ui.Ui;
 /**
  * Represents a command that mark a completed task as not done.
  */
-public class UnmarkedCommand extends IndexCommand {
+public class UnmarkCommand extends IndexCommand {
 
     /**
      * Constructs an {@code UnmarkedCommand}
      *
      * @param index Index of the task to be unmarked.
      */
-    public UnmarkedCommand(int index) {
+    public UnmarkCommand(int index) {
         super(index);
     }
 

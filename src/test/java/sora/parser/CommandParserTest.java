@@ -12,7 +12,7 @@ import sora.command.ListCommand;
 import sora.command.OnCommand;
 import sora.command.index.DeleteCommand;
 import sora.command.index.MarkCommand;
-import sora.command.index.UnmarkedCommand;
+import sora.command.index.UnmarkCommand;
 import sora.exception.InvalidFormatException;
 import sora.exception.SoraException;
 import sora.exception.UnknownCommandException;
@@ -47,7 +47,7 @@ public class CommandParserTest {
     @Test
     public void parse_unmarkCommand_validIndexSuccess() {
         Command cmd = CommandParser.parse("unmark 1");
-        assertTrue(cmd instanceof UnmarkedCommand);
+        assertTrue(cmd instanceof UnmarkCommand);
     }
 
     @Test
