@@ -39,6 +39,7 @@ public class GuiOutput implements OutputHandler {
             }
             Label msg = new Label(message);
             msg.setWrapText(true);
+            msg.setMaxWidth(Double.MAX_VALUE);
             msg.setStyle("-fx-background-color: #e0e0e0; -fx-padding: 5px; -fx-background-radius: 5px");
             container.getChildren().add(msg);
         });
