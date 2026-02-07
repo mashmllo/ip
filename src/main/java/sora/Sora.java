@@ -19,6 +19,7 @@ public class Sora {
      * @param outputHandler The output handler used to display messages
      */
     public Sora(OutputHandler outputHandler) {
+        assert outputHandler != null : "OutputHandler should not be null";
         this.cmdHandler = new CommandHandler(outputHandler);
     }
 
