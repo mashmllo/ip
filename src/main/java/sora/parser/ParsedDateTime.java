@@ -24,6 +24,8 @@ public class ParsedDateTime {
      *                 contains date only or date with time.
      */
     public ParsedDateTime(LocalDateTime dateTime, DateInputType type) {
+        assert dateTime != null : "dateTime must not be null";
+        assert type != null : "DateInputType must not be null";
         this.dateTime = dateTime;
         this.type = type;
     }
@@ -71,6 +73,7 @@ public class ParsedDateTime {
      */
     public static ParsedDateTime dateTimeParser(String input)
             throws InvalidFormatException {
+        assert input != null : "Date input must not be null";
         DateInputType type = DateInputType.datetimeInput(input);
 
         if (type == DateInputType.DATE_ONLY) {
