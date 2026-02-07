@@ -44,6 +44,10 @@ public abstract class IndexCommand implements Command {
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
+        assert taskManager != null : "TaskManager object should not be null";
+        assert ui != null : "Ui object should not be null";
+
+        assert this.index >= 0 && this.index < taskManager.getTaskCount();
 
         Task task = taskManager.getTask(this.index);
         if (task == null) {
