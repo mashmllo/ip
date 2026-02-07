@@ -18,6 +18,7 @@ public class AddTaskCommand implements Command {
      * @param task Task to be added.
      */
     public AddTaskCommand(Task task) {
+        assert task != null : "Task to be added should not be null";
         this.task = task;
     }
 
@@ -30,6 +31,9 @@ public class AddTaskCommand implements Command {
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
+        assert taskManager != null : "TaskManager object should not be null";
+        assert ui != null : "Ui object should not be null";
+
         taskManager.addTask(this.task);
         ui.showAddTask(this.task, taskManager.getTaskCount());
     }
