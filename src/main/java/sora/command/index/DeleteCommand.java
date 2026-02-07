@@ -9,8 +9,6 @@ import sora.ui.Ui;
  */
 public class DeleteCommand extends IndexCommand {
 
-    private final int index;
-
     /**
      * Constructs a {@code DeleteCommand}.
      *
@@ -18,7 +16,6 @@ public class DeleteCommand extends IndexCommand {
      */
     public DeleteCommand(int index) {
         super(index);
-        this.index = index;
     }
 
     /**
@@ -30,7 +27,7 @@ public class DeleteCommand extends IndexCommand {
      */
     @Override
     protected void executeOnTask(TaskManager taskManager, Ui ui) {
-        Task deletedTask = taskManager.removeTask(this.index);
+        Task deletedTask = taskManager.removeTask(this.getIndex());
 
         if (deletedTask == null) {
             ui.showError("Hmm.. something went wrong while removing the task"
