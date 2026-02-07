@@ -25,11 +25,14 @@ public class GuiOutput implements OutputHandler {
      * @param container  The {@link VBox} where messages will be displayed.
      */
     public GuiOutput(VBox container) {
+        assert container != null : "VBox must not be null";
         this.container = container;
     }
 
     @Override
     public void show(String message) {
+        assert message != null : "Message must not be null";
+
         Platform.runLater(() -> {
             if (!isIconAdded) {
                 container.getChildren().add(
