@@ -14,6 +14,8 @@ public class ConsoleOutput implements OutputHandler {
      */
     @Override
     public void show(String message) {
+        assert message != null : "Message should not be null";
+
         printLine();
         System.out.println(message);
         printLine();

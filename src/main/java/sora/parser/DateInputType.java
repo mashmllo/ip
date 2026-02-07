@@ -77,6 +77,7 @@ public enum DateInputType {
      */
     public static DateInputType datetimeInput(String input)
             throws InvalidFormatException {
+        assert input != null : "Date input must not be null";
 
         if (input.matches("\\d{4}-\\d{2}-\\d{2}")) {
             return DATE_ONLY;

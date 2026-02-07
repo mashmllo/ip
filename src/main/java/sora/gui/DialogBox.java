@@ -42,6 +42,8 @@ public class DialogBox extends HBox {
      * @param img     The image avatar
      */
     public DialogBox(String message, Image img) {
+        assert message != null : "Dialog message should not be null";
+        assert img != null : "Dialog image should not be null";
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class
                     .getResource("/view/DialogBox.fxml"));

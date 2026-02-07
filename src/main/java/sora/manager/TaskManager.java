@@ -26,6 +26,7 @@ public class TaskManager {
      * @param outputHandler The output handler used for rendering messages.
      */
     public TaskManager(OutputHandler outputHandler) {
+        assert outputHandler != null : "OutputHandler must not be null";
         this.storage = new Storage(outputHandler);
         this.tasks = new ArrayList<>(this.storage.load());
     }
@@ -65,6 +66,7 @@ public class TaskManager {
      * @param task The {@link Task} object to add.
      */
     public void addTask(Task task) {
+        assert task != null : "Cannot add null task";
         this.tasks.add(task);
         this.storage.save(this.tasks);
     }

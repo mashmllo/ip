@@ -51,6 +51,7 @@ public class ToDo extends Task {
      */
     public static ToDo parse(String cmd)
             throws InvalidFormatException {
+        assert cmd != null && !cmd.isBlank() : "Command string must not be null or empty";
         String taskName = cmd.substring(4).trim();
 
         if (taskName.isEmpty()) {

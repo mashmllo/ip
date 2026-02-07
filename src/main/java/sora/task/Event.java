@@ -25,6 +25,9 @@ public class Event extends Task {
      */
     public Event(String name, ParsedDateTime from, ParsedDateTime to) {
         super(name);
+
+        assert from != null : "Event start date must not be empty";
+        assert to != null : "Event end date most not be empty";
         this.from = from;
         this.to = to;
     }
@@ -92,6 +95,7 @@ public class Event extends Task {
      */
     public static Event parse(String cmd)
             throws InvalidFormatException {
+        assert cmd != null && !cmd.isBlank() : "Command string must not be null or empty";
         String[] parts = cmd.substring(5)
                 .split(" /from | /to ", 3);
         if (parts.length < 3

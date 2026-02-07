@@ -20,6 +20,7 @@ public abstract class Task {
      * @param name The name of the task.
      */
     public Task(String name) {
+        assert name != null && !name.isBlank() : "Task name must not be null or empty";
         this.name = name;
         this.isDone = false;
     }

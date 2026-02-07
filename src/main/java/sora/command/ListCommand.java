@@ -18,6 +18,9 @@ public class ListCommand implements Command {
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
+        assert taskManager != null : "TaskManager object should not be null";
+        assert ui != null : "Ui object should not be null";
+
         ui.showTasks(taskManager.getTasks(), taskManager.getTaskCount());
     }
 }

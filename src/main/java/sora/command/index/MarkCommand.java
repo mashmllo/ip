@@ -9,7 +9,6 @@ import sora.ui.Ui;
  */
 public class MarkCommand extends IndexCommand {
 
-    private final int index;
     /**
      * Constructs a {@code MarkCommand}
      *
@@ -17,7 +16,6 @@ public class MarkCommand extends IndexCommand {
      */
     public MarkCommand(int index) {
         super(index);
-        this.index = index;
     }
 
     /**
@@ -28,7 +26,8 @@ public class MarkCommand extends IndexCommand {
      */
     @Override
     protected void executeOnTask(TaskManager taskManager, Ui ui) {
-        Task task = taskManager.markTask(this.index);
+
+        Task task = taskManager.markTask(this.getIndex());
         ui.showTaskMarked(task);
     }
 }

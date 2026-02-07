@@ -31,11 +31,14 @@ public class FindCommand implements Command {
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
+        assert taskManager != null : "TaskManager object should not be null";
+        assert ui != null : "Ui object should not be null";
 
         ArrayList<Task> tasks = taskManager.getTasks();
         ArrayList<Task> matching = new ArrayList<>();
 
         for (Task task : tasks) {
+            assert task != null : "Task in list should not be null";
             if (task.toString().toLowerCase().contains(this.keyword.toLowerCase())) {
                 matching.add(task);
             }

@@ -33,7 +33,10 @@ public class CommandParser {
      * @throws SoraException If the command is incomplete or invalid.
      */
     public static Command parse(String cmd) throws SoraException {
+        assert cmd != null : "Command string must not be null";
+
         String lower = cmd.toLowerCase().trim();
+        assert !lower.isEmpty() : "Command string should not be empty";
 
         String[] parts = lower.split("\\s+");
         String keyword = parts[0];
@@ -70,6 +73,9 @@ public class CommandParser {
     private static Command parseIndexCommand(String cmd, String keyword)
             throws SoraException {
 
+        assert cmd != null : "Command string cannot be null";
+        assert keyword != null : "Command keyword cannot be null";
+
         int index = getIndex(cmd, keyword);
 
         return switch (keyword) {
@@ -94,6 +100,10 @@ public class CommandParser {
      */
     private static int getIndex(String cmd, String keyword)
             throws InvalidFormatException {
+
+        assert cmd != null : "Command string cannot be null";
+        assert keyword != null : "Command keyword cannot be null";
+
         String[] parts = cmd.split(" ");
         if (parts.length != 2) {
             throw new InvalidFormatException("Hmm... I need a task number to proceed"
@@ -119,6 +129,10 @@ public class CommandParser {
      */
     private static Command parseFilter(String cmd)
             throws InvalidFormatException {
+
+        assert cmd.toLowerCase().startsWith("on")
+                : "Filter command must start with on";
+
         String target = cmd.substring(2).trim();
         if (target.isEmpty()) {
             throw new InvalidFormatException("Oops! Invalid date format. "
@@ -138,6 +152,9 @@ public class CommandParser {
      */
     private static Command parseSearch(String cmd)
             throws InvalidFormatException {
+
+        assert cmd.toLowerCase().startsWith("find")
+                : "Search command must start with find";
         String target = cmd.substring(4).trim();
         if (target.isEmpty()) {
             throw new InvalidFormatException("Oops! Keyword cannot be empty. "

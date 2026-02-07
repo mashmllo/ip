@@ -38,6 +38,7 @@ public class Storage {
      * when {@link #save(ArrayList)} is called.
      */
     public Storage(OutputHandler outputHandler) {
+        assert outputHandler != null : "OutputHandler must not be null";
         this.outputHandler = outputHandler;
     }
 
@@ -91,6 +92,7 @@ public class Storage {
      * @param tasks List of tasks to be saved.
      */
     public void save(ArrayList<Task> tasks) {
+        assert tasks != null : "Task list must not be null";
         ensureDirectoryExist();
 
         try (BufferedWriter writer = Files.newBufferedWriter(this.path)) {
@@ -136,6 +138,8 @@ public class Storage {
     private void readTask(BufferedReader reader, ArrayList<Task> tasks)
             throws IOException {
 
+        assert reader != null : "Reader must not be null";
+        assert tasks != null : "Task list must not be null";
         String line;
         int lineNo = 0;
 
@@ -166,6 +170,7 @@ public class Storage {
      *                                status.
      */
     private Task loadTask(String line) throws InvalidFormatException {
+        assert line != null : "Storage line must not be null";
         String[] parts = line.split("\\|");
         if (parts.length < 3) {
             throw new InvalidFormatException("Hmm... your input seems too short"
@@ -220,6 +225,8 @@ public class Storage {
      */
     private void setTaskCompletionStatus(Task task, String completedStat)
             throws InvalidFormatException {
+        assert task != null : "Task must not be null";
+        assert completedStat != null : "Completion status must not be null";
 
         if (completedStat.equals("0")) {
             task.markAsNotDone();
@@ -240,6 +247,8 @@ public class Storage {
      */
     private String saveTask(Task task)
             throws IllegalStateException {
+
+        assert task != null : "Task must not be null";
 
         if (task instanceof ToDo toDo) {
             return toDo.toStorageString();

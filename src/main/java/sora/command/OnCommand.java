@@ -40,10 +40,15 @@ public class OnCommand implements Command {
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
+        assert taskManager != null : "TaskManager object should not be null";
+        assert ui != null : "Ui object should not be null";
+
         ArrayList<Task> tasks = taskManager.getTasks();
         ArrayList<Task> matchedTasks = new ArrayList<>();
 
         for (Task task : tasks) {
+            assert task != null : "Task in list should not be null";
+
             if (task instanceof Deadline deadline) {
                 if (deadline.getDeadline().getDate().equals(this.targetDate.getDate())) {
                     matchedTasks.add(task);
