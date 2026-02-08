@@ -36,7 +36,7 @@ public class CommandHandler {
         this.taskManager = new TaskManager();
         this.isRunning = true;
 
-        this.ui.greetUser();
+        this.ui.showCliGreetUser();
     }
 
     /**
@@ -54,7 +54,7 @@ public class CommandHandler {
         this.taskManager = new TaskManager(outputHandler);
         this.isRunning = true;
 
-        this.ui.guiGreetUser();
+        this.ui.showGuiGreetUser();
     }
 
     /**
