@@ -16,6 +16,10 @@ import sora.ui.Ui;
  */
 public class OnCommand implements Command {
 
+    private static final String NO_TASK_MSG_TEMPLATE =
+            "Hmm... No tasks found on %s."
+                    + "\n Looks like a free day! ";
+
     private final ParsedDateTime targetDate;
 
     /**
@@ -43,7 +47,18 @@ public class OnCommand implements Command {
         assert taskManager != null : "TaskManager object should not be null";
         assert ui != null : "Ui object should not be null";
 
-        ArrayList<Task> tasks = taskManager.getTasks();
+        ArrayList<Task> matchedTasks = getMatchedTask(taskManager.getTasks());
+        displayMatchedTask(ui, matchedTasks);
+    }
+
+
+    /**
+     * Filters the list of tasks and returns those that occurs on the target date.
+     *
+     * @param tasks List of tasks to search.
+     * @return List of tasks matching the target date.
+     */
+    private ArrayList<Task> getMatchedTask(ArrayList<Task> tasks) {
         ArrayList<Task> matchedTasks = new ArrayList<>();
 
         for (Task task : tasks) {
@@ -60,13 +75,14 @@ public class OnCommand implements Command {
                 }
             }
         }
+        return matchedTasks;
+    }
 
+    private void displayMatchedTask(Ui ui, ArrayList<Task> matchedTasks) {
         if (matchedTasks.isEmpty()) {
-            ui.showError("Hmm... No tasks found on " + this.targetDate.toString()
-                    + "."
-                    + "\n Looks like a free day! ");
-        } else {
-            ui.showTasks(matchedTasks, matchedTasks.size());
+            ui.showError(String.format(NO_TASK_MSG_TEMPLATE, this.targetDate));
         }
+
+        ui.showTasks(matchedTasks, matchedTasks.size());
     }
 }
