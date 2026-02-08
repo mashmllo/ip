@@ -23,6 +23,8 @@ import javafx.scene.layout.HBox;
  */
 public class DialogBox extends HBox {
 
+    private static final String FXML_PATH = "/view/DialogBox.fxml";
+
     /**
      * Label displaying the dialog text
      */
@@ -44,17 +46,36 @@ public class DialogBox extends HBox {
     public DialogBox(String message, Image img) {
         assert message != null : "Dialog message should not be null";
         assert img != null : "Dialog image should not be null";
+
+        loadFxml();
+        initializeContent(message, img);
+    }
+
+    /**
+     * Loads FXML layout and binds it to this instance.
+     */
+    private void loadFxml() {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class
+                .getResource(FXML_PATH));
+        fxmlLoader.setController(this);
+        fxmlLoader.setRoot(this);
+
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class
-                    .getResource("/view/DialogBox.fxml"));
-            fxmlLoader.setController(this);
-            fxmlLoader.setRoot(this);
             fxmlLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        dialog.setText(message);
-        displayPicture.setImage(img);
+    }
+
+    /**
+     * Initialize the Ui content.
+     *
+     * @param message The message text to display
+     * @param img     The image avatar
+     */
+    private void initializeContent(String message, Image img) {
+        this.dialog.setText(message);
+        this.displayPicture.setImage(img);
     }
 
     /**
