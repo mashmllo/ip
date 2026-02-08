@@ -26,7 +26,6 @@ public class MarkCommand extends IndexCommand {
      */
     @Override
     protected void executeOnTask(TaskManager taskManager, Ui ui) {
-
         Task task = taskManager.markTask(this.getIndex());
         ui.showTaskMarked(task);
     }
