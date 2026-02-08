@@ -26,11 +26,6 @@ public abstract class IndexCommand implements Command {
         this.index = index;
     }
 
-    /**
-     * Executes the command by retrieving the task at the given index.
-     *
-     * @return The task index.
-     */
     public int getIndex() {
         return this.index;
     }
