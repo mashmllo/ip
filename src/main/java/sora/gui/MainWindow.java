@@ -54,7 +54,7 @@ public class MainWindow extends AnchorPane {
     private Sora sora;
 
     /**
-     * Initialise the main window controller.
+     * Initialize the main window controller.
      * <p>
      * Binds the vertical scroll property of the scroll pane to the height
      * of the dialog container to ensure the latest message is alway visible.
@@ -73,7 +73,7 @@ public class MainWindow extends AnchorPane {
 
     /**
      * Handles user input from the text field.
-     *
+     * <p>
      * This method performs the following steps:
      * <ul>
      *     <li>Retrieves the text entered by the user</li>

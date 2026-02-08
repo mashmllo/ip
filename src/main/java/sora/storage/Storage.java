@@ -26,6 +26,12 @@ import sora.ui.OutputHandler;
  */
 public class Storage {
 
+    private static final String TODO = "T";
+    private static final String DEADLINE = "D";
+    private static final String EVENT = "E";
+    private static final String DONE = "1";
+    private static final String NOT_DONE = "0";
+
     private final Path path = Paths.get("data", "sora.txt");
 
     private final OutputHandler outputHandler;
@@ -54,7 +60,7 @@ public class Storage {
      *     <li>If the memory file does not exist, an empty list is returned.</li>
      *     <li>If a line in the file is corrupted, it is skipped and an error.
      *         message is shown </li>
-     *     <li>If an I/O error occurs while reading the file, an error is show.n</li>
+     *     <li>If an I/O error occurs while reading the file, an error is shown</li>
      * </ul>
      *
      * @return ArrayList containing all tasks successfully loaded tasks.
@@ -63,7 +69,6 @@ public class Storage {
 
         ArrayList<Task> tasks = new ArrayList<>();
 
-        //Check if path is initialized and file exist
         if (!Files.exists(this.path)) {
             outputHandler.show("Hmm... memory file not found"
                     + "\n Starting with an empty task list...");
@@ -165,8 +170,9 @@ public class Storage {
      *
      * @param line Line from the storage file.
      * @return A {@link Task} object corresponding to the line.
-     * @throws InvalidFormatException If the line is malformed or missing required fields,
-     *                                contains unknown task types, or invalid completion
+     * @throws InvalidFormatException If the line is malformed or missing required
+     *                                fields, contains unknown task types,
+     *                                or invalid completion
      *                                status.
      */
     private Task loadTask(String line) throws InvalidFormatException {
@@ -184,31 +190,69 @@ public class Storage {
         Task task;
 
         switch (type) {
-        case "T" -> task = new ToDo(name);
-        case "D" -> {
-            if (parts.length < 4 || parts[3].trim().isEmpty()) {
-                throw new InvalidFormatException("Oops! Deadline requires /by "
-                        + "and name");
-            }
-            task = new Deadline(name, ParsedDateTime.dateTimeParser(parts[3].trim()));
-        }
-        case "E" -> {
-            if (parts.length < 5
-                    || parts[3].trim().isEmpty()
-                    || parts[4].trim().isEmpty()) {
-                throw new InvalidFormatException("Oops! Event requires /from,"
-                        + " /to and name");
-            }
-            task = new Event(name,
-                    ParsedDateTime.dateTimeParser(parts[3].trim()),
-                    ParsedDateTime.dateTimeParser(parts[4].trim()));
-        }
+        case TODO
+            -> task = parseToDo(name);
+        case DEADLINE
+            -> task = parseDeadline(parts, name);
+        case EVENT
+            -> task = parseEvent(parts, name);
         default -> throw new InvalidFormatException("Oops! Unknown task type");
         }
 
-        setTaskCompletionStatus(task, completedStr);
+        setTaskStatus(task, completedStr);
         return task;
 
+    }
+
+    private Task parseToDo(String name) {
+        return new ToDo(name);
+    }
+
+    /**
+     * Parses a storage line into a {@link Deadline} task.
+     * <p>
+     * Example storage line:
+     * <pre>
+     *     D | 0 |  CS2103 quiz | 2026-01-23 12:00
+     * </pre>
+     *
+     * @param parts Array of strings obtained by splitting a storage line using '|'.
+     *              Index 3 must contain the deadline dateTime string.
+     * @param name Name of the deadline task (from parts[2])
+     * @return A {@link Deadline} object with the specified name and parsed deadline.
+     */
+    private Task parseDeadline(String[] parts, String name) {
+        if (parts.length < 4 || parts[3].trim().isEmpty()) {
+            throw new InvalidFormatException("Oops! Deadline requires /by "
+                    + "and name");
+        }
+        return new Deadline(name, ParsedDateTime.dateTimeParser(parts[3].trim()));
+    }
+
+    /**
+     * Parses a storage line into a {@link Event} task.
+     * <p>
+     * Example storage line:
+     * <pre>
+     *     E | 1 |  Career Fair | 2026-07-06 10:00 | 2026-07-06 14:00
+     * </pre>
+     *
+     * @param parts Array of strings obtained by splitting a storage line using '|'.
+     *              Index 3 must contain the start dateTime string,
+     *              index 4 the end dateTime string.
+     * @param name Name of the event task (from parts[2])
+     * @return A {@link Event} object with the specified name, start and end time.
+     */
+    private Task parseEvent(String[] parts, String name) {
+        if (parts.length < 5
+                || parts[3].trim().isEmpty()
+                || parts[4].trim().isEmpty()) {
+            throw new InvalidFormatException("Oops! Event requires /from,"
+                    + " /to and name");
+        }
+        return new Event(name,
+                ParsedDateTime.dateTimeParser(parts[3].trim()),
+                ParsedDateTime.dateTimeParser(parts[4].trim()));
     }
 
     /**
@@ -223,14 +267,14 @@ public class Storage {
      * @param completedStat  String representation of the completion status.
      * @throws InvalidFormatException if completedStr is not "0" or "1".
      */
-    private void setTaskCompletionStatus(Task task, String completedStat)
+    private void setTaskStatus(Task task, String completedStat)
             throws InvalidFormatException {
         assert task != null : "Task must not be null";
         assert completedStat != null : "Completion status must not be null";
 
-        if (completedStat.equals("0")) {
+        if (completedStat.equals(NOT_DONE)) {
             task.markAsNotDone();
-        } else if (completedStat.equals("1")) {
+        } else if (completedStat.equals(DONE)) {
             task.markAsDone();
         } else {
             throw new InvalidFormatException("Oops! Unknown completion status");

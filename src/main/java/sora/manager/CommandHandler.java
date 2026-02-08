@@ -36,7 +36,7 @@ public class CommandHandler {
         this.taskManager = new TaskManager();
         this.isRunning = true;
 
-        this.ui.greetUser();
+        this.ui.showCliGreetUser();
     }
 
     /**
@@ -54,7 +54,7 @@ public class CommandHandler {
         this.taskManager = new TaskManager(outputHandler);
         this.isRunning = true;
 
-        this.ui.guiGreetUser();
+        this.ui.showGuiGreetUser();
     }
 
     /**
@@ -64,15 +64,12 @@ public class CommandHandler {
      * Continues running until an {@code ExitCommand} is entered by the user.
      */
     public void run() {
-        assert this.scanner != null : "Scanner object must be initialize";
+        assert this.scanner != null : "Scanner object must be initialized";
 
         while (this.isRunning) {
-            String input = this.scanner.nextLine().strip();
-            try {
-                handleCommand(input);
-            } catch (SoraException soraException) {
-                this.ui.showError(soraException.getMessage());
-            }
+            String rawInput = this.scanner.nextLine();
+            String input = rawInput.strip();
+            executeCliCommand(input);
         }
         this.scanner.close();
     }
@@ -82,9 +79,22 @@ public class CommandHandler {
      *
      * @param input The command input string from the user
      */
-    public void process(String input) {
+    public void processGuiCommand(String input) {
         assert input != null : "Input string should not be null";
 
+        try {
+            handleCommand(input);
+        } catch (SoraException soraException) {
+            this.ui.showError(soraException.getMessage());
+        }
+    }
+
+    /**
+     * Executes a command safely by catching expression.
+     *
+     * @param input The command input string from the user
+     */
+    private void executeCliCommand(String input) {
         try {
             handleCommand(input);
         } catch (SoraException soraException) {
@@ -100,10 +110,17 @@ public class CommandHandler {
     private void handleCommand(String input) {
         Command command = CommandParser.parse(input);
         if (command instanceof ExitCommand) {
-            this.isRunning = false;
-            this.ui.farewellMessage();
-        } else {
-            command.execute(this.taskManager, this.ui);
+            stopProgram();
         }
+
+        command.execute(this.taskManager, this.ui);
+    }
+
+    /**
+     * Stops the program and display the farewell message.
+     */
+    private void stopProgram() {
+        this.isRunning = false;
+        this.ui.farewellMessage();
     }
 }

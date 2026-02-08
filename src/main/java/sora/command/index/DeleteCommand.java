@@ -9,6 +9,9 @@ import sora.ui.Ui;
  */
 public class DeleteCommand extends IndexCommand {
 
+    private static final String DELETE_ERROR_MSG =
+            "Hmm.. something went wrong while removing the task"
+            + "\nPlease check the task number and try again";
     /**
      * Constructs a {@code DeleteCommand}.
      *
@@ -30,8 +33,8 @@ public class DeleteCommand extends IndexCommand {
         Task deletedTask = taskManager.removeTask(this.getIndex());
 
         if (deletedTask == null) {
-            ui.showError("Hmm.. something went wrong while removing the task"
-                    + "\nPlease check the task number and try again");
+            ui.showError(DELETE_ERROR_MSG);
+            return;
         }
         ui.showDeletedTask(deletedTask, taskManager.getTaskCount());
     }

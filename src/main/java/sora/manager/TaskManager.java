@@ -79,7 +79,7 @@ public class TaskManager {
      *         {@code null} otherwise.
      */
     public Task getTask(int index) {
-        if (index < 0 || index >= this.getTaskCount()) {
+        if (isValidIndex(index)) {
             return null;
         }
 
@@ -95,7 +95,7 @@ public class TaskManager {
      *         {@code null} otherwise.
      */
     public Task removeTask(int index) {
-        if (index < 0 || index >= this.getTaskCount()) {
+        if (isValidIndex(index)) {
             return null;
         }
 
@@ -116,7 +116,7 @@ public class TaskManager {
      *         {@code null} otherwise.
      */
     public Task markTask(int index) {
-        if (index < 0 || index >= getTaskCount()) {
+        if (isValidIndex(index)) {
             return null;
         }
 
@@ -137,7 +137,7 @@ public class TaskManager {
      *         {@code null} otherwise.
      */
     public Task unmarkTask(int index) {
-        if (index < 0 || index >= getTaskCount()) {
+        if (isValidIndex(index)) {
             return null;
         }
 
@@ -145,5 +145,9 @@ public class TaskManager {
         task.markAsNotDone();
         this.storage.save(this.tasks);
         return task;
+    }
+
+    private boolean isValidIndex(int index) {
+        return index < 0 || index >= getTaskCount();
     }
 }

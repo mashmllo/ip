@@ -34,7 +34,7 @@ public class Ui {
     /**
      * Displays a welcome message when the program start for CLI interface.
      */
-    public void greetUser() {
+    public void showCliGreetUser() {
         String logo = """
                 '+.. + ..-. ..-.  *'.~~+'.  '  +* *''.~~+  .-. '  '''+ +   ++
                  * .-.   ) ). ) )      . . .-.  . .'  .-. (   )  .'.-. +.'  \s
@@ -50,7 +50,7 @@ public class Ui {
     /**
      * Displays a welcome message when the program start for GUI interface.
      */
-    public void guiGreetUser() {
+    public void showGuiGreetUser() {
         this.output.show("Hey! I'm Sora");
         this.output.show("What would you like to do today?");
     }

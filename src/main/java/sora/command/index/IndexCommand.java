@@ -15,6 +15,9 @@ import sora.ui.Ui;
  */
 public abstract class IndexCommand implements Command {
 
+    private static final String TASK_NOT_FOUND_MSG =
+            "Whoops! That task does not exist."
+                    + "\nDouble-check the number and try again";
     private final int index;
 
     /**
@@ -26,11 +29,6 @@ public abstract class IndexCommand implements Command {
         this.index = index;
     }
 
-    /**
-     * Executes the command by retrieving the task at the given index.
-     *
-     * @return The task index.
-     */
     public int getIndex() {
         return this.index;
     }
@@ -51,8 +49,7 @@ public abstract class IndexCommand implements Command {
 
         Task task = taskManager.getTask(this.index);
         if (task == null) {
-            throw new InvalidFormatException("Whoops! That task does not exist."
-                    + "\nDouble-check the number and try again");
+            throw new InvalidFormatException(TASK_NOT_FOUND_MSG);
         }
 
         executeOnTask(taskManager, ui);

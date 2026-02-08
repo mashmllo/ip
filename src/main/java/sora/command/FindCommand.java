@@ -39,7 +39,9 @@ public class FindCommand implements Command {
 
         for (Task task : tasks) {
             assert task != null : "Task in list should not be null";
-            if (task.toString().toLowerCase().contains(this.keyword.toLowerCase())) {
+            boolean isMatching = task.toString().toLowerCase()
+                    .contains(this.keyword.toLowerCase());
+            if (isMatching) {
                 matching.add(task);
             }
         }

@@ -18,6 +18,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
+    private static final String MAIN_WINDOW_FXML = "/view/MainWindow.fxml";
     /**
      * Main entry point for the JavaFx application.
      * @param stage primary stage for this application
@@ -28,9 +29,9 @@ public class Main extends Application {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class
-                    .getResource("/view/MainWindow.fxml"));
-            AnchorPane ap = fxmlLoader.load();
-            Scene scene = new Scene(ap);
+                    .getResource(MAIN_WINDOW_FXML));
+            AnchorPane mainLayout = fxmlLoader.load();
+            Scene scene = new Scene(mainLayout);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setSora();
             stage.show();

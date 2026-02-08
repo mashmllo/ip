@@ -10,6 +10,8 @@ import sora.exception.InvalidFormatException;
  */
 public class ToDo extends Task {
 
+    private static final int TODO_CMD_LENGTH = 4;
+
     /**
      * Constructs of the new ToDo task with the given name.
      * @param name The name of the ToDo task.
@@ -52,7 +54,7 @@ public class ToDo extends Task {
     public static ToDo parse(String cmd)
             throws InvalidFormatException {
         assert cmd != null && !cmd.isBlank() : "Command string must not be null or empty";
-        String taskName = cmd.substring(4).trim();
+        String taskName = cmd.substring(TODO_CMD_LENGTH).trim();
 
         if (taskName.isEmpty()) {
             throw new InvalidFormatException("Oops! The task name is missing");

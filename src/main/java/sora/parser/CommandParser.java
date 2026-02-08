@@ -39,26 +39,29 @@ public class CommandParser {
         assert !lower.isEmpty() : "Command string should not be empty";
 
         String[] parts = lower.split("\\s+");
-        String keyword = parts[0];
+        CommandType keyword = CommandType.fromString(parts[0]);
 
         return switch (keyword) {
-        case "bye"
+        case BYE
                 -> new ExitCommand();
 
-        case "list"
+        case LIST
                 -> new ListCommand();
 
-        case "mark", "unmark", "delete"
-                -> parseIndexCommand(cmd, keyword);
+        case MARK, UNMARK, DELETE
+                -> parseIndexCommand(cmd, keyword.getKeyword());
 
-        case "on"
+        case ON
                 -> parseFilter(cmd);
 
-        case "find"
+        case FIND
                 -> parseSearch(cmd);
 
+        case TODO, EVENT, DEADLINE
+                -> parseAddTaskCommand(cmd, keyword.getKeyword());
+
         default
-                -> parseAddTaskCommand(cmd);
+                -> throw new UnknownCommandException();
         };
     }
 
@@ -78,15 +81,17 @@ public class CommandParser {
 
         int index = getIndex(cmd, keyword);
 
-        return switch (keyword) {
-        case "mark":
-            yield new MarkCommand(index);
-        case "unmark":
-            yield new UnmarkCommand(index);
-        case "delete":
-            yield new DeleteCommand(index);
-        default:
-            throw new UnknownCommandException();
+        CommandType type = CommandType.fromString(keyword);
+
+        return switch (type) {
+        case MARK
+            -> new MarkCommand(index);
+        case UNMARK
+            -> new UnmarkCommand(index);
+        case DELETE
+            -> new DeleteCommand(index);
+        default
+            -> throw new UnknownCommandException();
         };
     }
 
@@ -168,11 +173,13 @@ public class CommandParser {
      * Parse task creation command.
      *
      * @param cmd Full command entered by the user
+     * @param keyword  The command keyword (e.g. "todo", "event", "deadline")
      * @return AddTaskCommand containing the parsed task
      * @throws SoraException if invalid or incomplete command is entered
      */
-    private static Command parseAddTaskCommand(String cmd) throws SoraException {
-        Task task = parseTask(cmd);
+    private static Command parseAddTaskCommand(String cmd, String keyword)
+            throws SoraException {
+        Task task = parseTask(cmd, keyword);
         return new AddTaskCommand(task);
     }
 
@@ -180,23 +187,24 @@ public class CommandParser {
      * Parses a command string into a {@link Task} object.
      *
      * @param cmd The full command entered by the user.
+     * @param keyword  The command keyword (e.g. "todo", "event", "deadline").
      * @return The {@link Task} corresponding to the command.
      * @throws UnknownCommandException If the command is invalid or incomplete.
      */
-    public static Task parseTask(String cmd) throws SoraException {
+    public static Task parseTask(String cmd, String keyword) throws SoraException {
 
-        String cmdLowercase = cmd.toLowerCase();
+        CommandType type = CommandType.fromString(keyword);
 
-        if (cmdLowercase.startsWith(("todo"))) {
-            return ToDo.parse(cmd);
-        } else if (cmdLowercase.startsWith("deadline")) {
-            return Deadline.parse(cmd);
-        } else if (cmdLowercase.startsWith("event")) {
-            return Event.parse(cmd);
-        } else {
-            throw new UnknownCommandException();
-        }
+        return switch (type) {
+        case TODO
+                -> ToDo.parse(cmd);
+        case DEADLINE
+                -> Deadline.parse(cmd);
+        case EVENT
+                -> Event.parse(cmd);
+        default
+                -> throw new UnknownCommandException();
+        };
     }
-
 
 }
