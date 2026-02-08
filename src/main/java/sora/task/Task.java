@@ -11,6 +11,9 @@ package sora.task;
  */
 public abstract class Task {
 
+    private static final char DONE = '1';
+    private static final char NOT_DONE = '0';
+
     private final String name;
     private boolean isDone;
 
@@ -72,7 +75,7 @@ public abstract class Task {
      * @return The formatted string e.g. "| 1 | read book".
      */
     public String toStorageString() {
-        String statusIcon = "| " + (this.isDone ? '1' : '0') + " | ";
+        String statusIcon = "| " + (this.isDone ? DONE : NOT_DONE) + " | ";
         return String.format("%s %s", statusIcon, this.name);
     }
 }
