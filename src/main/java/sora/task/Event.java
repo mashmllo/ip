@@ -14,6 +14,10 @@ import sora.parser.ParsedDateTime;
  */
 public class Event extends Task {
 
+    private static final int EVENT_CMD_LENGTH = 5;
+    private static final String FROM_DELIMITER = " /from ";
+    private static final String TO_DELIMITER = " /to ";
+
     private final ParsedDateTime from;
     private final ParsedDateTime to;
 
@@ -96,8 +100,8 @@ public class Event extends Task {
     public static Event parse(String cmd)
             throws InvalidFormatException {
         assert cmd != null && !cmd.isBlank() : "Command string must not be null or empty";
-        String[] parts = cmd.substring(5)
-                .split(" /from | /to ", 3);
+        String[] parts = cmd.substring(EVENT_CMD_LENGTH)
+                .split(FROM_DELIMITER + "|" + TO_DELIMITER, 3);
         if (parts.length < 3
                 || parts[0].trim().isEmpty()
                 || parts[1].trim().isEmpty()
