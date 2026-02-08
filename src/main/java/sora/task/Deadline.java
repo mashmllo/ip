@@ -6,12 +6,14 @@ import sora.parser.ParsedDateTime;
 /**
  * Represents a Deadline task for Sora.
  * <p>
- *  A Deadline task are tasks that needs to be completed by a given date/time.
+ *  A Deadline task is a task that needs to be completed by a given date/time.
  * This class extends the base {@link Task} class
  * and adds a {@code by} field to store the deadline.
  * The marks task type as [D].
  */
 public class Deadline extends Task {
+
+    private static final int DEADLINE_CMD_LENGTH = 8;
 
     private final ParsedDateTime by;
 
@@ -63,7 +65,7 @@ public class Deadline extends Task {
      * <p>
      * Both the name of the task and the deadline must be provided,
      * otherwise {@link InvalidFormatException} is thrown
-     * and the task is not being added into the list.
+     * and the task will not be added into the list.
      *
      * @param cmd The full command entered by the user
      *            e.g. "deadline submit report /by 2026-01-22 23:59"
@@ -73,7 +75,7 @@ public class Deadline extends Task {
     public static Deadline parse(String cmd)
             throws InvalidFormatException {
         assert cmd != null && !cmd.isBlank() : "Command string must not be null or empty";
-        String[] parts = cmd.substring(8).split(" /by ", 2);
+        String[] parts = cmd.substring(DEADLINE_CMD_LENGTH).split(" /by ", 2);
         if (parts.length < 2
                 || parts[0].trim().isEmpty()
                 || parts[1].trim().isEmpty()) {
