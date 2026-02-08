@@ -7,6 +7,8 @@ package sora.ui;
  */
 public class ConsoleOutput implements OutputHandler {
 
+    private static final String DIVIDER =
+            ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .";
     /**
      * Prints the given message to the console.
      *
@@ -25,6 +27,6 @@ public class ConsoleOutput implements OutputHandler {
      * Prints the horizontal divider for readability.
      */
     public void printLine() {
-        System.out.println(". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .");
+        System.out.println(DIVIDER);
     }
 }
