@@ -14,7 +14,6 @@ import sora.command.index.DeleteCommand;
 import sora.command.index.MarkCommand;
 import sora.command.index.UnmarkCommand;
 import sora.exception.InvalidFormatException;
-import sora.exception.SoraException;
 import sora.exception.UnknownCommandException;
 import sora.manager.TaskManager;
 import sora.task.Deadline;
@@ -129,13 +128,13 @@ public class CommandParserTest {
 
     @Test
     public void parse_emptyInput_throwsSoraExceptions() {
-        assertThrows(SoraException.class , () -> CommandParser.parse(""));
+        assertThrows(AssertionError.class , () -> CommandParser.parse(""));
     }
 
 
     @Test
     public void parse_whitespace_throwsSoraExceptions() {
-        assertThrows(SoraException.class , () -> CommandParser.parse(" "));
+        assertThrows(AssertionError.class , () -> CommandParser.parse(" "));
     }
 
     @Test
@@ -159,7 +158,7 @@ public class CommandParserTest {
         TaskManager taskManager = new TaskManager();
         Ui ui = new Ui();
 
-        assertThrows(InvalidFormatException.class, ()
+        assertThrows(AssertionError.class, ()
                 -> cmd.execute(taskManager, ui));
     }
 
