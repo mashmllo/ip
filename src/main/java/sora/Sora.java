@@ -36,7 +36,7 @@ public class Sora {
      * @param input User input
      */
     public void processInput(String input) {
-        cmdHandler.process(input);
+        cmdHandler.processGuiCommand(input);
     }
 
 
