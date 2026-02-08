@@ -57,8 +57,11 @@ public class CommandParser {
         case FIND
                 -> parseSearch(cmd);
 
-        default
+        case TODO, EVENT, DEADLINE
                 -> parseAddTaskCommand(cmd, keyword.getKeyword());
+
+        default
+                -> throw new UnknownCommandException();
         };
     }
 
