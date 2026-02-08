@@ -64,7 +64,7 @@ public class CommandParserTest {
 
     @Test
     public void parseTask_todo_validInputSuccess() {
-        Task task = CommandParser.parseTask("todo read book");
+        Task task = CommandParser.parseTask("todo read book", "todo");
         assertTrue(task instanceof ToDo);
         assertEquals("read book", task.toString().substring(7));
     }
@@ -72,7 +72,7 @@ public class CommandParserTest {
     @Test
     public void parseTask_deadline_dateTimeSuccess() {
         Task task = CommandParser
-                .parseTask("deadline homework /by 2026-01-26 18:00");
+                .parseTask("deadline homework /by 2026-01-26 18:00", "deadline");
         assertTrue(task instanceof Deadline);
         assertEquals("homework (by: Jan 26 2026 18:00)",
                 task.toString().substring(7));
@@ -81,7 +81,7 @@ public class CommandParserTest {
     @Test
     public void parseTask_deadline_dateOnlySuccess() {
         Task task = CommandParser
-                .parseTask("deadline Complete CS2103 quiz /by 2026-01-26");
+                .parseTask("deadline Complete CS2103 quiz /by 2026-01-26", "deadline");
         assertTrue(task instanceof Deadline);
         assertEquals("Complete CS2103 quiz (by: Jan 26 2026)",
                 task.toString().substring(7));
@@ -91,7 +91,7 @@ public class CommandParserTest {
     public void parseTask_event_dateTimeSuccess() {
         Task task = CommandParser
                 .parseTask("event career fair "
-                        + "/from 2026-01-25 12:00 /to 2026-01-25 14:00");
+                        + "/from 2026-01-25 12:00 /to 2026-01-25 14:00", "event");
         assertTrue(task instanceof Event);
         assertEquals("career fair "
                         + "(from: Jan 25 2026 12:00 to: Jan 25 2026 14:00)",
@@ -102,7 +102,7 @@ public class CommandParserTest {
     public void parseTask_event_dateOnlySuccess() {
         Task task = CommandParser
                 .parseTask("event career fair "
-                        + "/from 2026-01-25 /to 2026-01-26");
+                        + "/from 2026-01-25 /to 2026-01-26", "event");
         assertTrue(task instanceof Event);
         assertEquals("career fair (from: Jan 25 2026 to: Jan 26 2026)",
                 task.toString().substring(7));
