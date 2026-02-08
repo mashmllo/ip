@@ -16,6 +16,9 @@ import sora.gui.DialogBox;
  */
 public class GuiOutput implements OutputHandler {
 
+    private static final String MSG_BOX_STYLE =
+            "-fx-background-color: #e0e0e0; -fx-padding: 5px;-fx-background-radius: 5px";
+
     private final VBox container;
     private boolean isIconAdded = false;
 
@@ -35,17 +38,26 @@ public class GuiOutput implements OutputHandler {
 
         Platform.runLater(() -> {
             if (!isIconAdded) {
-                container.getChildren().add(
-                        DialogBox.getSoraDialog("", SORA_IMG)
-                );
+                addSoraIcon();
                 isIconAdded = true;
             }
-            Label msg = new Label(message);
-            msg.setWrapText(true);
-            msg.setMaxWidth(Double.MAX_VALUE);
-            msg.setStyle("-fx-background-color: #e0e0e0; -fx-padding: 5px; -fx-background-radius: 5px");
-            container.getChildren().add(msg);
+
+            addMessageLabel(message);
         });
         isIconAdded = false;
+    }
+
+    private void addSoraIcon() {
+        container.getChildren().add(
+                DialogBox.getSoraDialog("", SORA_IMG)
+        );
+    }
+
+    private void addMessageLabel(String message) {
+        Label msg = new Label(message);
+        msg.setWrapText(true);
+        msg.setMaxWidth(Double.MAX_VALUE);
+        msg.setStyle(MSG_BOX_STYLE);
+        container.getChildren().add(msg);
     }
 }
