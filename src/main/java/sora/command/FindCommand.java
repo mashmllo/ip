@@ -1,6 +1,7 @@
 package sora.command;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import sora.exception.SoraException;
 import sora.manager.TaskManager;
@@ -10,7 +11,7 @@ import sora.ui.Ui;
 /**
  * Represents a command that finds a task based on keyword in the description
  * using normal and fuzzy search.
- *
+ * <p>
  * The command first performs a substring match. If no substring match is found,
  * it applies Jaro-Winkler similarity to detect approximate matches.
  */
@@ -57,17 +58,11 @@ public class FindCommand implements Command {
      * @return Tasks that match the search criteria
      */
     private ArrayList<Task> findMatchingTasks(ArrayList<Task> tasks) {
-        ArrayList<Task> matches = new ArrayList<>();
-
-        for (Task task : tasks) {
-            String taskName = task.toString().toLowerCase();
-
-            if (isMatch(taskName)) {
-                matches.add(task);
-            }
-        }
-
-        return matches;
+        return tasks.stream()
+                .filter(task -> isMatch(task.toString().toLowerCase()))
+                .collect(ArrayList::new,
+                        ArrayList::add,
+                        ArrayList::addAll);
     }
 
     /**
@@ -77,24 +72,13 @@ public class FindCommand implements Command {
      * @return true if match is found
      */
     private boolean isMatch(String searchString) {
-        if (searchString.contains(this.keyword)) {
-            return true;
-        }
-
-        return isFuzzySimilar(searchString);
+        return searchString.contains(this.keyword)
+                || isFuzzySimilar(searchString);
     }
 
     private boolean isFuzzySimilar(String searchString) {
-        String[] words = searchString.split("\\s+");
-
-        for (String word : words) {
-            double similarity = jaroWinkler(word, this.keyword);
-            if (similarity >= FUZZY_THRESHOLD) {
-                return true;
-            }
-        }
-
-        return false;
+        return Arrays.stream(searchString.split("\\s+"))
+                .anyMatch(word -> jaroWinkler(word, this.keyword) >= FUZZY_THRESHOLD);
     }
     /**
      * Computes Jaro-Winkler similarity between two strings.
@@ -125,6 +109,7 @@ public class FindCommand implements Command {
                 if (searchTerm.charAt(i) != candidate.charAt(j)) {
                     continue;
                 }
+
                 candidateMatches[j] = true;
                 searchMatches[i] = true;
                 matchCount++;
