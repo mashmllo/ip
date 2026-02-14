@@ -39,7 +39,9 @@ public enum CommandType {
      */
     public static CommandType fromString(String input)
             throws UnknownCommandException {
-        assert input != null : "Command input cannot be null";
+        if (input == null) {
+            throw new UnknownCommandException();
+        }
 
         for (CommandType type : values()) {
             if (type.keyword.equals(input)) {
