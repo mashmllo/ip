@@ -5,6 +5,7 @@ import static sora.gui.MainWindow.SORA_IMG;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import sora.exception.InvalidFormatException;
 import sora.gui.DialogBox;
 
 /**
@@ -34,8 +35,9 @@ public class GuiOutput implements OutputHandler {
 
     @Override
     public void show(String message) {
-        assert message != null : "Message must not be null";
-
+        if (message == null) {
+            throw new InvalidFormatException("Message should not be null");
+        }
         Platform.runLater(() -> {
             if (!isIconAdded) {
                 addSoraIcon();
