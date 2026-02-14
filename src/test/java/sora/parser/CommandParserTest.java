@@ -128,13 +128,13 @@ public class CommandParserTest {
 
     @Test
     public void parse_emptyInput_throwsSoraExceptions() {
-        assertThrows(AssertionError.class , () -> CommandParser.parse(""));
+        assertThrows(InvalidFormatException.class , () -> CommandParser.parse(""));
     }
 
 
     @Test
     public void parse_whitespace_throwsSoraExceptions() {
-        assertThrows(AssertionError.class , () -> CommandParser.parse(" "));
+        assertThrows(InvalidFormatException.class , () -> CommandParser.parse(" "));
     }
 
     @Test
@@ -158,7 +158,7 @@ public class CommandParserTest {
         TaskManager taskManager = new TaskManager();
         Ui ui = new Ui();
 
-        assertThrows(AssertionError.class, ()
+        assertThrows(InvalidFormatException.class, ()
                 -> cmd.execute(taskManager, ui));
     }
 
