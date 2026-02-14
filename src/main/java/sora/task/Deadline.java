@@ -25,7 +25,6 @@ public class Deadline extends Task {
      */
     public Deadline(String name, ParsedDateTime by) {
         super(name);
-        assert by != null : "Deadline must not be null";
         this.by = by;
     }
 
@@ -74,7 +73,9 @@ public class Deadline extends Task {
      */
     public static Deadline parse(String cmd)
             throws InvalidFormatException {
-        assert cmd != null && !cmd.isBlank() : "Command string must not be null or empty";
+        if (cmd == null || cmd.isBlank()) {
+            throw new InvalidFormatException("Command string must not be null or empty");
+        }
         String[] parts = cmd.substring(DEADLINE_CMD_LENGTH).split(" /by ", 2);
         if (parts.length < 2
                 || parts[0].trim().isEmpty()
