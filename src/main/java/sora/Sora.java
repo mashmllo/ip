@@ -17,9 +17,12 @@ public class Sora {
      * Constructs a Sora instance using a custom {@link OutputHandler}.
      *
      * @param outputHandler The output handler used to display messages
+     * @throws IllegalArgumentException If {@code message} is {@code null}
      */
-    public Sora(OutputHandler outputHandler) {
-        assert outputHandler != null : "OutputHandler should not be null";
+    public Sora(OutputHandler outputHandler) throws IllegalArgumentException {
+        if (outputHandler == null) {
+            throw new IllegalArgumentException("OutputHandler should not be null");
+        }
         this.cmdHandler = new CommandHandler(outputHandler);
     }
 
