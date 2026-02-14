@@ -1,5 +1,7 @@
 package sora.ui;
 
+import sora.exception.InvalidFormatException;
+
 /**
  * Implementation of {@link OutputHandler} for CLI output.
  * <p>
@@ -13,10 +15,15 @@ public class ConsoleOutput implements OutputHandler {
      * Prints the given message to the console.
      *
      * @param message The message to be displayed
+     * @throws InvalidFormatException If {@code message} is {@code null}. This exception
+     *                              is thrown to indicate improper initialization of the
+     *                              object.
      */
     @Override
     public void show(String message) {
-        assert message != null : "Message should not be null";
+        if (message == null) {
+            throw new InvalidFormatException("Message should not be null");
+        }
 
         printLine();
         System.out.println(message);
