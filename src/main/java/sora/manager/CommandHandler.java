@@ -48,7 +48,9 @@ public class CommandHandler {
      * @param outputHandler The {@link OutputHandler} to use for rendering messages.
      */
     public CommandHandler(OutputHandler outputHandler) {
-        assert outputHandler != null : "OutputHandler must not be null";
+        if (outputHandler == null) {
+            throw new NullPointerException("OutputHandler must not be null");
+        }
         this.ui = new Ui(outputHandler);
         this.scanner = null; // GUI does not use scanner
         this.taskManager = new TaskManager(outputHandler);
@@ -80,7 +82,9 @@ public class CommandHandler {
      * @param input The command input string from the user
      */
     public void processGuiCommand(String input) {
-        assert input != null : "Input string should not be null";
+        if (input == null) {
+            this.ui.showError("Input string should not be null");
+        }
 
         try {
             handleCommand(input);
