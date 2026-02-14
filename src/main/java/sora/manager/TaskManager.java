@@ -24,9 +24,14 @@ public class TaskManager {
      * storage-related messages will be routed through the provided {@link OutputHandler}.
      *
      * @param outputHandler The output handler used for rendering messages.
+     * @throws NullPointerException If {@code outputHandler} is {@code null}. This
+     *                              exception is thrown to indicate improper
+     *                              initialization of the object.
      */
-    public TaskManager(OutputHandler outputHandler) {
-        assert outputHandler != null : "OutputHandler must not be null";
+    public TaskManager(OutputHandler outputHandler) throws NullPointerException {
+        if (outputHandler == null) {
+            throw new NullPointerException("OutputHandler must not be null");
+        }
         this.storage = new Storage(outputHandler);
         this.tasks = new ArrayList<>(this.storage.load());
     }
@@ -64,9 +69,14 @@ public class TaskManager {
      * and persists the updated list.
      *
      * @param task The {@link Task} object to add.
+     * @throws NullPointerException If {@code task} is {@code null}. This
+     *                              exception is thrown to indicate improper
+     *                              initialization of the object.
      */
     public void addTask(Task task) {
-        assert task != null : "Cannot add null task";
+        if (task == null) {
+            throw new NullPointerException("Cannot add empty task");
+        }
         this.tasks.add(task);
         this.storage.save(this.tasks);
     }
