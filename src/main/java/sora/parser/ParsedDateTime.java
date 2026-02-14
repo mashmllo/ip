@@ -73,7 +73,11 @@ public class ParsedDateTime {
      */
     public static ParsedDateTime dateTimeParser(String input)
             throws InvalidFormatException {
-        assert input != null : "Date input must not be null";
+
+        if (input == null) {
+            throw new InvalidFormatException("Date input must not be null");
+        }
+
         DateInputType type = DateInputType.datetimeInput(input);
 
         if (type == DateInputType.DATE_ONLY) {
