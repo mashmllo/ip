@@ -14,12 +14,19 @@ public class ListCommand implements Command {
      *
      * @param taskManager Manager class used to manage the list of tasks.
      * @param ui          User interface class used to display messages.
-     * @throws SoraException No exceptions are thrown in this implementation.
+     * @throws SoraException If either {@code taskManager} or {@code ui} is {@code null}.
+     *                       This exception is thrown to indicate improper initialization of
+     *                       the object.
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
-        assert taskManager != null : "TaskManager object should not be null";
-        assert ui != null : "Ui object should not be null";
+        if (taskManager == null) {
+            throw new NullPointerException("TaskManager object should not be null");
+        }
+
+        if (ui == null) {
+            throw new NullPointerException("Ui object should not be null");
+        }
 
         ui.showTasks(taskManager.getTasks(), taskManager.getTaskCount());
     }
