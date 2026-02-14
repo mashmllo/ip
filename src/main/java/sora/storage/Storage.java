@@ -44,7 +44,9 @@ public class Storage {
      * when {@link #save(ArrayList)} is called.
      */
     public Storage(OutputHandler outputHandler) {
-        assert outputHandler != null : "OutputHandler must not be null";
+        if (outputHandler == null) {
+            throw new IllegalStateException("OutputHandler must not be null");
+        }
         this.outputHandler = outputHandler;
     }
 
@@ -95,9 +97,12 @@ public class Storage {
      * the error.
      *
      * @param tasks List of tasks to be saved.
+     * @throws IllegalArgumentException if {@code tasks} is {@code null}.
      */
-    public void save(ArrayList<Task> tasks) {
-        assert tasks != null : "Task list must not be null";
+    public void save(ArrayList<Task> tasks) throws IllegalArgumentException {
+        if (tasks == null) {
+            throw new IllegalArgumentException("Task list must not be null");
+        }
         ensureDirectoryExist();
 
         try (BufferedWriter writer = Files.newBufferedWriter(this.path)) {
