@@ -38,14 +38,25 @@ public abstract class IndexCommand implements Command {
      *
      * @param taskManager Manager class used to manage the list of tasks.
      * @param ui          User interface class used to display messages.
+     * @throws NullPointerException If either {@code taskManager} or {@code ui} is
+     *                              {@code null}. This exception is thrown to
+     *                              indicate improper initialization of
+     *                              the object.
      * @throws SoraException if task does not exist at the given index.
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
-        assert taskManager != null : "TaskManager object should not be null";
-        assert ui != null : "Ui object should not be null";
+        if (taskManager == null) {
+            throw new NullPointerException("TaskManager object should not be null");
+        }
 
-        assert this.index >= 0 && this.index < taskManager.getTaskCount();
+        if (ui == null) {
+            throw new NullPointerException("Ui object should not be null");
+        }
+
+        if (this.index < 0 || this.index >= taskManager.getTaskCount()) {
+            throw new InvalidFormatException(TASK_NOT_FOUND_MSG);
+        }
 
         Task task = taskManager.getTask(this.index);
         if (task == null) {
