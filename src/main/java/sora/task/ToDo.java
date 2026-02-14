@@ -49,11 +49,14 @@ public class ToDo extends Task {
      *
      * @param cmd The full command entered by the user e.g. "todo read book".
      * @return A {@link ToDo} task object.
-     * @throws InvalidFormatException If task name is missing.
+     * @throws InvalidFormatException If task name is missing or input command is empty.
      */
     public static ToDo parse(String cmd)
             throws InvalidFormatException {
-        assert cmd != null && !cmd.isBlank() : "Command string must not be null or empty";
+        if (cmd == null || cmd.isBlank()) {
+            throw new InvalidFormatException("Command string must not be null or empty");
+        }
+
         String taskName = cmd.substring(TODO_CMD_LENGTH).trim();
 
         if (taskName.isEmpty()) {
