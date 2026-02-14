@@ -40,12 +40,21 @@ public class OnCommand implements Command {
      *
      * @param taskManager Manager class used to manage the list of tasks.
      * @param ui          User interface class used to display messages.
+     * @throws NullPointerException If either {@code taskManager} or {@code ui} is
+     *                              {@code null}. This exception is thrown to indicate
+     *                              improper initialization of
+     *                              the object.
      * @throws SoraException If an error occurs during command execution.
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
-        assert taskManager != null : "TaskManager object should not be null";
-        assert ui != null : "Ui object should not be null";
+        if (taskManager == null) {
+            throw new NullPointerException("TaskManager object should not be null");
+        }
+
+        if (ui == null) {
+            throw new NullPointerException("Ui object should not be null");
+        }
 
         ArrayList<Task> matchedTasks = getMatchedTask(taskManager.getTasks());
         displayMatchedTask(ui, matchedTasks);
@@ -57,12 +66,16 @@ public class OnCommand implements Command {
      *
      * @param tasks List of tasks to search.
      * @return List of tasks matching the target date.
+     * @throws NullPointerException If {@code task} is null.
      */
-    private ArrayList<Task> getMatchedTask(ArrayList<Task> tasks) {
+    private ArrayList<Task> getMatchedTask(ArrayList<Task> tasks)
+            throws NullPointerException {
         ArrayList<Task> matchedTasks = new ArrayList<>();
 
         for (Task task : tasks) {
-            assert task != null : "Task in list should not be null";
+            if (task == null) {
+                throw new NullPointerException("Task in list should not be null");
+            }
 
             if (task instanceof Deadline deadline) {
                 if (deadline.getDeadline().getDate().equals(this.targetDate.getDate())) {
