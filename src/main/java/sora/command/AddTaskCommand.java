@@ -18,7 +18,6 @@ public class AddTaskCommand implements Command {
      * @param task Task to be added.
      */
     public AddTaskCommand(Task task) {
-        assert task != null : "Task to be added should not be null";
         this.task = task;
     }
 
@@ -27,12 +26,20 @@ public class AddTaskCommand implements Command {
      *
      * @param taskManager Manager class used to manage the list of tasks.
      * @param ui          User interface class used to display messages.
+     * @throws NullPointerException If either {@code taskManager} or {@code ui} is {@code null}.
+     *                              This exception is thrown to indicate improper initialization of
+     *                              the object.
      * @throws SoraException If task cannot be added.
      */
     @Override
     public void execute(TaskManager taskManager, Ui ui) throws SoraException {
-        assert taskManager != null : "TaskManager object should not be null";
-        assert ui != null : "Ui object should not be null";
+        if (taskManager == null) {
+            throw new NullPointerException("TaskManager object should not be null");
+        }
+
+        if (ui == null) {
+            throw new NullPointerException("Ui object should not be null");
+        }
 
         taskManager.addTask(this.task);
         ui.showAddTask(this.task, taskManager.getTaskCount());
