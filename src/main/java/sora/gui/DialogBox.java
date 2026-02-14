@@ -42,10 +42,19 @@ public class DialogBox extends HBox {
      *
      * @param message The message text to display
      * @param img     The image avatar
+     * @throws NullPointerException If either {@code message} or {@code img} is
+     *                              {@code null}. This exception is thrown to indicate
+     *                              improper initialization of
+     *                              the object.
      */
-    public DialogBox(String message, Image img) {
-        assert message != null : "Dialog message should not be null";
-        assert img != null : "Dialog image should not be null";
+    public DialogBox(String message, Image img) throws NullPointerException {
+        if (message == null) {
+            throw new NullPointerException("Dialog message should not be null");
+        }
+
+        if (img == null) {
+            throw new NullPointerException("Dialog image should not be null");
+        }
 
         loadFxml();
         initializeContent(message, img);
