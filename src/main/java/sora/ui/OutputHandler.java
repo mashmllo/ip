@@ -1,5 +1,7 @@
 package sora.ui;
 
+import sora.exception.InvalidFormatException;
+
 /**
  * Output destination interface.
  * <p>
@@ -10,6 +12,10 @@ public interface OutputHandler {
      * Sends a message to the output destination
      *
      * @param message The message to be displayed
+     * @throws InvalidFormatException If {@code message} is {@code null}. This exception
+     *                              is thrown to indicate improper initialization of the
+     *                              object.
      */
-    void show(String message);
+    void show(String message)
+            throws InvalidFormatException;
 }
