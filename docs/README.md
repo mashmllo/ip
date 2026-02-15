@@ -163,6 +163,7 @@ matches will also be found.
 Here are the tasks I found matching meeting:
 1. [E][ ] Project Meeting (from: Feb 16 2026 09:00 to: Feb 16 2026 12:00)
 ```
+
 > `KEYWORD` is case-insensitive
 
 ---
@@ -194,9 +195,10 @@ Oh, leaving already? Hope you have a productive day!
 | ***Mark***     | `mark TASK_NUMBER`                         | `mark 1`                                                            |
 | ***Unmark***   | `unmark TASK_NUMBER`                       | `unmark 1`                                                          |
 | ***Delete***   | `delete TASK_NUMBER`                       | `delete 2`                                                          |
-| ***on***       | `on DATE`                                  | `on 2026-02-16`                                                     |
+| ***On***       | `on DATE`                                  | `on 2026-02-16`                                                     |
 | ***Find***     | `find KEYWORD`                             | `find meeting`                                                      |
 | ***Exit***     | `bye`                                      | `bye`                                                               |
+
 
 ### Remarks
 - Task number starts from 1
@@ -217,6 +219,7 @@ The **Jaro-Winkler algorithm** is a string similarity metric:
 - Returns a score between 0.0 (no similarity) and 1.0 (exact match)
 - Gives extra weight to matching characters at the beginning of words, which are useful for short keywords like task 
   titles. 
+
 > This means that mistyping `meetng` will still match `meeting` because the start of the word is correct.
 
 ### How Sora Uses it
@@ -232,7 +235,7 @@ Sora will:
 3. Compute a Jaro-Winkler similarity score for each task
 4. Returns tasks that score above the threshold (around 0.85 similarity)
 
-This helps to approximate misspelled words and find the correct task.
+> This helps to approximate misspelled words and find the correct task.
 
 #### Example 1: Simple Typo
 **Task List**:
@@ -275,6 +278,7 @@ Here are the tasks I found matching meet:
 > Even a partial String `meet` matches `meeting`
 
 ---
+
 #### Example 3: Multiple Matches
 **Task List**:
 
