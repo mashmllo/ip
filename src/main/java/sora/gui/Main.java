@@ -30,6 +30,7 @@ public class Main extends Application {
                     .getResource(MAIN_WINDOW_FXML));
             AnchorPane mainLayout = fxmlLoader.load();
             Scene scene = new Scene(mainLayout);
+            stage.setTitle("Sora");
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setSora();
             stage.show();
