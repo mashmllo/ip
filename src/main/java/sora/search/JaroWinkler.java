@@ -26,10 +26,10 @@ public class JaroWinkler {
     /**
      * Computes the Jaro-Winkler similarity score between two strings.
      *
-     * @param candidate  The candidate string to compare
-     * @param searchTerm The reference string used as the search term
-     * @return Similarity score between {@code 0.0} and {@code 1.0}
-     * @throws IllegalArgumentException if either string is null
+     * @param candidate  The candidate string to compare.
+     * @param searchTerm The reference string used as the search term.
+     * @return Similarity score between {@code 0.0} and {@code 1.0}.
+     * @throws IllegalArgumentException if either string is null.
      */
     public static double compute(String candidate, String searchTerm)
             throws IllegalArgumentException {
@@ -88,11 +88,12 @@ public class JaroWinkler {
     /**
      * Counts the number of character transpositions between matched characters.
      * <p>
-     * A transposition occurs when two matching characters appear in different positions relative to each other
-     * @param candidate   The candidate string
-     * @param searchTerm  The search term string
-     * @param matches     The {@link MatchResult} containing match flags
-     * @return Number of transpositions divided by two, as required by the Jaro formula
+     * A transposition occurs when two matching characters appear in different positions relative to each other.
+     *
+     * @param candidate   The candidate string.
+     * @param searchTerm  The search term string.
+     * @param matches     The {@link MatchResult} containing match flags.
+     * @return Number of transpositions divided by two, as required by the Jaro formula.
      */
     public static double countTranspositions(String candidate,
                                              String searchTerm, MatchResult matches) {

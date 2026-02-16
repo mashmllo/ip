@@ -75,7 +75,7 @@ public class CommandParser {
     /**
      * Parses a command that operates on an existing task index.
      *
-     * @param cmd The full command entered by the user
+     * @param cmd The full command entered by the user.
      * @param keyword  The command keyword (e.g. "mark", "delete").
      * @return the corresponding {@link Command}.
      * @throws NullPointerException If either {@code cmd} pr {@code ui} is {@code null}.
@@ -179,10 +179,10 @@ public class CommandParser {
     /**
      * Parse task creation command.
      *
-     * @param cmd Full command entered by the user
-     * @param keyword  The command keyword (e.g. "todo", "event", "deadline")
-     * @return AddTaskCommand containing the parsed task
-     * @throws SoraException if invalid or incomplete command is entered
+     * @param cmd Full command entered by the user.
+     * @param keyword  The command keyword (e.g. "todo", "event", "deadline").
+     * @return AddTaskCommand containing the parsed task.
+     * @throws SoraException if invalid or incomplete command is entered.
      */
     private static Command parseAddTaskCommand(String cmd, String keyword)
             throws SoraException {

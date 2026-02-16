@@ -5,12 +5,12 @@ import sora.task.Task;
 import sora.ui.Ui;
 
 /**
- * Represents a command that mark a task as done
+ * Represents a command that mark a task as done.
  */
 public class MarkCommand extends IndexCommand {
 
     /**
-     * Constructs a {@code MarkCommand}
+     * Constructs a {@code MarkCommand}.
      *
      * @param index Index of the task to be marked as complete.
      */

@@ -68,7 +68,7 @@ public class Ui {
     }
 
     /**
-     * Displays a confirmation that the task has been deleted
+     * Displays a confirmation that the task has been deleted.
      *
      * @param task  The task that has been removed.
      * @param count Current number of tasks in the list.
@@ -117,7 +117,7 @@ public class Ui {
     }
 
     /**
-     * Display a list of matching tasks.
+     * Displays a list of matching tasks.
      *
      * @param matchingResult List of all matching tasks.
      * @param keyword Keyword to search for.
@@ -138,8 +138,8 @@ public class Ui {
     }
 
     /**
-     * Display error message
-     * <p>
+     * Displays an error message.
+     *
      * @param message Error message to be displayed to the user
      */
     public void showError(String message) {

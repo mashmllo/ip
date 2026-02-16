@@ -17,8 +17,8 @@ public class FuzzyMatcher {
     /**
      * Constructs a {@code FuzzyMatcher} with the specified keyword.
      *
-     * @param keyword The keyword used for similarity comparison
-     * @throws IllegalArgumentException if the keyword is {@code null} or blank
+     * @param keyword The keyword used for similarity comparison.
+     * @throws IllegalArgumentException if the keyword is {@code null} or blank.
      */
     public FuzzyMatcher(String keyword)
             throws IllegalArgumentException {
@@ -32,11 +32,12 @@ public class FuzzyMatcher {
      * Determines if the given text is fuzzy similar to the keyword.
      * <p>
      * The input text is split into words, and each word is compared
-     * against the keyword using Jaro-Winkler similarity
-     * @param searchString  The text to evaluate
+     * against the keyword using Jaro-Winkler similarity.
+     *
+     * @param searchString  The text to evaluate.
      * @return {@code true} if at least one word meets the similarity threshold,
-     *          {@code false} otherwise
-     * @throws IllegalArgumentException if {@code searchString} is {@code null} or empty
+     *         {@code false} otherwise.
+     * @throws IllegalArgumentException if {@code searchString} is {@code null} or empty.
      */
     public boolean isFuzzySimilar(String searchString)
             throws IllegalArgumentException {

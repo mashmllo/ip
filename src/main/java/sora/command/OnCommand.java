@@ -25,7 +25,7 @@ public class OnCommand implements Command {
     /**
      * Constructs an {@code OnCommand} for the given date.
      * <p>
-     * Note: Time will be ignored when matching task
+     * Note: Time will be ignored when matching task.
      *
      * @param targetDate The date string input by the user. Accepts either
      *                   {@code yyyy-MM-dd} or {@code yyyy-MM-dd HH:mm} format.

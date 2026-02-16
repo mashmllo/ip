@@ -5,7 +5,7 @@ import sora.exception.InvalidFormatException;
 /**
  * Implementation of {@link OutputHandler} for CLI output.
  * <p>
- * Messages sent via {@link #show(String)} will be printed to the console
+ * Messages sent via {@link #show(String)} will be printed to the console.
  */
 public class ConsoleOutput implements OutputHandler {
 

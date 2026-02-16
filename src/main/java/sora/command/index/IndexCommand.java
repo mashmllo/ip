@@ -21,7 +21,7 @@ public abstract class IndexCommand implements Command {
     private final int index;
 
     /**
-     * Constructs an {@code IndexCommand}
+     * Constructs an {@code IndexCommand}.
      *
      * @param index Index of the task.
      */
@@ -34,7 +34,7 @@ public abstract class IndexCommand implements Command {
     }
 
     /**
-     * Executes the command by retrieving the task at the given index
+     * Executes the command by retrieving the task at the given index.
      *
      * @param taskManager Manager class used to manage the list of tasks.
      * @param ui          User interface class used to display messages.

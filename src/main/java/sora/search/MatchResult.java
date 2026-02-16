@@ -12,9 +12,9 @@ public class MatchResult {
     /**
      * Constructs a MatchResult.
      *
-     * @param searchMatches     Matched positions in search term
-     * @param candidateMatches  Matched positions in candidate string
-     * @param matchCount        Number of matching characters
+     * @param searchMatches     Matched positions in search term.
+     * @param candidateMatches  Matched positions in candidate string.
+     * @param matchCount        Number of matching characters.
      */
     public MatchResult(boolean[] searchMatches, boolean[] candidateMatches, int matchCount) {
         this.searchMatches = searchMatches;

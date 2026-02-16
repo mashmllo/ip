@@ -19,6 +19,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor of a new {@code Deadline} task.
+     *
      * @param name Name of the task.
      * @param by   Due date of the task as a
      *             {@link ParsedDateTime}.
@@ -40,7 +41,8 @@ public class Deadline extends Task {
 
     /**
      * Returns the string representation of the Deadline task for display.
-     * @return The formatted string e.g. "[D][X] read book (by: Jan 22 2026)"
+     *
+     * @return The formatted string (e.g. "[D][X] read book (by: Jan 22 2026)").
      */
     @Override
     public String toString() {
@@ -49,7 +51,8 @@ public class Deadline extends Task {
 
     /**
      * Returns the string representation of the Deadline task for storage in a file.
-     * @return The formatted string e.g. "D | 1 | read book | 2026-01-22"
+     *
+     * @return The formatted string (e.g. "D | 1 | read book | 2026-01-22").
      */
     @Override
     public String toStorageString() {
@@ -67,7 +70,7 @@ public class Deadline extends Task {
      * and the task will not be added into the list.
      *
      * @param cmd The full command entered by the user
-     *            e.g. "deadline submit report /by 2026-01-22 23:59"
+     *            (e.g. "deadline submit report /by 2026-01-22 23:59").
      * @return A new {@link Deadline} task object.
      * @throws InvalidFormatException If the task name or deadline is missing or invalid.
      */

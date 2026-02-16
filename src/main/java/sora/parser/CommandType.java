@@ -33,9 +33,9 @@ public enum CommandType {
     /**
      * Maps user input string to the corresponding {@link CommandType}.
      *
-     * @param input User input string
-     * @return the corresponding {@link CommandType}
-     * @throws UnknownCommandException if no matching command type exists
+     * @param input User input string.
+     * @return The corresponding {@link CommandType}.
+     * @throws UnknownCommandException if no matching command type exists.
      */
     public static CommandType fromString(String input)
             throws UnknownCommandException {

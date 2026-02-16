@@ -40,8 +40,8 @@ public class DialogBox extends HBox {
     /**
      * Constructs a DialogBox with the given message and avatar image.
      *
-     * @param message The message text to display
-     * @param img     The image avatar
+     * @param message The message text to display.
+     * @param img     The image avatar.
      * @throws NullPointerException If either {@code message} or {@code img} is
      *                              {@code null}. This exception is thrown to indicate
      *                              improper initialization of
@@ -79,8 +79,8 @@ public class DialogBox extends HBox {
     /**
      * Initialize the Ui content.
      *
-     * @param message The message text to display
-     * @param img     The image avatar
+     * @param message The message text to display.
+     * @param img     The image avatar.
      */
     private void initializeContent(String message, Image img) {
         this.dialog.setText(message);

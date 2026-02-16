@@ -79,7 +79,7 @@ public class CommandHandler {
     /**
      * Processes a single input command for GUI usage.
      *
-     * @param input The command input string from the user
+     * @param input The command input string from the user.
      */
     public void processGuiCommand(String input) {
         if (input == null) {
@@ -96,7 +96,7 @@ public class CommandHandler {
     /**
      * Executes a command safely by catching expression.
      *
-     * @param input The command input string from the user
+     * @param input The command input string from the user.
      */
     private void executeCliCommand(String input) {
         try {

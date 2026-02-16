@@ -53,7 +53,7 @@ public abstract class Task {
     /**
      * Returns the task as a formatted string with its status.
      *
-     * @return formatted string e.g. "[X] read book".
+     * @return formatted string (e.g. "[X] read book").
      */
     @Override
     public String toString() {
@@ -71,7 +71,7 @@ public abstract class Task {
      *     <li> {@code 0 } - task is not completed </li>
      * </ul>
      *
-     * @return The formatted string e.g. "| 1 | read book".
+     * @return The formatted string (e.g. "| 1 | read book").
      */
     public String toStorageString() {
         String statusIcon = "| " + (this.isDone ? DONE : NOT_DONE) + " | ";

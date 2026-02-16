@@ -57,7 +57,7 @@ public class MainWindow extends AnchorPane {
      * Initialize the main window controller.
      * <p>
      * Binds the vertical scroll property of the scroll pane to the height
-     * of the dialog container to ensure the latest message is alway visible.
+     * of the dialog container to ensure the latest message is always visible.
      */
     @FXML
     public void initialize() {
@@ -65,7 +65,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Sets the Sora chatbot instance to be used by the controller
+     * Sets the Sora chatbot instance to be used by the controller.
      */
     public void setSora() {
         this.sora = new Sora(new GuiOutput(dialogContainer));

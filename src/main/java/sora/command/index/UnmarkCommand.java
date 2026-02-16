@@ -10,7 +10,7 @@ import sora.ui.Ui;
 public class UnmarkCommand extends IndexCommand {
 
     /**
-     * Constructs an {@code UnmarkedCommand}
+     * Constructs an {@code UnmarkedCommand}.
      *
      * @param index Index of the task to be unmarked.
      */

@@ -21,7 +21,8 @@ public class Main extends Application {
     private static final String MAIN_WINDOW_FXML = "/view/MainWindow.fxml";
     /**
      * Main entry point for the JavaFx application.
-     * @param stage primary stage for this application
+     *
+     * @param stage primary stage for this application.
      */
     @Override
     public void start(Stage stage) {

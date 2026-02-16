@@ -6,7 +6,7 @@ import sora.task.Task;
 import sora.ui.Ui;
 
 /**
- * Represent a command that allows user to add tasks to the task list.
+ * Represents a command that allows user to add tasks to the task list.
  */
 public class AddTaskCommand implements Command {
 

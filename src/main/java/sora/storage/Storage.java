@@ -121,7 +121,6 @@ public class Storage {
      * <p>
      * An error will also be displayed to the user if the creation of the
      * directory fails.
-     *
      */
     private void ensureDirectoryExist() {
         if (this.path.getParent() != null) {
@@ -223,7 +222,7 @@ public class Storage {
      *
      * @param parts Array of strings obtained by splitting a storage line using '|'.
      *              Index 3 must contain the deadline dateTime string.
-     * @param name Name of the deadline task (from parts[2])
+     * @param name Name of the deadline task (from parts[2]).
      * @return A {@link Deadline} object with the specified name and parsed deadline.
      */
     private Task parseDeadline(String[] parts, String name) {
@@ -245,7 +244,7 @@ public class Storage {
      * @param parts Array of strings obtained by splitting a storage line using '|'.
      *              Index 3 must contain the start dateTime string,
      *              index 4 the end dateTime string.
-     * @param name Name of the event task (from parts[2])
+     * @param name Name of the event task (from parts[2]).
      * @return A {@link Event} object with the specified name, start and end time.
      */
     private Task parseEvent(String[] parts, String name) {
@@ -268,6 +267,7 @@ public class Storage {
      *     <li>"0" - denotes the task as not done </li>
      *     <li>"1" - denotes the task as done </li>
      * </ul>
+     *
      * @param task          Task whose completion status should be set.
      * @param completedStat  String representation of the completion status.
      * @throws InvalidFormatException if completedStr is not "0" or "1".

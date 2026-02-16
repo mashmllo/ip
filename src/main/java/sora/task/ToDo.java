@@ -14,6 +14,7 @@ public class ToDo extends Task {
 
     /**
      * Constructs of the new ToDo task with the given name.
+     *
      * @param name The name of the ToDo task.
      */
     public ToDo(String name) {
@@ -22,6 +23,7 @@ public class ToDo extends Task {
 
     /**
      * Returns the string representation of the ToDo task for display.
+     *
      * @return The formatted string e.g. "[T][X] read book".
      */
     @Override
@@ -31,6 +33,7 @@ public class ToDo extends Task {
 
     /**
      * Returns string representation used for file storage for ToDo task.
+     *
      * @return The formatted string e.g. "T | 1 | read book".
      */
     @Override
@@ -45,7 +48,7 @@ public class ToDo extends Task {
      *      todo &lt;name of task&gt;
      * <p>
      * If name of task is missing or empty, {@link InvalidFormatException} is shown and task is
-     * not being added into the list
+     * not being added into the list.
      *
      * @param cmd The full command entered by the user e.g. "todo read book".
      * @return A {@link ToDo} task object.

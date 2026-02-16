@@ -23,6 +23,7 @@ public class Event extends Task {
 
     /**
      * Constructs a new Event class with a name, start and end time.
+     *
      * @param name  The name of the event.
      * @param from  The start date/time of the event as a {@link ParsedDateTime}.
      * @param to    The end date/time of the event as a {@link ParsedDateTime}.
@@ -56,9 +57,10 @@ public class Event extends Task {
 
     /**
      * Returns the string representation of the Event task for display.
-     * @return formatted string
-     *         e.g. "[E][X] project meeting (from: Jan 22 2026 14:00
-     *         to: Jan 22 2026 16:00)"
+     *
+     * @return The formatted string
+     *         (e.g. "[E][X] project meeting (from: Jan 22 2026 14:00
+     *         to: Jan 22 2026 16:00)").
      */
     @Override
     public String toString() {
@@ -68,8 +70,9 @@ public class Event extends Task {
 
     /**
      * Returns the string representation used for file storage for Event task.
+     *
      * @return formatted string
-     *         e.g. "E | 1 | project meeting | 2026-01-22 14:00 | 2026-01-22 16:00"
+     *         (e.g. "E | 1 | project meeting | 2026-01-22 14:00 | 2026-01-22 16:00").
      */
     @Override
     public String toStorageString() {
@@ -89,8 +92,8 @@ public class Event extends Task {
      * list.
      *
      * @param cmd The full command entered by the user
-     *            e.g. "event project meeting /from 2026-01-22 12:00
-     *            /to 2026-01-22 18:00".
+     *            (e.g. "event project meeting /from 2026-01-22 12:00
+     *            /to 2026-01-22 18:00").
      * @return A new {@link Event} task object.
      * @throws InvalidFormatException If task name, start time, or end time
      *                                is missing.

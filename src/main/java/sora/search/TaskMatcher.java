@@ -23,8 +23,8 @@ public class TaskMatcher {
     /**
      * Constructs a {@code TaskManager} with the specified keyword.
      *
-     * @param keyword The keyword used to search tasks
-     * @throws IllegalArgumentException if the keyword is {@code null} or blank
+     * @param keyword The keyword used to search tasks.
+     * @throws IllegalArgumentException if the keyword is {@code null} or blank.
      */
     public TaskMatcher(String keyword) throws IllegalArgumentException {
         if (keyword == null || keyword.isBlank()) {
@@ -39,8 +39,8 @@ public class TaskMatcher {
      * Returns all tasks matching the keyword either by direct substring
      * matching or by fuzzy similarity.
      *
-     * @param tasks   All tasks to be evaluated
-     * @return Tasks that match the search criteria
+     * @param tasks   All tasks to be evaluated.
+     * @return Tasks that match the search criteria.
      */
     public ArrayList<Task> findMatchingTasks(ArrayList<Task> tasks) {
         if (tasks == null) {
@@ -55,8 +55,8 @@ public class TaskMatcher {
     /**
      * Determines if searchString matches keyword via substring or fuzzy matching.
      *
-     * @param searchString  The text extracted from a task to evaluate
-     * @return true if match is found
+     * @param searchString  The text extracted from a task to evaluate.
+     * @return true if match is found.
      */
     private boolean isMatch(String searchString) {
         return isDirectMatch(searchString)

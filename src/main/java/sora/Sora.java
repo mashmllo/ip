@@ -16,8 +16,8 @@ public class Sora {
     /**
      * Constructs a Sora instance using a custom {@link OutputHandler}.
      *
-     * @param outputHandler The output handler used to display messages
-     * @throws IllegalArgumentException If {@code message} is {@code null}
+     * @param outputHandler The output handler used to display messages.
+     * @throws IllegalArgumentException If {@code message} is {@code null}.
      */
     public Sora(OutputHandler outputHandler) throws IllegalArgumentException {
         if (outputHandler == null) {
@@ -36,7 +36,7 @@ public class Sora {
     /**
      * Processes user input and returns the response by Sora.
      *
-     * @param input User input
+     * @param input User input.
      */
     public void processInput(String input) {
         cmdHandler.processGuiCommand(input);
@@ -45,7 +45,8 @@ public class Sora {
 
     /**
      * Main entry point for CLI usage.
-     * @param args command-line arguments (not used)
+     *
+     * @param args command-line arguments (not used).
      */
     public static void main(String[] args) {
         Sora sora = new Sora();
