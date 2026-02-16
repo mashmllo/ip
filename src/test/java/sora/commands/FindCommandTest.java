@@ -76,13 +76,13 @@ public class FindCommandTest {
     @Test
     public void execute_noMatch_returnsEmptyList() {
         ArrayList<Task> tasks = new ArrayList<>();
-        tasks.add(new FakeTask("run"));
+        tasks.add(new FakeTask("study"));
         tasks.add(new FakeTask("swim"));
 
         FakeTaskManager mgr = new FakeTaskManager(tasks);
         FakeUi ui = new FakeUi();
 
-        FindCommand cmd = new FindCommand("read");
+        FindCommand cmd = new FindCommand("sleep");
 
         cmd.execute(mgr, ui);
 
