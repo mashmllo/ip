@@ -18,4 +18,14 @@ public interface OutputHandler {
      */
     void show(String message)
             throws InvalidFormatException;
+
+    /**
+     * Sends an error message to the output destination.
+     *
+     * @param message The error message to be displayed; must not be {@code null}.
+     * @throws InvalidFormatException if {@code message} is {@code null},
+     *                                indicating that the message is improperly initialized.
+     */
+    void showError(String message)
+            throws InvalidFormatException;
 }

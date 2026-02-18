@@ -7,12 +7,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 
 /**
  * Represents a single dialog box containing a message and an image.
@@ -84,7 +86,25 @@ public class DialogBox extends HBox {
      */
     private void initializeContent(String message, Image img) {
         this.dialog.setText(message);
+
+        this.dialog.setWrapText(true);
+        this.dialog.setMaxWidth(350);
+        this.dialog.setPadding(new Insets(15));
+
+        this.parentProperty().addListener((obs,
+                                           oldParent, newParent) -> {
+            if (newParent != null) {
+                newParent.layoutBoundsProperty().addListener((o,
+                         oldBounds, newBounds) ->
+                    this.dialog.setMaxWidth(newBounds.getWidth() * 0.8)
+                );
+            }
+        });
+
         this.displayPicture.setImage(img);
+
+        Circle clip = new Circle(20, 20, 20);
+        this.displayPicture.setClip(clip);
     }
 
     /**
@@ -99,13 +119,24 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String message, Image img) {
-        return new DialogBox(message, img);
+        DialogBox userDialog = new DialogBox(message, img);
+        userDialog.setAlignment(Pos.TOP_RIGHT);
+        userDialog.dialog.getStyleClass().add("dialog-user");
+        return userDialog;
     }
 
     public static DialogBox getSoraDialog(String message, Image img) {
-        var db = new DialogBox(message, img);
-        db.flip();
-        return db;
+        DialogBox soraDialog = new DialogBox(message, img);
+        soraDialog.flip();
+        soraDialog.dialog.getStyleClass().add("dialog-sora");
+        return soraDialog;
+    }
+
+    public static DialogBox getErrorDialog(String message, Image img) {
+        DialogBox errorDialog = new DialogBox(message, img);
+        errorDialog.flip();
+        errorDialog.dialog.getStyleClass().add("dialog-error");
+        return errorDialog;
     }
 }
 

@@ -17,11 +17,7 @@ import sora.gui.DialogBox;
  */
 public class GuiOutput implements OutputHandler {
 
-    private static final String MSG_BOX_STYLE =
-            "-fx-background-color: #e0e0e0; -fx-padding: 5px;-fx-background-radius: 5px";
-
     private final VBox container;
-    private boolean isIconAdded = false;
 
     /**
      * Constructs a {@link GuiOutput} instance.
@@ -38,28 +34,23 @@ public class GuiOutput implements OutputHandler {
         if (message == null) {
             throw new InvalidFormatException("Message should not be null");
         }
-        Platform.runLater(() -> {
-            if (!isIconAdded) {
-                addSoraIcon();
-                isIconAdded = true;
-            }
-
-            addMessageLabel(message);
-        });
-        isIconAdded = false;
-    }
-
-    private void addSoraIcon() {
-        container.getChildren().add(
-                DialogBox.getSoraDialog("", SORA_IMG)
+        Platform.runLater(() ->
+            this.container.getChildren().add(
+                    DialogBox.getSoraDialog(message, SORA_IMG)
+            )
         );
     }
 
-    private void addMessageLabel(String message) {
-        Label msg = new Label(message);
-        msg.setWrapText(true);
-        msg.setMaxWidth(Double.MAX_VALUE);
-        msg.setStyle(MSG_BOX_STYLE);
-        container.getChildren().add(msg);
+    @Override
+    public void showError(String message) throws InvalidFormatException {
+        if (message == null) {
+            throw new InvalidFormatException("Message should not be null");
+        }
+
+        Platform.runLater(() ->
+            this.container.getChildren().add(
+                    DialogBox.getErrorDialog(message, SORA_IMG)
+            )
+        );
     }
 }

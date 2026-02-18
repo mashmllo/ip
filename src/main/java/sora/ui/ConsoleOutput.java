@@ -31,6 +31,20 @@ public class ConsoleOutput implements OutputHandler {
     }
 
     /**
+     * Prints an error message to the console.
+     * <p>
+     * Currently delegates to {@link #show(String)}. Future implementations can override
+     * to provide distinct formatting for errors.
+     *
+     * @param message The error message to be displayed; must not be {@code null}.
+     * @throws InvalidFormatException if {@code message} is {@code null}.
+     */
+    @Override
+    public void showError(String message) throws InvalidFormatException {
+        show(message);
+    }
+
+    /**
      * Prints the horizontal divider for readability.
      */
     public void printLine() {

@@ -18,7 +18,9 @@
                    onAction="#handleUserInput"
                    prefHeight="41.0"
                    prefWidth="324.0"
-                   AnchorPane.bottomAnchor="1.0" />
+                   AnchorPane.bottomAnchor="1.0"
+                   styleClass="input-textfield"
+        />
         <Button fx:id="sendButton"
                 layoutX="324.0"
                 layoutY="558.0"
@@ -26,7 +28,9 @@
                 onAction="#handleUserInput"
                 prefHeight="41.0"
                 prefWidth="76.0"
-                text="Send" />
+                text="Send"
+                styleClass="send-button"
+        />
         <ScrollPane fx:id="scrollPane"
                     hbarPolicy="NEVER"
                     hvalue="1.0"
@@ -36,7 +40,8 @@
             <content>
                 <VBox fx:id="dialogContainer"
                       prefHeight="552.0"
-                      prefWidth="388.0" />
+                      prefWidth="388.0"
+                      styleClass="dialog-container"/>
             </content>
         </ScrollPane>
     </children>

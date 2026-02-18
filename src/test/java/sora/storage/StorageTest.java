@@ -40,6 +40,11 @@ public class StorageTest {
         public void show(String message) throws InvalidFormatException {
             this.lastMessage = message;
         }
+
+        @Override
+        public void showError(String message) throws InvalidFormatException {
+            this.lastMessage = message;
+        }
     }
 
     @BeforeEach
