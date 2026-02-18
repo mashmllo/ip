@@ -1,0 +1,9 @@
+.dialog-error {
+    -fx-background-color: #ffe6e6;
+    -fx-text-fill: #d32f2f;
+    -fx-background-radius: 25px;
+    -fx-font-weight: bold;
+    -fx-font-family: 'Segoe-UI';
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 4, 0.2, 0, 2);
+}
