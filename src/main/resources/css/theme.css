@@ -53,6 +53,24 @@
     -fx-padding: 12px;
 }
 
+.dialog-user, .dialog-sora, .dialog-error {
+    -fx-font-family: 'Segoe-UI';
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 4, 0.2, 0, 2);
+}
+
+.dialog-user {
+    -fx-background-color: #f7f7f7;
+    -fx-text-fill: black;
+    -fx-background-radius: 25px;
+}
+
+.dialog-sora {
+    -fx-background-color: #bde0fe;
+    -fx-text-fill: black;
+    -fx-background-radius: 25px;
+}
+
 .dialog-error {
     -fx-background-color: #ffe6e6;
     -fx-text-fill: #d32f2f;
