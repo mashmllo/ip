@@ -51,8 +51,8 @@ public class Ui {
      * Displays a welcome message when the program start for GUI interface.
      */
     public void showGuiGreetUser() {
-        this.output.show("Hey! I'm Sora");
-        this.output.show("What would you like to do today?");
+        String greetings = "Hey! I'm Sora \n What would you like to do today?";
+        this.output.show(greetings);
     }
 
     /**
@@ -62,9 +62,10 @@ public class Ui {
      * @param count The current number of tasks in the list.
      */
     public void showAddTask(Task task, int count) {
-        this.output.show("Task added! Here's what I've recorded:");
-        this.output.show(task.toString());
-        System.out.printf("All set! You now have %d in your list\n", count);
+        String addTaskMsg = "Task added! Here's what I've recorded:\n" + " " + task
+                + "\n" + "All set! You now have " + count + " in your list";
+
+        this.output.show(addTaskMsg);
     }
 
     /**
@@ -74,9 +75,10 @@ public class Ui {
      * @param count Current number of tasks in the list.
      */
     public void showDeletedTask(Task task, int count) {
-        this.output.show("Got it! Task removed");
-        this.output.show(" " + task);
-        System.out.printf("All set! You now have %d in your list\n", count);
+        String deleteMsg = "Got it! Task removed:\n" + "  " + task
+                + "\n" + "All set! You now have " + count + " in your list";
+
+        this.output.show(deleteMsg);
     }
 
     /**
@@ -87,13 +89,19 @@ public class Ui {
      */
     public void showTasks(ArrayList<Task> tasks, int count) {
         if (count == 0) {
-            this.output.show("Hmm... it looks like you haven't add any tasks yet");
-            this.output.show("Why not start adding a new task?");
-        } else {
-            for (int i = 0; i < count; i++) {
-                this.output.show((i + 1) + ". " + tasks.get(i));
-            }
+            String errorMsg = "Hmm... it looks like you haven't add any tasks yet\n"
+                    + "Why not start adding a new task?";
+            showError(errorMsg);
+            return;
         }
+
+        StringBuilder sb = new StringBuilder("Here are your tasks: \n");
+        for (int i = 0; i < count; i++) {
+            sb.append(i + 1).append(". ")
+                    .append(tasks.get(i))
+                    .append("\n");
+        }
+        this.output.show(sb.toString());
     }
 
     /**
@@ -102,8 +110,9 @@ public class Ui {
      * @param task Task that has been marked as complete.
      */
     public void showTaskMarked(Task task) {
-        this.output.show("Task Completed! You're making progress");
-        this.output.show(" " + task);
+        String markSuccessful = "Task Completed! You're making progress\n"
+                + "  " + task;
+        this.output.show(markSuccessful);
     }
 
     /**
@@ -112,8 +121,9 @@ public class Ui {
      * @param task Task that has been marked as not complete.
      */
     public void showTaskUnmarked(Task task) {
-        this.output.show("Okay! The task is still pending to be completed");
-        this.output.show(" " + task);
+        String markUnsuccessful = "Okay! The task is still pending to be completed\n"
+                + "  " + task;
+        this.output.show(markUnsuccessful);
     }
 
     /**
@@ -124,17 +134,20 @@ public class Ui {
      */
     public void showSearchResult(ArrayList<Task> matchingResult, String keyword) {
         if (matchingResult.isEmpty()) {
-            this.output.show("Hmm... No tasks found on " + keyword + " yet");
-            this.output.show("Try refining your search");
-        } else {
-            this.output.show("Here are the tasks I found matching " + keyword + ":");
-            int count = 0;
-            for (Task task: matchingResult) {
-                this.output.show((count + 1) + ". " + task);
-                count++;
-            }
+            String errorMsg = "Hmm... No tasks found on " + keyword + " yet\n"
+                    + "Try refining your search";
+            showError(errorMsg);
+            return;
         }
 
+        StringBuilder results = new StringBuilder("Here are the tasks I found"
+                + " matching " + keyword + ":\n");
+        for (int i = 0; i < matchingResult.size(); i++) {
+            results.append(i + 1).append(". ")
+                    .append(matchingResult.get(i))
+                    .append("\n");
+        }
+        this.output.show(results.toString());
     }
 
     /**
@@ -143,7 +156,7 @@ public class Ui {
      * @param message Error message to be displayed to the user
      */
     public void showError(String message) {
-        this.output.show(message);
+        this.output.showError(message);
     }
 
     /**
