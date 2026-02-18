@@ -1,9 +1,61 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #cfe9ff, #ffffff);
+}
+
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.send-button {
+    -fx-background-color: #4da6ff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 15px;
+    -fx-padding: 6px 12px;
+    -fx-cursor: hand;
+    -fx-effect:dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0.5, 0, 2);
+    -fx-font-size: 14px;
+    -fx-border-color: transparent;
+}
+
+.send-button:hover {
+    -fx-background-color: #66b3ff;
+}
+
+.send-button:pressed {
+    -fx-background-color: #3399ff;
+}
+
+.input-textfield {
+    -fx-background-color: rgba(255, 255, 255, 0.9);
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-border-color: #cce0ff;
+    -fx-border-width: 1.5px;
+    -fx-padding: 6px 10px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333
+}
+
+.input-textfield:focused {
+    -fx-border-color: #4da6ff;
+    -fx-border-width: 2px;
+}
+
+.dialog-container {
+    -fx-background-color: rgba(255, 255, 255, 0.45);
+    -fx-background-radius: 18px;
+    -fx-border-color: rgba(255, 255, 255, 0.6);
+    -fx-border-radius: 18px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 18, 0.3, 0, 4);
+    -fx-padding: 12px;
+}
+
 .dialog-error {
     -fx-background-color: #ffe6e6;
     -fx-text-fill: #d32f2f;
     -fx-background-radius: 25px;
     -fx-font-weight: bold;
-    -fx-font-family: 'Segoe-UI';
-    -fx-font-size: 14px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 4, 0.2, 0, 2);
 }
