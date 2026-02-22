@@ -35,6 +35,37 @@ public class TaskTest {
                 -> Deadline.parse("deadline homework"));
     }
 
+    @Test
+    public void parse_deadlineInvalidDay_throwsInvalidFormatException() {
+        assertThrows(InvalidFormatException.class, ()
+                -> Deadline.parse("deadline homework /by 2026-02-30"));
+    }
+
+    @Test
+    public void parse_deadlineInvalidMonth_throwsInvalidFormatException() {
+        assertThrows(InvalidFormatException.class, ()
+                -> Deadline.parse("deadline homework /by 2026-13-01"));
+    }
+
+    @Test
+    public void parse_deadlineLeapYear_valid() throws InvalidFormatException {
+        Task task = Deadline.parse("deadline homework /by 2024-02-29");
+        assertEquals("[D][ ] homework (by: Feb 29 2024)", task.toString());
+    }
+
+    @Test
+    public void parse_deadlineLeapYear_invalid() throws InvalidFormatException {
+        assertThrows(InvalidFormatException.class, ()
+                -> Deadline.parse("deadline homework /by 2023-02-29"));
+    }
+
+    @Test
+    public void parse_deadlineInvalidTime_throwsInvalidFormatException() {
+        assertThrows(InvalidFormatException.class, ()
+                -> Deadline.parse("deadline homework /by 2026-02-01 24:00"));
+        assertThrows(InvalidFormatException.class, ()
+                -> Deadline.parse("deadline homework /by 2026-02-01 12:60"));
+    }
 
     @Test
     public void parse_eventDateOnly_success() {
