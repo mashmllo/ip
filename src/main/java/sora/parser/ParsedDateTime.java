@@ -39,6 +39,10 @@ public class ParsedDateTime {
         return this.dateTime.toLocalDate();
     }
 
+    public LocalDateTime getDateTime() {
+        return this.dateTime;
+    }
+
     /**
      * Returns the formatted string representation of the parsed date or datetime.
      *
@@ -88,5 +92,16 @@ public class ParsedDateTime {
                     DateInputType.FORMAT_DATETIME_INPUT);
             return new ParsedDateTime(dateTime, type);
         }
+    }
+
+    /**
+     * Validates that the end {@link ParsedDateTime} is not before the start.
+     *
+     * @param start The start {@link ParsedDateTime}.
+     * @param end   The end {@link ParsedDateTime}.
+     * @return true if end is the same or after start; false if end is before start.
+     */
+    public static boolean isValidStartEnd(ParsedDateTime start, ParsedDateTime end) {
+        return !end.getDateTime().isBefore(start.getDateTime());
     }
 }

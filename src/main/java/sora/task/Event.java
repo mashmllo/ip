@@ -112,6 +112,13 @@ public class Event extends Task {
             throw new InvalidFormatException("Oops! Event requires /from,"
                     + " /to and name");
         }
+
+        ParsedDateTime fromDate = ParsedDateTime.dateTimeParser(parts[1].trim());
+        ParsedDateTime toDate = ParsedDateTime.dateTimeParser(parts[2].trim());
+        if (!ParsedDateTime.isValidStartEnd(fromDate, toDate)) {
+            throw new InvalidFormatException("Oops! End date/time cannot be before start date/time");
+        }
+
         return new Event(parts[0].trim(),
                 ParsedDateTime.dateTimeParser(parts[1].trim()),
                 ParsedDateTime.dateTimeParser(parts[2].trim()));

@@ -108,4 +108,13 @@ public enum DateInputType {
             throw new InvalidFormatException("Oops! This is an invalid date");
         }
     }
+
+    private static boolean isValidDateTime(String inputDateTime) {
+        try {
+            LocalDateTime dateTime = LocalDateTime.parse(inputDateTime, FORMAT_DATETIME_INPUT);
+            return inputDateTime.equals(dateTime.format(FORMAT_DATETIME_INPUT));
+        } catch (DateTimeParseException dateTimeParseException) {
+            throw new InvalidFormatException("Oops! This is an invalid date");
+        }
+    }
 }
