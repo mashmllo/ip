@@ -99,6 +99,18 @@ public class TaskTest {
     }
 
     @Test
+    public void parse_eventDateToBeforeFrom_throwsInvalidFormatException() {
+        assertThrows(InvalidFormatException.class, ()
+                -> Deadline.parse("event conference /from 2026-01-25 /to 2026-01-24"));
+    }
+
+    @Test
+    public void parse_eventTimeToBeforeFrom_throwsInvalidFormatException() {
+        assertThrows(InvalidFormatException.class, ()
+                -> Deadline.parse("event conference /from 2026-01-25 12:00 /to 2026-01-25 11:00"));
+    }
+
+    @Test
     public void markAsDone_once_taskCompleted() {
         Task task = new ToDo("read book");
         task.markAsDone();

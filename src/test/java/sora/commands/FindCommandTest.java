@@ -47,7 +47,7 @@ public class FindCommandTest {
         private String receivedKeyword;
 
         @Override
-        public void showSearchResult(ArrayList<Task> matchingResult, String keyword) {
+        public void showSearchResult(ArrayList<Task> tasks, ArrayList<Task> matchingResult, String keyword) {
             this.receivedMatches = matchingResult;
             this.receivedKeyword = keyword;
         }

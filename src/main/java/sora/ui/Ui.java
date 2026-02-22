@@ -129,10 +129,11 @@ public class Ui {
     /**
      * Displays a list of matching tasks.
      *
+     * @param tasks          Arraylist containing all the tasks.
      * @param matchingResult List of all matching tasks.
-     * @param keyword Keyword to search for.
+     * @param keyword        Keyword to search for.
      */
-    public void showSearchResult(ArrayList<Task> matchingResult, String keyword) {
+    public void showSearchResult(ArrayList<Task> tasks, ArrayList<Task> matchingResult, String keyword) {
         if (matchingResult.isEmpty()) {
             String errorMsg = "Hmm... No tasks found on " + keyword + " yet\n"
                     + "Try refining your search";
@@ -142,9 +143,10 @@ public class Ui {
 
         StringBuilder results = new StringBuilder("Here are the tasks I found"
                 + " matching " + keyword + ":\n");
-        for (int i = 0; i < matchingResult.size(); i++) {
-            results.append(i + 1).append(". ")
-                    .append(matchingResult.get(i))
+        for (Task match : matchingResult) {
+            int originalIndex = tasks.indexOf(match);
+            results.append(originalIndex + 1).append(". ")
+                    .append(match)
                     .append("\n");
         }
         this.output.show(results.toString());

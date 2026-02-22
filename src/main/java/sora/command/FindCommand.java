@@ -49,6 +49,6 @@ public class FindCommand implements Command {
 
         ArrayList<Task> matches = matcher.findMatchingTasks(taskManager.getTasks());
 
-        ui.showSearchResult(matches, keyword);
+        ui.showSearchResult(taskManager.getTasks(), matches, keyword);
     }
 }
