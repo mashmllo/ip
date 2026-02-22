@@ -94,6 +94,7 @@ public class OnCommand implements Command {
     private void displayMatchedTask(Ui ui, ArrayList<Task> matchedTasks) {
         if (matchedTasks.isEmpty()) {
             ui.showError(String.format(NO_TASK_MSG_TEMPLATE, this.targetDate));
+            return;
         }
 
         ui.showTasks(matchedTasks, matchedTasks.size());
